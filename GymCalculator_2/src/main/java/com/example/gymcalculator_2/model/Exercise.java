@@ -1,7 +1,7 @@
 package com.example.gymcalculator_2.model;
 
 
-import com.example.gymcalculator_2.model.Enumerator.Type;
+import com.example.gymcalculator_2.model.Enumerator.LiftType;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -16,6 +16,6 @@ public class Exercise {
     private int weight;
     private int reps;
     @Enumerated
-    private Type type;
+    private LiftType type;
 
 }
