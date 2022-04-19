@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a46eaa34-45cc-4da2-84a0-a65b6cace45c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/GymCalculator_2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../GymCalculator_2/GymCalculator_2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../GymCalculator_2/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/src/main/java/com/example/gymcalculator_2/GymCalculator2Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GymCalculator_2/src/main/java/com/example/gymcalculator_2/GymCalculator2Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/src/main/java/com/example/gymcalculator_2/model/Exercise.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GymCalculator_2/src/main/java/com/example/gymcalculator_2/model/Exercise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/src/main/java/com/example/gymcalculator_2/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GymCalculator_2/src/main/java/com/example/gymcalculator_2/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/src/main/java/com/example/gymcalculator_2/repo/ExerciseRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/src/main/java/com/example/gymcalculator_2/repo/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/src/main/java/com/example/gymcalculator_2/services/ExerciseService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/src/main/java/com/example/gymcalculator_2/services/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/src/main/java/com/example/gymcalculator_2/services/impl/ExerciseServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/src/main/java/com/example/gymcalculator_2/services/impl/UserServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/src/main/java/com/example/gymcalculator_2/web/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GymCalculator_2/src/main/java/com/example/gymcalculator_2/web/HomePageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/src/main/java/com/example/gymcalculator_2/web/REST/RestHomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GymCalculator_2/src/main/java/com/example/gymcalculator_2/web/REST/RestHomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/target/classes/com/example/gymcalculator_2/GymCalculator2Application.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/target/classes/com/example/gymcalculator_2/model/Exercise.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/target/classes/com/example/gymcalculator_2/model/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/target/classes/com/example/gymcalculator_2/repo/ExerciseRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/target/classes/com/example/gymcalculator_2/repo/UserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/target/classes/com/example/gymcalculator_2/services/ExerciseService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/target/classes/com/example/gymcalculator_2/services/UserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/target/classes/com/example/gymcalculator_2/services/impl/ExerciseServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/target/classes/com/example/gymcalculator_2/services/impl/UserServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/target/classes/com/example/gymcalculator_2/web/HomePageController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/target/classes/com/example/gymcalculator_2/web/REST/RestHomePage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GymCalculator_2/target/test-classes/com/example/gymcalculator_2/GymCalculator2ApplicationTests.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Enum" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="26Cr3Dt1jTY7Alzt02GPryYWfOp" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
+  </component>
+  <component name="RunManager">
+    <configuration name="GymCalculatorApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="GymCalculator" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="finki.ukim.mk.gymcalculator.GymCalculatorApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a46eaa34-45cc-4da2-84a0-a65b6cace45c" name="Changes" comment="" />
+      <created>1646938213348</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1646938213348</updated>
+      <workItem from="1646938222708" duration="4157000" />
+      <workItem from="1649432043976" duration="563000" />
+      <workItem from="1649432662997" duration="2506000" />
+      <workItem from="1650196826140" duration="175000" />
+      <workItem from="1650200599321" duration="1179000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
