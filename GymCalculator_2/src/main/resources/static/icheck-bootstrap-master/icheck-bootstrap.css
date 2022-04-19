@@ -153,6 +153,17 @@
     border-color: #eea236;
 }
 
+.icheck-indigo > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-indigo > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #761BB6FF;
+}
+
+.icheck-indigo > input:first-child:checked + label::before,
+.icheck-indigo > input:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #913ad3;
+    border-color: #761bb6;
+}
+
 .icheck-danger > input:first-child:not(:checked):not(:disabled):hover + label::before,
 .icheck-danger > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
     border-color: #d43f3a;

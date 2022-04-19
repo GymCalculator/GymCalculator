@@ -17,4 +17,8 @@ public class HomePageController {
         model.addAttribute("bodyContent", "home");
         return "homepage.html";
     }
+
+
+
+
 }
