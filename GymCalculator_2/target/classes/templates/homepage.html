@@ -1,23 +1,382 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
+
+<link rel="stylesheet" href="/static/bootstrap-5.1.3-dist/css/bootstrap.css">
+<link href="/static/icheck-bootstrap-master/icheck-bootstrap.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 </head>
 <body>
 
-<section class="jumbotron text-center">
-    <div class="container">
-        <h1 class="jumbotron-heading">WEB PROGRAMMING Lifts Calculator</h1>
-        <h2 class="jumbotron-heading">Log your latest lifts</h2>
+
+<th:block>
+    <section class="jumbotron text-center">
+
+        <div class="container">
+            <div class="row">
+                <h2 class="jumbotron-heading fw-bold float-start" style="color: #DE795B">WEB PROGRAMMING Lifts
+                    Calculator</h2>
+            </div>
+
+            <!--    NAVBAR    -->
+
+
+        </div>
+        </div>
+
+    </section>
+    <div class="justify-content-center text-center">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+
+            <a class="navbar-brand" href="#">Gym Calculator</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse navbar-expand-sm " id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Strength Standards</a>
+                    </li>
+
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Calculators
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-dark bg-dark" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item text-white" href="#">1RM Calculator</a>
+                            <a class="dropdown-item text-white" href="#">Wilks Calculator</a>
+                            <a class="dropdown-item text-white" href="#">TDEE Calculator</a>
+                            <a class="dropdown-item text-white" href="#">Ideal Bodyweight Calculator</a>
+
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
     </div>
-</section>
+    <div class="container bg-light p-5 ">
 
 
+        <!--    todo: ako ne e logiran da ne go pokazuva slednovo    -->
+        <h3 class="text-start  fw-bolder" style="color: #DE795B">Log your latest lifts</h3>
+        <hr>
+        <div class="row " style="">
 
+            <div class="form-floating col-1">
+                <label for="select1" class="label text-info" style="left: 25%">Units:</label>
+                <select class="btn form-select border-info border-2 fw-bold" id="select1"
+                        style="height: 55px">
+                    <option value="Metric">Metric</option>
+                    <option value="Imperial">Imperial</option>
+                </select>
+            </div>
+
+
+            <div class="form-floating col-2 ">
+                <label for="select2" class="label text-info  text-wrap" style="left: 10px">Round calculations to
+                    nearest:</label>
+                <select class="btn form-select border-info border-2 fw-bold " id="select2"
+                        style="height: 55px">
+                    <option value="1">1 kg</option>
+                    <option value="2.5">2.5 kg</option>
+                    <option value="5">5 kg</option>
+                    <option value="10">10 kg</option>
+                </select>
+            </div>
+
+        </div>
+
+        <hr>
+
+
+        <form role="form" name="mainForm" novalidate class="">
+
+            <h1 class="text-start text-info ">Select the lifts that you train.</h1>
+            <p class="text-start opacity-50">These lifts will be used to determine your strength levels. For the most
+                complete
+                results, choose at least one lift per category</p>
+
+            <!--       Exercises to select from...      -->
+
+            <div class="">
+                <div class="row">
+                    <div class="col" id="squatId">
+                        <label for="squatId" class="label label-info">Squat</label>
+
+                        <div class="form-check checkbox icheck-info">
+                            <input class="form-check-input" type="checkbox" value="" id="FsquatCheckbox"
+                                   onclick="LiftForms('#FsquatCheckbox','squatform')">
+                            <label class="form-check-label" for="FsquatCheckbox">
+                                Front Squat
+                            </label>
+                        </div>
+                        <div class="form-check checkbox icheck-info">
+                            <input class="form-check-input" type="checkbox" value="" id="BsquatCheckbox" checked>
+                            <label class="form-check-label" for="BsquatCheckbox">
+                                Back Squat
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col" id="FloorPull">
+                        <label for="FloorPull" class="label label-info">Floor Pull</label>
+
+                        <div class="form-check checkbox icheck-info">
+                            <input class="form-check-input" type="checkbox" value="" id="DLCheckbox">
+                            <label class="form-check-label" for="DLCheckbox">
+                                Deadlift
+                            </label>
+                        </div>
+                        <div class="form-check checkbox icheck-info">
+                            <input class="form-check-input" type="checkbox" value="" id="SumoDLCheckbox" checked>
+                            <label class="form-check-label" for="SumoDLCheckbox">
+                                Sumo Deadlift
+                            </label>
+                        </div>
+                        <div class="form-check checkbox icheck-info">
+                            <input class="form-check-input" type="checkbox" value="" id="PCCheckbox">
+                            <label class="form-check-label" for="PCCheckbox">
+                                Power Clean
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div class="col" id="HorPress">
+                        <label for="HorPress" class="label label-info">Horizontal Press</label>
+                        <div class="form-check checkbox icheck-info">
+                            <input class="form-check-input" type="checkbox" value="" id="BenchCheckbox">
+                            <label class="form-check-label" for="BenchCheckbox">
+                                Bench Press
+                            </label>
+                        </div>
+                        <div class="form-check checkbox icheck-info">
+                            <input class="form-check-input" type="checkbox" value="" id="InclBenchCheckbox" checked>
+                            <label class="form-check-label" for="InclBenchCheckbox">
+                                Incline Bench Press
+                            </label>
+                        </div>
+                        <div class="form-check checkbox icheck-info">
+                            <input class="form-check-input" type="checkbox" value="" id="DipCheckbox">
+                            <label class="form-check-label" for="DipCheckbox">
+                                Dip
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col" id="VerPress">
+                        <label for="VerPress" class="label label-info">Vertical Press</label>
+
+                        <div class="form-check checkbox icheck-info">
+                            <input class="form-check-input" type="checkbox" value="" id="OHPCheckbox">
+                            <label class="form-check-label" for="OHPCheckbox">
+                                Overhead Press
+                            </label>
+                        </div>
+                        <div class="form-check checkbox icheck-info">
+                            <input class="form-check-input" type="checkbox" value="" id="PPCheckbox" checked>
+                            <label class="form-check-label" for="PPCheckbox">
+                                Push Press
+                            </label>
+                        </div>
+                        <div class="form-check checkbox icheck-info">
+                            <input class="form-check-input" type="checkbox" value="" id="SPCheckbox">
+                            <label class="form-check-label" for="SPCheckbox">
+                                Snatch Press
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-8" id="PullUp">
+                        <label for="PullUp" class="label label-info">Pull-up/ Row</label>
+
+                        <div class="form-check checkbox icheck-info">
+                            <input class="form-check-input" type="checkbox" value="" id="ChinUpCheckbox">
+                            <label class="form-check-label" for="ChinUpCheckbox">
+                                Chin-up
+                            </label>
+                        </div>
+                        <div class="form-check checkbox icheck-info">
+                            <input class="form-check-input" type="checkbox" value="" id="PullUpCheckbox" checked>
+                            <label class="form-check-label" for="PullUpCheckbox">
+                                Pull-up
+                            </label>
+                        </div>
+                        <div class="form-check checkbox icheck-info">
+                            <input class="form-check-input" type="checkbox" value="" id="PendlayCheckbox">
+                            <label class="form-check-label" for="PendlayCheckbox">
+                                Pendlay Row
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+                <hr>
+            </div>
+
+            <!--    Personal info...   -->
+
+            <h1 class="text-start text-info mt-0">Enter your sex, bodyweight, & age.</h1>
+            <p class="text-start opacity-50">Your strength score adjusts by sex, bodyweight, and age,
+                allowing you to measure yourself against any other lifter.</p>
+
+            <div class="row">
+
+
+                <div class="form-floating col-1">
+                    <label for="select3" class="label text-info " style="left: 15px">Sex</label>
+
+                    <select class="btn form-select border-info border-2 fw-bold   " id="select3"
+                            style="height: 55px">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+
+                <div class="form-floating col-2" style="left: 20px">
+                    <label for="bw" class="label text-info " style="left: 15px">Body weight</label>
+
+                    <div class="input-group">
+                        <input type="number"
+                               class="btn form-select form-control border-info border-2 fw-bold "
+                               placeholder="Body weight"
+                               id="bw" style="height: 55px">
+
+                        <span class="input-group-addon fw-bold bg-info text-white">kg</span>
+
+                    </div>
+                </div>
+
+
+                <div class="form-floating col-1">
+                    <label for="age" class="label text-info" style="left: 15px">Age (optional)</label>
+                    <input type="number" class="btn form-select border-info border-2 fw-bold " id="age"
+                           placeholder="Age" style="height: 55px">
+                </div>
+
+            </div>
+            <hr>
+
+
+            <h1 class="text-start text-info mt-0">Enter your best recent sets.</h1>
+            <p class="text-start opacity-50">Finally, for each lift you train, enter your most difficult set that you
+                have
+                completed recently. Each set should be 10 or fewer reps.</p>
+
+
+            <!--        todo: show pup-ups for selected lift...      -->
+            <div class="row" id="squatform" >
+                <p class="col-2" id="formP">Front Squat</p>
+
+                <div class="form-floating col-2">
+                    <label for="sq" class="label text-info " style="left: 15px">Weight</label>
+                    <div class="input-group">
+                        <input type="number"
+                               class="btn form-select form-control border-info border-2 fw-bold "
+                               placeholder="Weight"
+                               id="sq" style="height: 55px">
+                        <span class="input-group-addon fw-bold bg-info text-white">kg</span>
+                    </div>
+                </div>
+
+                <div class="form-floating col-2">
+                    <label for="reps" class="label text-info " style="left: 15px">Reps</label>
+                    <div class="input-group">
+                        <span class="input-group-addon fw-bold bg-info text-white">X</span>
+                        <input type="number"
+                               class="btn form-select form-control border-info border-2 fw-bold "
+                               placeholder="Body weight"
+                               id="reps" style="height: 55px">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- todo: maybe put a reset button later
+            == reset button sets the changed inputs to their predefined values (inserted by the user when creating an account)-->
+
+            <button type="submit" class="btn btn-danger text-white ">Analyze</button>
+            <button type="submit" class="btn btn-info text-white ">Analyze and Log Lifts</button>
+            <button type="submit" class="btn btn-secondary text-white ">Reset</button>
+            <button type="button" class="blockquote"
+                    onclick="{document.getElementById('info').classList.toggle('hidden'); }">?
+            </button>
+            <div class="hidden border border-info text-black p-4" id="info" style="background: #86b7fe">
+            <span><b>Analyze:</b> Displays a strength analysis, but does not save the data you entered.
+                Use this if you're just curious about some results.</span>
+                <br>
+                <span><b>Analyze and Log Lifts:</b> Displays a strength analysis and saves the data you entered.
+                Use this if the numbers you entered match your recent lifts.</span>
+                <br>
+                <span><b>Reset:</b> Loads your last logged lifts.</span>
+            </div>
+
+
+        </form>
+
+    </div>
+
+    <!--    todo: checkbox pup-ups      -->
+
+
+    <div class="form-floating mb-3">
+        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+        <label for="floatingSelect">Works with selects</label>
+    </div>
+
+    <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+    </div>
+
+    <div class="input-group ">
+        <span class="input-group-addon">Text</span>
+        <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+    </div>
+</th:block>
 
 <!--<th:block>-->
 <!--    <ul>-->
@@ -25,6 +384,28 @@
 <!--    </ul>-->
 <!--</th:block>-->
 
+
+<!--<input type="checkbox" class="btn-check" id="btn-check" autocomplete="off" />-->
+<!--<label class="btn btn-primary" for="btn-check">Checkbox button</label>-->
+
+<!--<input type="checkbox" class="btn-check" id="btn-check2" checked autocomplete="off" />-->
+<!--<label class="btn btn-primary" for="btn-check2">Checkbox button</label>-->
+
+<!--<input type="checkbox" class="btn-check" id="btn-check3" autocomplete="off" />-->
+<!--<label class="btn btn-danger" for="btn-check3">Checkbox button</label>-->
+
+
+
+<script>
+    function LiftForms(name,target){
+        var cond = $(name).is(':checked');
+        document.getElementById(target).style.display = cond?"":"none";
+        // $("#squatform").display = $("#FsquatCheckbox").is(':checked') ? 'block':'none';
+        console.log(name);
+        console.log(target);
+    }
+
+</script>
 
 </body>
 </html>

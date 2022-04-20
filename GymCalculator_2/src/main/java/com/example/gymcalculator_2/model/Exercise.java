@@ -1,28 +1,21 @@
 package com.example.gymcalculator_2.model;
 
+
+import com.example.gymcalculator_2.model.Enumerator.LiftType;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Data
 @Entity
-@Table(name = "exercise")
+@Data
 public class Exercise {
     @Id
-    private Long id;
+    private String exerciseName;
+    private int weight;
+    private int reps;
+    @Enumerated
+    private LiftType type;
 
-    private String exName;
-
-    private String exGroup;
-
-    public Exercise() {
-    }
-
-    public Exercise(Long id, String exName, String exGroup) {
-        this.id = id;
-        this.exName = exName;
-        this.exGroup = exGroup;
-    }
 }
