@@ -1,7 +1,7 @@
 package com.example.gymcalculator_2.model;
 
 
-import com.example.gymcalculator_2.model.Enumerator.Type;
+import com.example.gymcalculator_2.model.Enumerator.LiftType;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -22,9 +22,15 @@ public class LoggedLifts {
     private int weight;
     private int reps;
     @Enumerated
-    private Type type;
+    private LiftType type;
 
     public LoggedLifts() {
+    }
+
+    public LoggedLifts(int weight, int reps, LiftType type) {
+        this.weight = weight;
+        this.reps = reps;
+        this.type = type;
     }
 
 }

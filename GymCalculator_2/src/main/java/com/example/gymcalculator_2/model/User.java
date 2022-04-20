@@ -40,13 +40,9 @@ public class User {
 
     }
 
-    public User(String username, String email, String password, int bodyweight, int age, Sex sex, Units units) {
+    public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.bodyweight = bodyweight;
-        this.age = age;
-        this.sex = sex;
-        this.units = units;
     }
 }

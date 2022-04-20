@@ -24,177 +24,239 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 </head>
 <body>
 
+<th:block>
 <section class="jumbotron text-center">
-    <div class="container">
-        <h1 class="jumbotron-heading">WEB PROGRAMMING Lifts Calculator</h1>
-        <h2 class="jumbotron-heading">Log your latest lifts</h2>
-        <hr>
+
+    <h1 class="jumbotron-heading text-info">WEB PROGRAMMING Lifts Calculator</h1>
+    <h2 class="jumbotron-heading text-indigo">Log your latest lifts</h2>
+    <hr>
+
+</section>
+<div class="container bg-light p-5 ">
+
+    <h3 class="text-start text-info fw-bolder">Log your latest lifts</h3>
+    <hr>
+    <div class="row " style="">
+
+        <div class="form-floating col-1">
+            <label for="select1" class="label text-white" style="left: 25%">Units:</label>
+            <select class="btn btn-indigo form-select border-info border-2 text-center text-white " id="select1"
+                    style="height: 55px">
+                <option value="Metric">Metric</option>
+                <option value="Imperial">Imperial</option>
+            </select>
+        </div>
 
 
-        <div class="container ">
-            <div class="form-floating mb-4">
-                <label for="select1" class="label label-warning border-info">Units</label>
-                <select class="btn btn-warning form-select border-info text-center h-100" id="select1">
-                    <option value="Metric">Metric</option>
-                    <option value="Imperial">Imperial</option>
-                </select>
+        <div class="form-floating col-2 ">
+            <label for="select2" class="label text-white  text-wrap" style="left: 10px">Round calculations to
+                nearest:</label>
+            <select class="btn btn-indigo form-select border-info border-2 text-white " id="select2"
+                    style="height: 55px">
+                <option value="1">1 kg</option>
+                <option value="2.5">2.5 kg</option>
+                <option value="5">5 kg</option>
+                <option value="10">10 kg</option>
+            </select>
+        </div>
+
+    </div>
+
+    <hr>
+
+
+    <form role="form" name="mainForm" novalidate class="">
+
+        <h1 class="text-start text-info ">Select the lifts that you train.</h1>
+        <p class="text-start opacity-50">These lifts will be used to determine your strength levels. For the most
+            complete
+            results, choose at least one lift per category</p>
+
+        <!--       Exercises to select from...      -->
+
+        <div class="">
+            <div class="row">
+                <div class="col" id="squatId">
+                    <label for="squatId" class="label label-info">Squat</label>
+                    <div class="form-check checkbox icheck-indigo">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Front Squat
+                        </label>
+                    </div>
+                    <div class="form-check checkbox icheck-indigo">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Back Squat
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col" id="FloorPull">
+                    <label for="FloorPull" class="label label-info">Floor Pull</label>
+                    <div class="form-check checkbox icheck-indigo">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
+                        <label class="form-check-label" for="flexCheckDefault2">
+                            Deadlift
+                        </label>
+                    </div>
+                    <div class="form-check checkbox icheck-indigo">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked>
+                        <label class="form-check-label" for="flexCheckChecked2">
+                            Sumo Deadlift
+                        </label>
+                    </div>
+                    <div class="form-check checkbox icheck-indigo">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault21">
+                        <label class="form-check-label" for="flexCheckDefault21">
+                            Power Clean
+                        </label>
+                    </div>
+                </div>
+
+
+                <div class="col" id="HorPress">
+                    <label for="HorPress" class="label label-info">Horizontal Press</label>
+                    <div class="form-check checkbox icheck-indigo">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
+                        <label class="form-check-label" for="flexCheckDefault3">
+                            Bench Press
+                        </label>
+                    </div>
+                    <div class="form-check checkbox icheck-indigo">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" checked>
+                        <label class="form-check-label" for="flexCheckChecked3">
+                            Incline Bench Press
+                        </label>
+                    </div>
+                    <div class="form-check checkbox icheck-indigo">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault31">
+                        <label class="form-check-label" for="flexCheckDefault31">
+                            Dip
+                        </label>
+                    </div>
+                </div>
             </div>
 
+            <div class="row">
+                <div class="col" id="VerPress">
+                    <label for="VerPress" class="label label-info">Vertical Press</label>
+                    <div class="form-check checkbox icheck-indigo">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault4">
+                        <label class="form-check-label" for="flexCheckDefault4">
+                            Overhead Press
+                        </label>
+                    </div>
+                    <div class="form-check checkbox icheck-indigo">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" checked>
+                        <label class="form-check-label" for="flexCheckChecked4">
+                            Push Press
+                        </label>
+                    </div>
+                    <div class="form-check checkbox icheck-indigo">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault41">
+                        <label class="form-check-label" for="flexCheckDefault41">
+                            Snatch Press
+                        </label>
+                    </div>
+                </div>
 
-            <div class="form-floating">
-                <label for="select2" class="label label-warning border-info">Round calculations to nearest</label>
-                <select class="btn btn-warning form-select border-info h-100" id="select2">
-                    <option value="1">1 kg</option>
-                    <option value="2.5">2.5 kg</option>
-                    <option value="5">5 kg</option>
-                    <option value="10">10 kg</option>
-                </select>
+                <div class="col-8" id="PullUp">
+                    <label for="PullUp" class="label label-info">Pull-up/ Row</label>
+                    <div class="form-check checkbox icheck-indigo">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault5">
+                        <label class="form-check-label" for="flexCheckDefault5">
+                            Overhead Press
+                        </label>
+                    </div>
+                    <div class="form-check checkbox icheck-indigo">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked5" checked>
+                        <label class="form-check-label" for="flexCheckChecked5">
+                            Push Press
+                        </label>
+                    </div>
+                    <div class="form-check checkbox icheck-indigo">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault51">
+                        <label class="form-check-label" for="flexCheckDefault51">
+                            Snatch Press
+                        </label>
+                    </div>
+                </div>
+
             </div>
             <hr>
         </div>
 
+        <!--    Personal info...   -->
+
+        <h1 class="text-start text-info mt-0">Enter your sex, bodyweight, & age.</h1>
+        <p class="text-start opacity-50">Your strength score adjusts by sex, bodyweight, and age,
+            allowing you to measure yourself against any other lifter.</p>
+
+        <div class="row">
 
 
-
-        <form role="form" name="mainForm" novalidate class="">
-
-            <h1 class="text-start">Select the lifts that you train.</h1>
-            <p class="text-start ">These lifts will be used to determine your strength levels. For the most complete
-                results, choose at least one lift per category</p>
-
-            <label for="squatId" class="label label-default">Squat</label>
-            <div class="" id="squatId">
-                <div class="form-check checkbox icheck-warning" >
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Front Squat
-                    </label>
-                </div>
-                <div class="form-check checkbox icheck-warning">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                    <label class="form-check-label" for="flexCheckChecked">
-                        Back Squat
-                    </label>
-                </div>
-            </div>
-
-            <label for="FloorPull" class="label label-default">Floor Pull</label>
-            <div class="" id="FloorPull">
-                <div class="form-check checkbox icheck-warning" >
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
-                    <label class="form-check-label" for="flexCheckDefault2">
-                        Deadlift
-                    </label>
-                </div>
-                <div class="form-check checkbox icheck-warning">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked>
-                    <label class="form-check-label" for="flexCheckChecked2">
-                        Sumo Deadlift
-                    </label>
-                </div>
-                <div class="form-check checkbox icheck-warning">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault21" >
-                    <label class="form-check-label" for="flexCheckDefault21">
-                        Power Clean
-                    </label>
-                </div>
-            </div>
-
-
-            <label for="HorPress" class="label label-default">Horizontal Press</label>
-            <div class="" id="HorPress">
-                <div class="form-check checkbox icheck-warning" >
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
-                    <label class="form-check-label" for="flexCheckDefault3">
-                        Bench Press
-                    </label>
-                </div>
-                <div class="form-check checkbox icheck-warning">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" checked>
-                    <label class="form-check-label" for="flexCheckChecked3">
-                        Incline Bench Press
-                    </label>
-                </div>
-                <div class="form-check checkbox icheck-warning">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault31" >
-                    <label class="form-check-label" for="flexCheckDefault31">
-                        Dip
-                    </label>
-                </div>
-            </div>
-
-            <label for="VerPress" class="label label-default">Vertical Press</label>
-            <div class="" id="VerPress">
-                <div class="form-check checkbox icheck-warning" >
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault4">
-                    <label class="form-check-label" for="flexCheckDefault4">
-                        Overhead Press
-                    </label>
-                </div>
-                <div class="form-check checkbox icheck-warning">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" checked>
-                    <label class="form-check-label" for="flexCheckChecked4">
-                        Push Press
-                    </label>
-                </div>
-                <div class="form-check checkbox icheck-warning">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault41" >
-                    <label class="form-check-label" for="flexCheckDefault41">
-                        Snatch Press
-                    </label>
-                </div>
-            </div>
-
-            <label for="PullUp" class="label label-default">Pull-up/ Row</label>
-            <div class="" id="PullUp">
-                <div class="form-check checkbox icheck-warning" >
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault5">
-                    <label class="form-check-label" for="flexCheckDefault5">
-                        Overhead Press
-                    </label>
-                </div>
-                <div class="form-check checkbox icheck-warning">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked5" checked>
-                    <label class="form-check-label" for="flexCheckChecked5">
-                        Push Press
-                    </label>
-                </div>
-                <div class="form-check checkbox icheck-warning">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault51" >
-                    <label class="form-check-label" for="flexCheckDefault51">
-                        Snatch Press
-                    </label>
-                </div>
-            </div>
-
-
-            <h1 class="text-start display-5">Enter your sex, bodyweight, & age.</h1>
-            <p class="text-start display-5 fw-lighter">Your strength score adjusts by sex, bodyweight, and age,
-                allowing you to measure yourself against any other lifter.</p>
-
-            <div class="form-floating mb-4">
-                <label for="select3" class="label label-warning border-info">Sex</label>
-                <select class="btn btn-warning form-select border-info text-center h-100" id="select3">
+            <div class="form-floating col-2">
+                <label for="select3" class="label  " style="left: 15px">Sex</label>
+                <select class="btn btn-indigo form-select border-info border-2 text-white   " id="select3"
+                        style="height: 55px">
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                 </select>
             </div>
 
-
-            <div class="form-floating">
-                <label for="bw" class="label label-warning border-info">Body weight</label>
-                <input type="number" class="btn btn-warning form-select " id="bw">
+            <div class="form-floating col-2">
+                <label for="bw" class="label text-wrap text-white" style="left: 15px">Body weight</label>
+                <div class="input-group">
+                    <input type="number"
+                           class="btn btn-indigo border-info border-2 form-select text-white form-control bg-indigo"
+                           id="bw" style="height: 55px">
+                    <span class="input-group-addon bg-indigo text-white">kg</span>
+                </div>
             </div>
 
-        </form>
+            <div class="form-floating col-2">
+                <label for="age" class="label text-wrap" style="left: 15px">Age (optional)</label>
+                <input type="number" class="btn btn-indigo border-info border-2 form-select text-white " id="age"
+                       style="height: 55px">
+            </div>
+
+        </div>
+        <hr>
+
+        <h1 class="text-start text-info mt-0">Enter your best recent sets.</h1>
+        <p class="text-start opacity-50">Finally, for each lift you train, enter your most difficult set that you have
+            completed recently. Each set should be 10 or fewer reps.</p>
 
 
+        <!-- todo: maybe put a reset button later
+        == reset button sets the changed inputs to their predefined values (inserted by the user when creating an account)-->
 
-    </div>
-</section>
+        <button type="submit" class="btn btn-danger text-white ">Analyze</button>
+        <button type="submit" class="btn btn-info text-white ">Analyze and Log Lifts</button>
+        <button type="button" class="blockquote"
+                onclick="{document.getElementById('info').classList.toggle('hidden'); }">?
+        </button>
+        <div class="hidden border border-info text-black p-4" id="info" style="background: #86b7fe">
+            <span><b>Analyze:</b> Displays a strength analysis, but does not save the data you entered.
+                Use this if you're just curious about some results.</span>
+            <br>
+            <span><b>Analyze and Log Lifts:</b> Displays a strength analysis and saves the data you entered.
+                Use this if the numbers you entered match your recent lifts.</span>
+            <br>
+            <span><b>Reset:</b> Loads your last logged lifts.</span>
+        </div>
+
+    </form>
+
+</div>
 
 
 <div class="form-floating mb-3">
@@ -212,12 +274,17 @@
     <label for="floatingPassword">Password</label>
 </div>
 
+<div class="input-group ">
+    <span class="input-group-addon">Text</span>
+    <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+</div>
+</th:block>
+
 <!--<th:block>-->
 <!--    <ul>-->
 <!--        <li th:each="users: ${user}"><th:block th:text="${user.name}"/> (<th:block th:text="${user.surname}"/>)</li>-->
 <!--    </ul>-->
 <!--</th:block>-->
-
 
 
 <!--<input type="checkbox" class="btn-check" id="btn-check" autocomplete="off" />-->
