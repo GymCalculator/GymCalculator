@@ -1,16 +1,18 @@
 package com.example.gymcalculator_2.model;
 
-
 import com.example.gymcalculator_2.model.Enumerator.Sex;
 import com.example.gymcalculator_2.model.Enumerator.Units;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Data
-@Table
+@NoArgsConstructor
+@Table(name = "users")
 public class User {
 
     // user's log in info
@@ -22,7 +24,7 @@ public class User {
 
     // user's info
     private int bodyweight;
-    private int age;
+    private LocalDateTime userAge;
     @Enumerated
     private Sex sex;
     @Enumerated
@@ -35,10 +37,6 @@ public class User {
     // user's selected + logged lifts
     @OneToMany
     private List<LoggedLifts> loggedLifts;
-
-    public User() {
-
-    }
 
     public User(String username, String email, String password) {
         this.username = username;
