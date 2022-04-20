@@ -24,6 +24,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 </head>
 <body>
 
@@ -187,7 +191,7 @@
                 </div>
 
             </div>
-            <hr>
+
         </div>
 
         <!--    Personal info...   -->
@@ -255,20 +259,26 @@
 </div>
 
 
-<div class="form-floating mb-3">
-    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-        <option selected>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-    </select>
-    <label for="floatingSelect">Works with selects</label>
-</div>
+    <div class="form-floating mb-3">
+        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+        <label for="floatingSelect">Works with selects</label>
+    </div>
 
-<div class="form-floating">
-    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-    <label for="floatingPassword">Password</label>
-</div>
+    <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+    </div>
+
+    <div class="input-group ">
+        <span class="input-group-addon">Text</span>
+        <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+    </div>
+</th:block>
 
 <div class="input-group ">
     <span class="input-group-addon">Text</span>
@@ -291,6 +301,19 @@
 
 <!--<input type="checkbox" class="btn-check" id="btn-check3" autocomplete="off" />-->
 <!--<label class="btn btn-danger" for="btn-check3">Checkbox button</label>-->
+
+
+
+<script>
+    function LiftForms(name,target){
+        var cond = $(name).is(':checked');
+        document.getElementById(target).style.display = cond?"":"none";
+        // $("#squatform").display = $("#FsquatCheckbox").is(':checked') ? 'block':'none';
+        console.log(name);
+        console.log(target);
+    }
+
+</script>
 
 </body>
 </html>
