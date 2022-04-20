@@ -1,45 +1,42 @@
 package com.example.gymcalculator_2.service.impl;
 
-
+import com.example.gymcalculator_2.model.Exceptions.*;
 import com.example.gymcalculator_2.model.User;
-import com.example.gymcalculator_2.repository.LoggedLiftsRepository;
 import com.example.gymcalculator_2.repository.UserRepository;
 import com.example.gymcalculator_2.service.UserService;
-import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.nio.file.attribute.UserPrincipal;
-import java.nio.file.attribute.UserPrincipalNotFoundException;
-import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
+
     private final UserRepository userRepository;
-    private final LoggedLiftsRepository loggedLiftsRepository;
-    //private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, LoggedLiftsRepository loggedLiftsRepository) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-        //this.passwordEncoder = passwordEncoder;
-        this.loggedLiftsRepository = loggedLiftsRepository;
-    }
-
-//    @Override
-//    public User register(String username, String password) {
-//        String encryptedPassword = this.passwordEncoder.encode(password);
-//        User user = new User(username,password);
-//        return this.userRepository.save(user);
-//    }
-
-    @Override
-    public List<User> listUsers() {
-        return userRepository.findAll();
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
-    public List<String> findFriends(User user) throws ChangeSetPersister.NotFoundException {
-        User currentUser = userRepository.findByUsername(user.getUsername()).orElseThrow(ChangeSetPersister.NotFoundException::new);
-        return currentUser.getFriends();
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username).orElseThrow(()->new UsernameNotFoundException(username));
     }
 
+    @Override
+    public User register(String username, String email, String password, String repeatPassword)  {
+        if (username==null || username.isEmpty() || email==null || email.isEmpty() || password==null || password.isEmpty())
+            throw new InvalidArgumentsException();
+        if (!password.equals(repeatPassword))
+            throw new PasswordsDoNotMatchException();
+        if(this.userRepository.findByUsername(username).isPresent())
+            throw new UsernameAlreadyExistsException(username);
+        if(this.userRepository.findByEmail(email).isPresent())
+            throw new EmailAlreadyExistsException(email);
+        User user = new User(username,email,passwordEncoder.encode(password));
+        return userRepository.save(user);
+    }
 }
+
