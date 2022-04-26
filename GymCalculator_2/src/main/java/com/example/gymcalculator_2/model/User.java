@@ -1,17 +1,29 @@
 package com.example.gymcalculator_2.model;
 
-
 import com.example.gymcalculator_2.model.Enumerator.Sex;
 import com.example.gymcalculator_2.model.Enumerator.Units;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+import org.springframework.lang.Nullable;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
 @Data
-@Table
-public class User {
+@SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "users")
+public class User implements UserDetails {
 
     // user's log in info
     @Id
@@ -21,10 +33,14 @@ public class User {
     private String password;
 
     // user's info
+
     private int bodyweight;
-    private int age;
+
+    private LocalDateTime userAge;
+
     @Enumerated
     private Sex sex;
+
     @Enumerated
     private Units units;
 
@@ -36,13 +52,46 @@ public class User {
     @OneToMany
     private List<LoggedLifts> loggedLifts;
 
-    public User() {
+    @Enumerated
+    private Role role;
 
-    }
+    private boolean isAccountNonExpired = true;
+    private boolean isAccountNonLocked = true;
+    private boolean isCredentialsNonExpired = true;
+    private boolean isEnabled = true;
 
-    public User(String username, String email, String password) {
+
+    public User(String username, String email, String password,Role role) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singletonList(role);
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return isAccountNonExpired;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return isAccountNonLocked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return isCredentialsNonExpired;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return isEnabled;
+    }
+
 }
