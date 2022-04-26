@@ -1,6 +1,7 @@
 package com.example.gymcalculator_2.service.impl;
 
 import com.example.gymcalculator_2.model.Exceptions.*;
+import com.example.gymcalculator_2.model.Role;
 import com.example.gymcalculator_2.model.User;
 import com.example.gymcalculator_2.repository.UserRepository;
 import com.example.gymcalculator_2.service.UserService;
@@ -26,7 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User register(String username, String email, String password, String repeatPassword)  {
+    public User register(String username, String email, String password, String repeatPassword, Role userRole)  {
         if (username==null || username.isEmpty() || email==null || email.isEmpty() || password==null || password.isEmpty())
             throw new InvalidArgumentsException();
         if (!password.equals(repeatPassword))
@@ -35,7 +36,7 @@ public class UserServiceImpl implements UserService {
             throw new UsernameAlreadyExistsException(username);
         if(this.userRepository.findByEmail(email).isPresent())
             throw new EmailAlreadyExistsException(email);
-        User user = new User(username,email,passwordEncoder.encode(password));
+        User user = new User(username,email,passwordEncoder.encode(password),userRole);
         return userRepository.save(user);
     }
 }

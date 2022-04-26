@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/homepage","/register").permitAll()
+                .antMatchers("/","/home", "/register").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .failureUrl("/login?error=Invalid_credentials")
-                .defaultSuccessUrl("/homepage", true)
+                .defaultSuccessUrl("/home", true)
                 .and()
                 .logout()
                 .logoutUrl("/logout")

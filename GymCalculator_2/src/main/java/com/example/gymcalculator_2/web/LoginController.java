@@ -37,7 +37,8 @@ public class LoginController {
                     request.getParameter("email"),
                     request.getParameter("password"));
             request.getSession().setAttribute("user", user);
-            return "redirect:/homepage.html";
+
+            return "redirect:/";
         }
         catch (InvalidUserCredentialsException exception) {
             model.addAttribute("hasError", true);

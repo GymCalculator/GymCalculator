@@ -2,8 +2,12 @@ package com.example.gymcalculator_2.model;
 
 import com.example.gymcalculator_2.model.Enumerator.Sex;
 import com.example.gymcalculator_2.model.Enumerator.Units;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+import org.springframework.lang.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -15,7 +19,9 @@ import java.util.List;
 
 @Entity
 @Data
+@SuperBuilder
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "users")
 public class User implements UserDetails {
 
@@ -27,10 +33,14 @@ public class User implements UserDetails {
     private String password;
 
     // user's info
+
     private int bodyweight;
+
     private LocalDateTime userAge;
+
     @Enumerated
     private Sex sex;
+
     @Enumerated
     private Units units;
 
@@ -42,6 +52,7 @@ public class User implements UserDetails {
     @OneToMany
     private List<LoggedLifts> loggedLifts;
 
+    @Enumerated
     private Role role;
 
     private boolean isAccountNonExpired = true;
@@ -50,10 +61,11 @@ public class User implements UserDetails {
     private boolean isEnabled = true;
 
 
-    public User(String username, String email, String password) {
+    public User(String username, String email, String password,Role role) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
 
