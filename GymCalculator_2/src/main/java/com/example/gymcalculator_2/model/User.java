@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.springframework.lang.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -52,8 +53,9 @@ public class User implements UserDetails {
     @OneToMany
     private List<LoggedLifts> loggedLifts;
 
-    @Enumerated
-    private Proficiency proficiency; // Untrained, Novice, Intermediate, Proficient, Advanced, Exceptional, Elite, World-class
+//    @Enumerated
+//    @Nullable
+//    private Proficiency proficiency; // Untrained, Novice, Intermediate, Proficient, Advanced, Exceptional, Elite, World-class
 
     @Enumerated
     private Role role;
