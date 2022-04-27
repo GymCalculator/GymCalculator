@@ -1,13 +1,13 @@
 package com.example.gymcalculator_2.model;
 
+import com.example.gymcalculator_2.model.Enumerator.Proficiency;
 import com.example.gymcalculator_2.model.Enumerator.Sex;
 import com.example.gymcalculator_2.model.Enumerator.Units;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.springframework.boot.context.properties.bind.DefaultValue;
-import org.springframework.lang.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -23,6 +23,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
+@Getter
 public class User implements UserDetails {
 
     // user's log in info
@@ -33,7 +34,6 @@ public class User implements UserDetails {
     private String password;
 
     // user's info
-
     private int bodyweight;
 
     private LocalDateTime userAge;
@@ -51,6 +51,9 @@ public class User implements UserDetails {
     // user's selected + logged lifts
     @OneToMany
     private List<LoggedLifts> loggedLifts;
+
+    @Enumerated
+    private Proficiency proficiency; // Untrained, Novice, Intermediate, Proficient, Advanced, Exceptional, Elite, World-class
 
     @Enumerated
     private Role role;

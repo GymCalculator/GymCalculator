@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Wilk Calculator</title>
+    <script>
+        function success() {
+            if (document.getElementById("bodyweight").value === "" ||
+                document.getElementById("bsquat").value === "" ||
+                document.getElementById("bpress").value === "" ||
+                document.getElementById("deadlift").value === "") {
+                document.getElementById('submitBtn').disabled = true;
+            } else {
+                document.getElementById('submitBtn').disabled = false;
+            }
+        }
+
+        function setTwoNumberDecimal(event) {
+            this.value = parseFloat(this.value).toFixed(2);
+        }
+
+    </script>
+</head>
+<body>
+
+<div class="container bg-light p-5">
+
+    <form th:action="@{/calculator/wilks}" th:method="POST">
+
+        <!--    <label for="units" class="label text-white">Units:</label>-->
+        <!--    <select class="btn btn-indigo form-select border-info border-2 text-center text-white" id="units">-->
+        <!--        <option value="Metric">Metric</option>-->
+        <!--        <option value="Imperial">Imperial</option>-->
+        <!--    </select>-->
+        <div class="container align-content-center">
+            <div class="row">
+                <div class="col-2">
+                    <label for="gender" class="label">Sex</label>
+                    <select class="btn form-select border-info border-2 text-white" id="gender"
+                            name="gender">
+                        <option value="0">Male</option>
+                        <option value="1">Female</option>
+                    </select>
+                </div>
+                <div class="col-2">
+                    <label for="bodyweight">Body Weight</label>
+                    <input onkeyup="success()" id="bodyweight" name="bodyweight" type="number"
+                           placeholder="Body Weight">
+                </div>
+            </div>
+
+            <h3>Enter your best back squat, bench press, and deadlift.</h3>
+            <p>If you enter more than one rep, Symmetric Strength will estimate your one rep max.</p>
+
+            <div class="row">
+                <div class="col">
+                    <label for="bsquat">Back Squat</label>
+                    <input onkeyup="success()" id="bsquat" name="bsquat" type="number" placeholder="Weight">
+                    <label for="repsSquat">Reps</label>
+                    <input onkeyup="success()" id="repsSquat" name="repsSquat" type="number" placeholder="Reps"
+                           value="1">
+                </div>
+
+                <div class="col">
+                    <label for="bpress">Bench Press</label>
+                    <input onkeyup="success()" id="bpress" name="bpress" type="number" placeholder="Weight">
+                    <label for="repsBench">Reps</label>
+                    <input onkeyup="success()" id="repsBench" name="repsBench" type="number" placeholder="Reps"
+                           value="1">
+                </div>
+
+                <div class="col">
+                    <label for="deadlift">Deadlift</label>
+                    <input onkeyup="success()" id="deadlift" name="deadlift" type="number" placeholder="Weight">
+                    <label for="repsDL">Reps</label>
+                    <input onkeyup="success()" id="repsDL" name="repsDL" type="number" placeholder="Reps" value="1">
+                </div>
+
+                <input id="submitBtn" type='submit' value='Calculate 1RM' disabled/>
+            </div>
+        </div>
+    </form>
+    <div class="container" th:if="${calculatedWilks!=null}">
+
+        <h2 class="text-danger">Your Wilks Score is
+            <span th:text="${calculatedWilks}" onloadeddata="setTwoNumberDecimal" type="number"></span>
+        </h2>
+
+<!--        <p id="resOutput"> Based on a total lift of <span th:text="${total_weight}" type="number">X</span> kg in bench press, squat and deadlift-->
+<!--            at a bodyweight of  </p>-->
+<!--        <script> $("#resOutput").text().append($("#bodyweight") + "kg") </script>-->
+        <div class="container">
+            <table class="table table-striped table-dark ">
+                <thead>
+                <tr>
+                    <th scope="col">Level</th>
+                    <th scope="col">Score</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Untrained</td>
+                    <td>120</td>
+                </tr>
+                <tr>
+                    <td>Novice</td>
+                    <td>200</td>
+                </tr>
+                <tr>
+                    <td>Intermediate</td>
+                    <td>238</td>
+                </tr>
+                <tr>
+                    <td>Advanced</td>
+                    <td>326</td>
+                </tr>
+                <tr>
+                    <td>Elite</td>
+                    <td>414</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Strenght Standards</title>
+</head>
+<body>
+
+<script>
+    function success() {
+        if (document.getElementById("gender").value === "" ||
+            // document.getElementById("units").value === "" ||
+            document.getElementById("age").value === "" ||
+            document.getElementById("bodyweight").value === "" ||
+            document.getElementById("height").value === "" ||
+            document.getElementById("bodyfat").value === "") {
+            document.getElementById('submitBtn').disabled = true;
+        } else {
+            document.getElementById('submitBtn').disabled = false;
+        }
+    }
+</script>
+
+<h2>FIND STRENGTH STANDARDS BY SEX & BODYWEIGHT</h2>
+<div class="container align-content-center">
+    <form th:action="@{/standards}" th:method="POST">
+        <div class="row">
+            <div class="col-3">
+                <label for="units" class=" text-black" style="left: 25%">Units:</label>
+                <select class="btn form-select border-info border-2 text-center text-black " id="units">
+                    <option value="Metric">Metric</option>
+                    <option value="Imperial">Imperial</option>
+                </select>
+            </div>
+
+            <div class="col-2">
+                <label for="gender" class="label">Sex</label>
+                <select class="btn form-select border-info border-2 text-center text-black" id="gender"
+                        name="gender">
+                    <option value="0">Male</option>
+                    <option value="1">Female</option>
+                </select>
+            </div>
+
+            <div class="col-2">
+                <label for="bodyweight">Body weight</label>
+                <input onkeyup="success()" id="bodyweight" name="bodyweight" type="number"
+                       placeholder="Body weight">
+            </div>
+
+            <div class="col-2">
+                <label for="age">Age</label>
+                <input onkeyup="success()" id="age" name="age" type="number"
+                       placeholder="Age">
+            </div>
+        </div>
+        <input id="submitBtn" type='submit' value='Calculate 1RM' disabled/>
+
+    </form>
+</div>
+
+
+</body>
+</html>
