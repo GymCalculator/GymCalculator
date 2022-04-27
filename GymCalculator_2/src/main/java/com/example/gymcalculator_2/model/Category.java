@@ -7,11 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
 @Table(name = "Category")
 public class Category {
     @Id
@@ -19,4 +19,11 @@ public class Category {
     @OneToMany
     private List<Exercise> exercises;
 
+    public void setExercises(List<Exercise> exercises) {
+        this.exercises = exercises;
+    }
+
+    public List<Exercise> getExercises() {
+        return exercises;
+    }
 }

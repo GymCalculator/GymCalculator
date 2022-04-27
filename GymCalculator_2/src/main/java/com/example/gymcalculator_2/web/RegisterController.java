@@ -3,6 +3,7 @@ package com.example.gymcalculator_2.web;
 
 import com.example.gymcalculator_2.model.Exceptions.InvalidArgumentsException;
 import com.example.gymcalculator_2.model.Exceptions.PasswordsDoNotMatchException;
+import com.example.gymcalculator_2.model.Exceptions.UsernameAlreadyExistsException;
 import com.example.gymcalculator_2.model.Role;
 import com.example.gymcalculator_2.service.AuthService;
 import com.example.gymcalculator_2.service.UserService;
@@ -43,7 +44,7 @@ public class RegisterController {
         try{
             this.userService.register(username, email, password, repeatedPassword,role);
             return "redirect:/login";
-        } catch (InvalidArgumentsException | PasswordsDoNotMatchException exception) {
+        } catch (InvalidArgumentsException | PasswordsDoNotMatchException | UsernameAlreadyExistsException exception ) {
             return "redirect:/register?error=" + exception.getMessage();
         }
     }
