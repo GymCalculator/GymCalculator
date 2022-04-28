@@ -1,7 +1,6 @@
 package com.example.gymcalculator_2.model;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

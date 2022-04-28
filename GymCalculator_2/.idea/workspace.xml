@@ -166,6 +166,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCalculator_2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCalculator_2.iml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Category.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Config/WebSecurityConfig.java" afterDir="false" />
@@ -177,6 +178,14 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/HomePageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/LogoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/LogoutController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/RegisterController.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Exercise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Exercise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/HomePageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/LogoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/LogoutController.java" afterDir="false" />
+>>>>>>> 1a88acddb94ef1f7db1017a3d7606a83fa532d17
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/homepage.html" afterDir="false" />
@@ -184,16 +193,24 @@
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/Config/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/Config/WebSecurityConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/Exercise.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/Exercise.class" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/Exercises.class" beforeDir="false" />
+=======
+>>>>>>> 1a88acddb94ef1f7db1017a3d7606a83fa532d17
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/Role.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/User$UserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/User$UserBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/User$UserBuilderImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/User$UserBuilderImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/web/HomePageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/web/HomePageController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/web/LogoutController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/web/LogoutController.class" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/web/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/web/RegisterController.class" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/target/classes/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data.sql" afterDir="false" />
+>>>>>>> 1a88acddb94ef1f7db1017a3d7606a83fa532d17
       <change beforePath="$PROJECT_DIR$/target/classes/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/homepage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/standards/strenghtStandard.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/standards/strenghtStandard.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,6 +223,11 @@
         <option value="HTML File" />
         <option value="Interface" />
         <option value="Class" />
+<<<<<<< HEAD
+=======
+        <option value="Enum" />
+        <option value="HTML File" />
+>>>>>>> 1a88acddb94ef1f7db1017a3d7606a83fa532d17
       </list>
     </option>
   </component>
@@ -257,11 +279,32 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/repository" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.gymcalculator_2.model" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Uni shit\gymTemp\GymCalculator\GymCalculator (Nikola branch)\GymCalculator_2\src\main\java\com\example\gymcalculator_2\repository" />
+      <recent name="F:\Uni shit\gymTemp\GymCalculator\GymCalculator (Nikola branch)\GymCalculator_2\src\main\java\com\example\gymcalculator_2\service\impl" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Uni shit\gymTemp\GymCalculator\GymCalculator\GymCalculator_2\src\main\resources\templates\standards" />
+      <recent name="F:\Uni shit\gymTemp\GymCalculator\GymCalculator\GymCalculator_2\src\main\resources\templates\calculators" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.gymcalculator_2.model" />
+      <recent name="com.example.gymcalculator_2.service" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.GymCalculator2Application">
+    <configuration name="CalculatorWilks.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/GymCalculator_2/templates/calculators/CalculatorWilks.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="GymCalculator2Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="GymCalculator_2" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.gymcalculator_2.GymCalculator2Application" />
@@ -269,6 +312,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.CalculatorWilks.html" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -282,7 +330,12 @@
       <workItem from="1650368925342" duration="10661000" />
       <workItem from="1650453800078" duration="19961000" />
       <workItem from="1650494264960" duration="6743000" />
+<<<<<<< HEAD
       <workItem from="1650985748184" duration="40793000" />
+=======
+      <workItem from="1650985340276" duration="37721000" />
+      <workItem from="1651086627158" duration="1223000" />
+>>>>>>> 1a88acddb94ef1f7db1017a3d7606a83fa532d17
     </task>
     <servers />
   </component>
