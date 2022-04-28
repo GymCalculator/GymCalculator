@@ -29,4 +29,8 @@ public class Exercise {
     public boolean getChecked(){
         return this.checked;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1a88acddb94ef1f7db1017a3d7606a83fa532d17
