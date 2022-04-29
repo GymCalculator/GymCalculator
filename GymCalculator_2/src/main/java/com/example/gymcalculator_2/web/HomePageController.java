@@ -4,11 +4,8 @@ package com.example.gymcalculator_2.web;
 import com.example.gymcalculator_2.model.Enumerator.LiftType;
 import com.example.gymcalculator_2.model.Enumerator.Sex;
 import com.example.gymcalculator_2.model.Enumerator.Units;
-<<<<<<< HEAD
-=======
 import com.example.gymcalculator_2.model.Exercise;
 import com.example.gymcalculator_2.model.LoggedLifts;
->>>>>>> 1a88acddb94ef1f7db1017a3d7606a83fa532d17
 import com.example.gymcalculator_2.model.Role;
 import com.example.gymcalculator_2.model.User;
 import com.example.gymcalculator_2.service.CategoryService;
@@ -17,6 +14,7 @@ import com.example.gymcalculator_2.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -29,19 +27,12 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping(value = {"/", "/home"})
 public class HomePageController {
-<<<<<<< HEAD
+
         private final UserService userService;
         private final CategoryService categoryService;
         private final ExerciseService exerciseService;
 
-    public HomePageController(UserService userService, CategoryService categoryService, ExerciseService exerciseService) {
-=======
-    private final UserService userService;
-    private final CategoryService categoryService;
-    private final ExerciseService exerciseService;
-
     public HomePageController(UserService userService,CategoryService categoryService,ExerciseService exerciseService) {
->>>>>>> 1a88acddb94ef1f7db1017a3d7606a83fa532d17
         this.userService = userService;
         this.categoryService = categoryService;
         this.exerciseService = exerciseService;

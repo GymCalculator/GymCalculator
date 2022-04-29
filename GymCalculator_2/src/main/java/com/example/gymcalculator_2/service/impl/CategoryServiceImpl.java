@@ -1,10 +1,13 @@
 package com.example.gymcalculator_2.service.impl;
 
 import com.example.gymcalculator_2.model.Category;
+import com.example.gymcalculator_2.model.Exceptions.CategoryNotFoundException;
+import com.example.gymcalculator_2.model.Exceptions.ExerciseNotFoundException;
 import com.example.gymcalculator_2.model.Exercise;
 import com.example.gymcalculator_2.repository.CategoryRepository;
 import com.example.gymcalculator_2.repository.ExerciseRepository;
 import com.example.gymcalculator_2.service.CategoryService;
+import com.example.gymcalculator_2.service.ExerciseService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +39,13 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Category findByCategoryName(String categoryName) {
 
-        return categoryRepository.findByCategoryName(categoryName);
+        return categoryRepository.findByCategoryName(categoryName).orElseThrow(CategoryNotFoundException::new);
+    }
+
+    @Override
+    public Category addNewExerciseToCategory(Exercise exercise, String category) {
+        Category desiredCategory = findByCategoryName(category);
+        desiredCategory.getExercises().add(exercise);
+        return categoryRepository.save(desiredCategory);
     }
 }

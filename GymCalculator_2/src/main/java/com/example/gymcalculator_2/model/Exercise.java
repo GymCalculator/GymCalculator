@@ -6,10 +6,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -29,8 +26,14 @@ public class Exercise {
     public boolean getChecked(){
         return this.checked;
     }
-<<<<<<< HEAD
+    public Exercise(String exerciseName,String categoryName, LiftType type){
+        this.exerciseName = exerciseName;
+        this.categoryName = categoryName;
+        this.type = type;
+        weight = 0;
+        reps = 0;
+        checked = false;
+
+    }
+
 }
-=======
-}
->>>>>>> 1a88acddb94ef1f7db1017a3d7606a83fa532d17

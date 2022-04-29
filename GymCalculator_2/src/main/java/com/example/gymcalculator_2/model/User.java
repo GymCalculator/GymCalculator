@@ -23,7 +23,6 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @Table(name = "users")
 @Getter
 public class User implements UserDetails {
