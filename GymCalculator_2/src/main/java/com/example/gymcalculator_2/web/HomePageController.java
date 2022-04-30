@@ -10,6 +10,7 @@ import com.example.gymcalculator_2.model.Role;
 import com.example.gymcalculator_2.model.User;
 import com.example.gymcalculator_2.service.CategoryService;
 import com.example.gymcalculator_2.service.ExerciseService;
+import com.example.gymcalculator_2.service.LoggedLiftsService;
 import com.example.gymcalculator_2.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,9 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
@@ -31,11 +31,13 @@ public class HomePageController {
         private final UserService userService;
         private final CategoryService categoryService;
         private final ExerciseService exerciseService;
+        private final LoggedLiftsService loggedLiftsService;
 
-    public HomePageController(UserService userService,CategoryService categoryService,ExerciseService exerciseService) {
+    public HomePageController(UserService userService, CategoryService categoryService, ExerciseService exerciseService, LoggedLiftsService loggedLiftsService) {
         this.userService = userService;
         this.categoryService = categoryService;
         this.exerciseService = exerciseService;
+        this.loggedLiftsService = loggedLiftsService;
     }
 
     @GetMapping
@@ -58,6 +60,39 @@ public class HomePageController {
         model.addAttribute("categories",categoryService.findAll());
         return "homepage.html";
     }
+
+    @PostMapping("/homepage")
+    public String postHomePage(
+//            @RequestParam int units, @RequestParam int nearest,
+//                                @RequestParam int sex, @RequestParam int bw, @RequestParam int age,
+                                @RequestParam List<String> categoryName,
+                                @RequestParam List<String> exName, @RequestParam List<Integer> exWeight,
+                                @RequestParam List<Integer> exReps,HttpServletRequest request){
+        String user = request.getRemoteUser();
+
+        exName.forEach(System.out::println);
+        exReps.forEach(System.out::println);
+
+//        User currentUser=(User)userService.loadUserByUsername(user);
+        List<Exercise> exercises = new ArrayList<>();
+        for (int i = 0; i < exName.size(); i++) {
+            exercises.add(exerciseService.addExercise(categoryName.get(i),exName.get(i),exWeight.get(i),exReps.get(i)));
+        }
+        LoggedLifts loggedLifts = loggedLiftsService.addLifts(exercises).orElseThrow();
+
+        userService.addLoggedLifts(user, loggedLifts);
+
+        return "redirect:/score.html";
+    }
+
+    @GetMapping("/score")
+    public String getScore(Model model,HttpServletRequest request){
+        String user = request.getRemoteUser();
+
+//        model.addAttribute("userLifts",userService.getLoggedLifts(user));
+        return "score.html";
+    }
+
 
 // todo: *note: 1 inch = 2.54 cm and 1 kilogram = 2.2 lbs
     @GetMapping("/calculator/one_rep_max")

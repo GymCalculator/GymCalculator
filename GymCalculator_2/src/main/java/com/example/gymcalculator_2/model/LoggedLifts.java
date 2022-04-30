@@ -2,10 +2,7 @@ package com.example.gymcalculator_2.model;
 
 
 import com.example.gymcalculator_2.model.Enumerator.LiftType;
-import lombok.Data;
-import lombok.Generated;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -18,6 +15,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+@Setter
 @Table(name = "LoggedLifts")
 public class LoggedLifts {
     @Id
@@ -26,15 +24,21 @@ public class LoggedLifts {
 
     private LocalDateTime loggedDate;
 
-    @ManyToOne
-    private User user;
-
     @OneToMany
     private List<Exercise> loggedExercises;
 
     public LoggedLifts(List<Exercise> loggedExercises){
         this.loggedExercises = loggedExercises;
         this.loggedDate = LocalDateTime.now();
+    }
+
+    public LoggedLifts(LocalDateTime loggedDate,  List<Exercise> loggedExercises) {
+        this.loggedDate = loggedDate;
+
+        this.loggedExercises = loggedExercises;
+    }
+    public List<Exercise> getExercises() {
+        return loggedExercises;
     }
 
 }

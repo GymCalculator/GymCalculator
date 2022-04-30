@@ -3,6 +3,7 @@ package com.example.gymcalculator_2.repository;
 import com.example.gymcalculator_2.model.Exercise;
 import com.example.gymcalculator_2.model.LoggedLifts;
 import com.example.gymcalculator_2.model.User;
+import com.example.gymcalculator_2.service.LoggedLiftsService;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +12,6 @@ import java.util.Optional;
 
 @Repository
 public interface LoggedLiftsRepository extends JpaRepository<LoggedLifts,String> {
-        Optional<LoggedLifts> findTopByUser(User user);
+//        LoggedLifts addLifts(User currUser,List<String> categoryName,List<String> exName, List<Integer> exWeight, List<Integer> exReps);
+        LoggedLifts findById(Long id);
 }

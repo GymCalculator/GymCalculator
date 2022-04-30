@@ -1,6 +1,7 @@
 package com.example.gymcalculator_2.service.impl;
 
 import com.example.gymcalculator_2.model.Exceptions.*;
+import com.example.gymcalculator_2.model.LoggedLifts;
 import com.example.gymcalculator_2.model.Role;
 import com.example.gymcalculator_2.model.User;
 import com.example.gymcalculator_2.repository.UserRepository;
@@ -94,6 +95,27 @@ public class UserServiceImpl implements UserService {
     @Override
     public int calculateTDEE_WithBodyFat(int bodyweight, int bodyfat) {
         return (int) (370 + 21.6*(1 - bodyfat/100)*bodyweight);
+    }
+
+    @Override
+    public void setUserSettings(String currUserName,int units, int neareast, String sex, int bw, int age) {
+        User u =userRepository.findByUsername(currUserName).orElseThrow();
+
+//        u.setUnits(units);
+//        u.setBodyweight(bw);
+//        u.setUserAge(age);
+    }
+
+    @Override
+    public void addLoggedLifts(String userId,LoggedLifts loggedLifts) {
+        User u = userRepository.getById(userId);
+        u.getLoggedLifts().add(loggedLifts);
+        userRepository.save(u);
+    }
+
+    @Override
+    public LoggedLifts getLoggedLifts(String userId) {
+        return userRepository.findByUsername(userId).get().getLoggedLifts().get(0);
     }
 
 }
