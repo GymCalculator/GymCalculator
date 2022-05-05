@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<th:block >
+<th:block>
     <nav class="navbar navbar-light bg-light ">
         <div class="container">
             <label class="label text-dark col-2" th:text="${currentUser.getUsername()}"></label>
@@ -31,6 +31,39 @@
 
     </section>
     <div class="container bg-light p-5 ">
+        <div class="row" sec:authorize="isAuthenticated()">
+            <h2 class="text-info">Friends</h2>
+            <div th:if="${currentUser.getFriends().size()} < 1 ">
+                <p class="badge bg-primary text-indigo">You haven't added any friends yet! Add a friend by entering their username below.</p>
+            </div>
+            <div th:if="${currentUser.getFriends().size()} > 0 ">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">User</th>
+                            <th scope="col">Bodyweight</th>
+                            <th scope="col">Squat</th>
+                            <th scope="col">Floor Pull</th>
+                            <th scope="col">Hor. Press</th>
+                            <th scope="col">Vert. Press</th>
+                            <th scope="col">Pull-up / Row</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user : ${currentUser.getFriends()}">
+                        <td th:text="${user.getUsername()}"></td>
+                        <td th:text="${user.getBodyweight()}"></td>
+                        <td>LoggedLifts</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <form th:action="@{/addFriend/}" th:method="POST">
+                <input type="text" id="friend" name="friend" placeholder="Username"/>
+                <button class="btn btn-success" type="submit">Add Friend</button>
+            </form>
+        </div>
 
         <h3 class="text-start text-info fw-bolder">Log your latest lifts</h3>
         <hr>
@@ -62,7 +95,7 @@
         <hr>
 
 
-        <form th:action="@{/homepage}" th:method="POST">
+        <form>
 
             <h1 class="text-start text-info ">Select the lifts that you train.</h1>
             <p class="text-start opacity-50">These lifts will be used to determine your strength levels. For the most
@@ -76,65 +109,15 @@
                         <input class="form-check-input" type="checkbox" th:checked="${exercise.getChecked()}" th:value="${exercise.getExerciseName()}">
                         <label class="form-check-label" th:for="${exercise.getExerciseName()}" th:text="${exercise.getExerciseName()}"></label>
                     </div>
-                    <!-- Trigger exercise modal with a button -->
                     <div class="mt-auto mb-2" id="createExercise" sec:authorize="hasRole('ROLE_ADMIN')">
-                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"  th:attr="data-bs-target='#addNewExercise' + ${categoryStat.index}">Add new Exercise</button>
-                    </div>
-                    <!-- Exercise Modal -->
-                    <div class="modal"  th:id="'addNewExercise' + ${categoryStat.index}">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <p class="modal-title fw-bold"  th:text="'Add new Exercise to ' + ${category.getCategoryName()}">Add new Exercise</p>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                </div>
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <label  th:for="${category.getCategoryName()}" th:text="'Enter exercise name'"></label>
-                                    </div>
-                                </div>
-
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                </div>
-
-                            </div>
-                        </div>
+                        <a class="btn btn-danger" th:href="@{/addNewExercise(category=${category.getCategoryName()})}"
+                            >Add new Exercise</a>
                     </div>
                 </div>
                 <div class="col-4" id="createCategory" sec:authorize="hasRole('ROLE_ADMIN')">
-                    <button type="button" class="btn btn-danger btn-sm" >Add new Category</button>
+                    <a type="button" class="btn btn-danger btn-sm" href="/addNewCategory">Add new Category</a>
                 </div>
             </div>
-
-    <!-- Exercise Modal -->
-    <div class="modal" id="addNewExercise">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Add new Exercise</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <p> To be implemented</p>
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
             <!--    Personal info...   -->
 
             <h1 class="text-start text-info mt-0">Enter your sex, bodyweight, & age.</h1>
@@ -192,7 +175,6 @@
                 <br>
                 <span><b>Reset:</b> Loads your last logged lifts.</span>
             </div>
-
         </form>
 
     </div>
@@ -200,20 +182,6 @@
 
 
 <script>
-    function LiftForms(name,target){
-        var cond = $(name).is(':checked');
-        document.getElementById(target).style.display = cond?"":"none";
-        // $("#squatform").display = $("#FsquatCheckbox").is(':checked') ? 'block':'none';
-        console.log(name);
-        console.log(target);
-    }
-
-    $(document).ready(function(){
-        $("#myBtn").click(function(){
-            $("#myModal").modal();
-        });
-    });
-
 </script>
 
 </body>

@@ -6,38 +6,32 @@
   <component name="ChangeListManager">
     <list default="true" id="21865237-663a-4bcf-96ae-9920edb34c9b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GymCalculator_2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCalculator_2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Exceptions/CategoryNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Exceptions/CategoryNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Exercise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Exercise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Category.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/repository/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/repository/CategoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/repository/ExerciseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/repository/ExerciseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/CategoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/ExerciseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/ExerciseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/impl/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/impl/CategoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/impl/ExerciseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/impl/ExerciseServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/AddExerciseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/AddExerciseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/HomePageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/RegisterController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/access_denied.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/access_denied.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/homepage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/registerUser.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/registerUser.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/registerUser.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/Category.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/User$UserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/User$UserBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/UserService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/impl/CategoryServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/impl/CategoryServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/impl/ExerciseServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/impl/ExerciseServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/web/AddExerciseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/web/AddExerciseController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/web/HomePageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/web/HomePageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/access_denied.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/access_denied.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/homepage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/registerUser.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/registerUser.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/registerUser.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,9 +41,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Interface" />
         <option value="Enum" />
+        <option value="HTML File" />
         <option value="HTML File" />
         <option value="Class" />
       </list>
@@ -117,6 +111,7 @@
       <recent name="F:\Uni shit\gymTemp\GymCalculator\GymCalculator (Nikola branch)\GymCalculator_2\src\main\java\com\example\gymcalculator_2\service\impl" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Marko\Documents\GitHub\GymCalculator\GymCalculator_2\src\main\resources\templates" />
       <recent name="F:\Uni shit\gymTemp\GymCalculator\GymCalculator\GymCalculator_2\src\main\resources\templates\standards" />
       <recent name="F:\Uni shit\gymTemp\GymCalculator\GymCalculator\GymCalculator_2\src\main\resources\templates\calculators" />
     </key>
@@ -158,6 +153,10 @@
       <workItem from="1650985340276" duration="37721000" />
       <workItem from="1651086627158" duration="1223000" />
       <workItem from="1651186212993" duration="21597000" />
+      <workItem from="1651274431407" duration="19434000" />
+      <workItem from="1651294373166" duration="393000" />
+      <workItem from="1651295313394" duration="6170000" />
+      <workItem from="1651762442311" duration="14230000" />
     </task>
     <servers />
   </component>

@@ -96,5 +96,18 @@ public class UserServiceImpl implements UserService {
         return (int) (370 + 21.6*(1 - bodyfat/100)*bodyweight);
     }
 
+    @Override
+    public List<User> addNewFriend(User user, String friend) {
+        User friendToAdd = userRepository.findByUsername(friend).orElse(null);
+        if(friendToAdd == null || user.getUsername().equals(friend)) return null;
+        if(user.getFriends().contains(friendToAdd)) return null;
+        user.getFriends().add(friendToAdd);
+        friendToAdd.getFriends().add(user);
+        userRepository.save(user);
+        userRepository.save(friendToAdd);
+        return user.getFriends();
+    }
+
+
 }
 

@@ -19,4 +19,5 @@ public interface UserService extends UserDetailsService {
 
     int calculateTDEE(int bodyweight, int bodyfat, int age, int height, int gender, double activitylevel);
     int calculateTDEE_WithBodyFat(int bodyweight, int bodyfat);
+    List<User> addNewFriend(User user, String friend);
 }

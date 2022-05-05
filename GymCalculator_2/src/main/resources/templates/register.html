@@ -1,32 +1,46 @@
-<div class="container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body class="bg-secondary">
+<div class="container d-flex justify-content-center">
+    <div class="card mt-3">
+        <article class="card-body">
+            <a href="/login" class="float-end btn btn-outline-primary">Login</a>
+            <h4 class="card-title mb-4 mt-1">Register</h4>
+            <hr>
+            <form method="post" action="/register">
+                <div class="form-group">
+                    <input type="text" id="username" name="username" class="form-control mb-3" placeholder="Username" required=""
+                           autofocus="">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="email" name="email" class="form-control mb-3" placeholder="Email" required=""
+                           autofocus="">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" class="form-control mb-3" placeholder="Password"
+                           required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="repeatedPassword" name="repeatedPassword" class="form-control mb-3"
+                           placeholder="Repeat Password" required="">
+                </div>
+                <div class="row">
+                    <div class="form-group d-flex justify-content-center">
+                        <div class="form-group">
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </article>
+    </div>
 </div>
-<div class="container">
-    <form class="form-signin mt-xl-5" method="post" action="/register">
-        <h2 class="form-signin-heading">Register</h2>
-        <p>
-            <label for="username" class="sr-only">Username</label>
-            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required=""
-                   autofocus="">
-        </p>
-        <p>
-            <label for="email" class="sr-only">Email</label>
-            <input type="text" id="email" name="email" class="form-control" placeholder="Email" required=""
-                   autofocus="">
-        </p>
-        <p>
-            <label for="password" class="sr-only">Password</label>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Password"
-                   required="">
-        </p>
-        <p>
-            <label for="repeatedPassword" class="sr-only">Repeat Password</label>
-            <input type="password" id="repeatedPassword" name="repeatedPassword" class="form-control"
-                   placeholder="Repeat Password" required="">
-        </p>
-
-
-
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-    </form>
-    <a href="/login" class="btn btn-block btn-light">Already have an account? Login here!</a>
-</div>
+</body>
+</html>

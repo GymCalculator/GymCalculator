@@ -56,6 +56,7 @@ public class HomePageController {
         model.addAttribute("liftType", LiftType.values());
         System.out.println("Logged in as user: " + currentUser.getUsername());
         model.addAttribute("categories",categoryService.findAll());
+        model.addAttribute("newExercise",new Exercise());
         return "homepage.html";
     }
 
