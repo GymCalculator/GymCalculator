@@ -11,5 +11,5 @@ public interface LoggedLiftsService {
     public List<LoggedLifts> findAll();
     public LoggedLifts createNewLift(List<Exercise> loggedExercises);
 //    public LoggedLifts findMostRecentLoggedLift(User user) throws ChangeSetPersister.NotFoundException;
-    public Optional<LoggedLifts> addLifts(List<Exercise> exercises);
+public Optional<LoggedLifts> addLifts(List<Exercise> exercises);
 }

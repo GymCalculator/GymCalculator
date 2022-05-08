@@ -12,6 +12,5 @@ import java.util.Optional;
 
 @Repository
 public interface LoggedLiftsRepository extends JpaRepository<LoggedLifts,String> {
-//        LoggedLifts addLifts(User currUser,List<String> categoryName,List<String> exName, List<Integer> exWeight, List<Integer> exReps);
-        LoggedLifts findById(Long id);
+//        Optional<LoggedLifts> findTopByUser(User user);
 }

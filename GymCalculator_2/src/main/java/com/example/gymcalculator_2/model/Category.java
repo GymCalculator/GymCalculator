@@ -1,6 +1,7 @@
 package com.example.gymcalculator_2.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,6 +13,7 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "Category")
+@NoArgsConstructor
 public class Category {
     @Id
     private String categoryName;
@@ -24,5 +26,9 @@ public class Category {
 
     public List<Exercise> getExercises() {
         return exercises;
+    }
+    public Category(String categoryName){
+        this.categoryName = categoryName;
+        this.exercises = new ArrayList<>();
     }
 }

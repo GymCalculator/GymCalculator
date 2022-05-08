@@ -20,10 +20,10 @@ public interface UserService extends UserDetailsService {
 
     int calculateTDEE(int bodyweight, int bodyfat, int age, int height, int gender, double activitylevel);
     int calculateTDEE_WithBodyFat(int bodyweight, int bodyfat);
-
+    List<User> addNewFriend(User user, String friend);
     void setUserSettings(String currUsername,int units,int neareast,String sex,int bw,int age);
 
-    void addLoggedLifts(String userId,LoggedLifts loggedLifts);
+    void addLoggedLifts(String userId, LoggedLifts loggedLifts);
 
     LoggedLifts getLoggedLifts(String userId);
 

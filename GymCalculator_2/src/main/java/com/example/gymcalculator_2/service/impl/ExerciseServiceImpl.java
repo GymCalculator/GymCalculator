@@ -41,7 +41,6 @@ public class ExerciseServiceImpl implements ExerciseService {
             return exerciseRepository.save(new Exercise(newExercise, category, type));
 
     }
-
     @Override
     public Exercise addExercise(String categoryName, String exerciseName, int weight, int reps) {
         Exercise exercise = exerciseRepository.findByExerciseName(exerciseName).orElseThrow();
@@ -54,6 +53,5 @@ public class ExerciseServiceImpl implements ExerciseService {
 
         return exercise;
     }
-
 
 }

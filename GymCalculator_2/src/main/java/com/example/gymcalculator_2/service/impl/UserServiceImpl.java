@@ -100,6 +100,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> addNewFriend(User user, String friend) {
+        User friendToAdd = userRepository.findByUsername(friend).orElse(null);
+        if(friendToAdd == null || user.getUsername().equals(friend)) return null;
+        if(user.getFriends().contains(friendToAdd)) return null;
+        user.getFriends().add(friendToAdd);
+        friendToAdd.getFriends().add(user);
+        userRepository.save(user);
+        userRepository.save(friendToAdd);
+        return user.getFriends();
+    }
+
+    @Override
     public void setUserSettings(String currUserName,int units, int neareast, String sex, int bw, int age) {
         User u =userRepository.findByUsername(currUserName).orElseThrow();
 
@@ -109,7 +121,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addLoggedLifts(String userId,LoggedLifts loggedLifts) {
+    public void addLoggedLifts(String userId, LoggedLifts loggedLifts) {
         User u = userRepository.getById(userId);
         u.getLoggedLifts().add(loggedLifts);
         userRepository.save(u);
@@ -132,16 +144,6 @@ public class UserServiceImpl implements UserService {
 
         }
 
-    }
-
-
-    public List<Integer> calculateSSforBackSquat(int weight,int reps,int bodyweight, int gender){
-        int forOneRep = calculate1RM(weight,reps);
-        float ratio = (float) forOneRep/bodyweight;
-        List<Integer> list = new ArrayList<>();
-
-//        list.add();
-return null;
     }
 
 }

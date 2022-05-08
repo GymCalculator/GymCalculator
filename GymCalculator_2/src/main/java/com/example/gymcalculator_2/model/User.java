@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -46,8 +47,8 @@ public class User implements UserDetails {
     private Units units;
 
     // user's friends
-    @ElementCollection
-    private List<String> friends; //todo da se cuva samo lista od usernames (pomalku mesto zafakja; samo barame username vo service delot)
+    @ManyToMany
+    private List<User> friends;
 
     // user's selected + logged lifts
     @OneToMany
@@ -71,6 +72,7 @@ public class User implements UserDetails {
         this.email = email;
         this.password = password;
         this.role = role;
+        this.friends = new ArrayList<>();
     }
 
 
@@ -98,5 +100,6 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return isEnabled;
     }
+
 
 }

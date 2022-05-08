@@ -48,4 +48,10 @@ public class CategoryServiceImpl implements CategoryService {
         desiredCategory.getExercises().add(exercise);
         return categoryRepository.save(desiredCategory);
     }
+
+    @Override
+    public Category createCategory(String categoryName) {
+        if(categoryRepository.findByCategoryName(categoryName).isPresent()) throw new CategoryNotFoundException();
+        return categoryRepository.save(new Category(categoryName));
+    }
 }

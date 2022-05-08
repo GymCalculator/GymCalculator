@@ -11,4 +11,5 @@ public interface CategoryService {
     void populateCategories();
     Category findByCategoryName(String categoryName);
     Category addNewExerciseToCategory(Exercise newExercise, String category);
+    Category createCategory(String categoryName);
 }
