@@ -26,8 +26,8 @@ public class LoggedLifts {
 
     private LocalDateTime loggedDate;
 
-    @ManyToOne
-    private User user;
+//    @ManyToOne
+//    private User user;
 
     @OneToMany
     private List<Exercise> loggedExercises;

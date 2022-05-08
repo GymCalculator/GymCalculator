@@ -1,6 +1,7 @@
 package com.example.gymcalculator_2.service.impl;
 
 import com.example.gymcalculator_2.model.Exceptions.*;
+import com.example.gymcalculator_2.model.LoggedLifts;
 import com.example.gymcalculator_2.model.Role;
 import com.example.gymcalculator_2.model.User;
 import com.example.gymcalculator_2.repository.UserRepository;
@@ -11,7 +12,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -108,6 +111,40 @@ public class UserServiceImpl implements UserService {
         return user.getFriends();
     }
 
+    @Override
+    public void setUserSettings(String currUserName,int units, int neareast, String sex, int bw, int age) {
+        User u =userRepository.findByUsername(currUserName).orElseThrow();
+
+//        u.setUnits(units);
+//        u.setBodyweight(bw);
+//        u.setUserAge(age);
+    }
+
+    @Override
+    public void addLoggedLifts(String userId, LoggedLifts loggedLifts) {
+        User u = userRepository.getById(userId);
+        u.getLoggedLifts().add(loggedLifts);
+        userRepository.save(u);
+    }
+
+    @Override
+    public LoggedLifts getLoggedLifts(String userId) {
+        return userRepository.findByUsername(userId).get().getLoggedLifts().get(0);
+    }
+
+    @Override
+    public void calculateStrenghtStandard(int weight,int reps,int bodyweight,int gender) {
+
+        float ratio = 0;//(float) forOneRep/bodyweight;
+
+        calculateWILK(bodyweight,10,gender);
+        if(gender==0) { // is male
+            Map<String,Float> standard= new HashMap<>();
+            standard.put("Back Squat",ratio);
+
+        }
+
+    }
 
 }
 

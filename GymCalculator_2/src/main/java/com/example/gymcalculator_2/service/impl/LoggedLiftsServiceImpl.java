@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LoggedLiftsServiceImpl implements LoggedLiftsService {
@@ -23,7 +24,7 @@ public class LoggedLiftsServiceImpl implements LoggedLiftsService {
     }
 
     @Override
-    public List<LoggedLifts> listAll() {
+    public List<LoggedLifts> findAll() {
         return loggedLiftsRepository.findAll();
     }
 
@@ -31,6 +32,14 @@ public class LoggedLiftsServiceImpl implements LoggedLiftsService {
     public LoggedLifts createNewLift(List<Exercise> newloggedExercises) {
         LoggedLifts newLift = new LoggedLifts(newloggedExercises);
         return loggedLiftsRepository.save(newLift);
+    }
+
+    @Override
+    public Optional<LoggedLifts> addLifts(List<Exercise> exercises) {
+//        LoggedLifts loggedLifts=loggedLiftsRepository.findTopByUser(currUser).orElseThrow();
+
+
+        return Optional.of(createNewLift(exercises));
     }
 
 //    @Override

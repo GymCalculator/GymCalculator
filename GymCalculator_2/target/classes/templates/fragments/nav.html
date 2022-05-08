@@ -1,0 +1,59 @@
+<div th:fragment="navbar">
+    <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+        <div class="container container-fluid">
+
+            <a class="navbar-brand" href="/" th:text="${currentUser.getUsername()}">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <label class="label text-light "></label>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mx-3 mb-2 mb-lg-0 ">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            Calculators
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/calculators/one_rep_max">1 Rep Max Calculator</a></li>
+
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li><a class="dropdown-item" href="/calculators/TDEE">TDEE Calculator</a></li>
+
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li><a class="dropdown-item" href="/calculators/wilks">WILKS Calculator</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item"> <a class="nav-link" href="/standards">?Average Standards?</a> </li>
+
+                    <!--                <li class="nav-item"> <a class="nav-link" href="calculators/Calculator1RM.html">1 Rep Max Calculator</a> </li>-->
+                    <!--                <li class="nav-item"> <a class="nav-link" href="calculators/CalculatorTDEE.html">TDEE Calculator</a> </li>-->
+                    <!--                <li class="nav-item"> <a class="nav-link" href="calculators/CalculatorWilks.html">WILKS Calculator</a> </li>-->
+                </ul>
+
+
+                <a th:if="${currentUser.getUsername() == 'defaultUser'}" class="navbar-brand "
+                   href="/login">Login</a>
+                <a th:if="${currentUser.getUsername() != 'defaultUser'}" class="navbar-brand "
+                   href="/logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+</div>
