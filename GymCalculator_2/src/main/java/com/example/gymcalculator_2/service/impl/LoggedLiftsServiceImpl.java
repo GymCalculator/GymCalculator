@@ -23,7 +23,7 @@ public class LoggedLiftsServiceImpl implements LoggedLiftsService {
     }
 
     @Override
-    public List<LoggedLifts> listAll() {
+    public List<LoggedLifts> findAll() {
         return loggedLiftsRepository.findAll();
     }
 
@@ -37,7 +37,8 @@ public class LoggedLiftsServiceImpl implements LoggedLiftsService {
     public Optional<LoggedLifts> addLifts(List<Exercise> exercises) {
 //        LoggedLifts loggedLifts=loggedLiftsRepository.findTopByUser(currUser).orElseThrow();
 
-        return Optional.of(loggedLiftsRepository.save(new LoggedLifts(LocalDateTime.now(),exercises)));
+
+        return Optional.of(createNewLift(exercises));
     }
 
 //    @Override

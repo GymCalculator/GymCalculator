@@ -26,4 +26,6 @@ public interface UserService extends UserDetailsService {
     void addLoggedLifts(String userId,LoggedLifts loggedLifts);
 
     LoggedLifts getLoggedLifts(String userId);
+
+    void calculateStrenghtStandard(int weight,int reps,int bodyweight,int gender);
 }

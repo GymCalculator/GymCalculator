@@ -7,38 +7,35 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <meta charset="UTF-8">
     <title>GymCalculator</title>
+
     <script th:inline="javascript">
         var listOfCheckedItems = [];
     </script>
-
 </head>
-<body>
 
+<body class="bg-secondary ">
+
+<!--Navigation bar-->
+<div th:replace="/fragments/nav :: navbar"></div>
 
 <th:block>
-    <nav class="navbar navbar-light bg-dark  ">
-        <div class="container ">
-            <label class="label text-light col-2 " th:text="${currentUser.getUsername()}"></label>
-            <a th:if="${currentUser.getUsername() == 'defaultUser'}" class="navbar-brand col-2 text-light"
-               href="/login">Login</a>
-            <a th:if="${currentUser.getUsername() != 'defaultUser'}" class="navbar-brand col-2 text-light"
-               href="/logout">Logout</a>
-        </div>
-    </nav>
-
-
     <div style="display: flex">
 
 
         <div class="container " style="border-radius: 50px;">
 
-            <section class="jumbotron text-center border-bottom border-dark">
-
-                <h1 class="jumbotron-heading text-info">WEB PROGRAMMING Lifts Calculator</h1>
-                <h2 class="jumbotron-heading text-indigo">Log your latest lifts</h2>
-
+            <section class="jumbotron text-center mt-4">
+                <div class="bg-light  rounded-pill p-4">
+                    <h1 class="jumbotron-heading text-info">WEB PROGRAMMING Lifts Calculator</h1>
+                    <h2 class="jumbotron-heading text-indigo">
+                        <i class="fa fa-github" style="font-size:36px"></i>MarkoZoreski
+                        <i class="fa fa-github" style="font-size:36px"></i>NikolaGilev
+                    </h2>
+                </div>
             </section>
 
             <div class="bg-light container my-4 p-4 " style="border-radius: 50px">
@@ -47,7 +44,7 @@
                 <div class="row">
 
                     <div class="col-2 m-3">
-                        <label for="units"  class="label text-dark" style="left: 25%">Units:</label>
+                        <label for="units" class="label text-dark" style="left: 25%">Units:</label>
                         <select class="btn btn-indigo form-select border-info border-2 text-center "
                                 id="units" name="units" style="height: 55px">
                             <option th:value="0" th:text="Metric"></option>
@@ -82,7 +79,7 @@
 
                     <!--       Exercises to select from...      -->
                     <div class="row">
-                        <div class="card d-flex flex-column col-4 mb-4" id="formtest"
+                        <div class="card d-flex flex-column col-4 mb-4" id="formtestElements"
                              th:each="category : ${categories}">
                             <label th:for="${category.getCategoryName()}" class="label label-info fw-bold"
                                    th:text="${category.getCategoryName()}"></label>
@@ -91,7 +88,8 @@
 
                                 <input class="form-check-input" type="checkbox" th:checked="${exercise.getChecked()}"
                                        th:id="${exercise.getExerciseName()}" th:value="${exercise.getExerciseName()}"
-                                       th:onclick="ShowFunc([[${exercise.getExerciseName()}]])" name="listCheckedExercises"
+                                       th:onclick="ShowFunc([[${exercise.getExerciseName()}]])"
+                                       name="listCheckedExercises"
                                        id="listCheckedExercises">
 
                                 <label class="form-check-label" th:for="${exercise.getExerciseName()}"
@@ -203,26 +201,24 @@
                     <p class="text-start opacity-50">Finally, for each lift you train, enter your most difficult set
                         that you have completed recently. Each set should be 10 or fewer reps.</p>
 
-
-                        <div class=" d-flex flex-column mt-5 mb-4" id="formtest" th:each="category : ${categories}">
-                            <div class="form-check checkbox icheck-indigo p-4 mt-2"
+                    <div id="formtest">
+                        <div class=" d-flex flex-column" th:each="category : ${categories}">
+                            <div class="form-check checkbox icheck-indigo p-4 mb-2"
                                  th:each="exercise : ${category.getExercises()}" style="display: none;"
                                  th:id="${exercise.getExerciseName()}+'1'">
 
                                 <label th:for="${category.getCategoryName()}" class="label label-info fw-bold"
-                                       th:text="${category.getCategoryName()}" ></label>
-                                <input id="categoryName" name="categoryName" style="display: none" th:value="${category.getCategoryName()}">
+                                       th:text="${category.getCategoryName()}"></label>
+                                <input id="categoryName" name="categoryName" style="display: none"
+                                       th:value="${category.getCategoryName()}">
 
-                                <div class="row"  >
+                                <div class="row">
 
                                     <div class="col-2 mt-2">
                                         <label class="form-check-label mt-4" th:for="${exercise.getExerciseName()}"
                                                th:text="${exercise.getExerciseName()}"></label>
-                                        <input  style="display: none" th:value="${exercise.getExerciseName()}">
-
-
-                                        <input id="exName" name="exName" style="display: none">
-
+                                        <input style="display: none" id="exName" name="exName"
+                                               th:value="${exercise.getExerciseName()}">
 
 
                                     </div>
@@ -247,22 +243,25 @@
 
                             </div>
                         </div>
-
+                    </div>
 
 
                     <!-- todo: maybe put a reset button later
                     == reset button sets the changed inputs to their predefined values (inserted by the user when creating an account)-->
 
-                    <button type="submit" class="btn btn-danger text-white ">Analyze</button>
-                    <button type="button" class="btn btn-info text-white ">Analyze and Log Lifts</button>
+                    <button type="submit" class="btn btn-danger text-white" name="Analyze">Analyze</button>
+                    <button type="submit" class="btn btn-info text-white" name="AnalyzeAndSave">Analyze and Log Lifts
+                    </button>
                     <button type="button" class="blockquote"
                             onclick="{document.getElementById('info').hidden = !document.getElementById('info').hidden.valueOf(); }">
                         ?
                     </button>
-                    <div class="border border-info text-black p-4" id="info" style="background: #86b7fe;" >
+
+                    <div hidden class="border border-info text-black p-4" id="info" style="background: #86b7fe;">
             <span><b>Analyze:</b> Displays a strength analysis, but does not save the data you entered.
                 Use this if you're just curious about some results.</span>
                         <br>
+
                         <span><b>Analyze and Log Lifts:</b> Displays a strength analysis and saves the data you entered.
                 Use this if the numbers you entered match your recent lifts.</span>
                         <br>
@@ -277,31 +276,41 @@
     </div>
 </th:block>
 
+
 <script>
+    window.onload = function () {
+        if (listOfCheckedItems.length === 0) {
+            document.getElementById('formtest').style.display = 'none';
+
+        } else {
+            document.getElementById('formtest').style.display = '';
+        }
+
+
+    };
 
     function ShowFunc(exId) {
         if (listOfCheckedItems.includes(exId)) {
-            listOfCheckedItems.pop(exId);
-            document.getElementById(exId + '1').style.display = 'none';
+            var idx = listOfCheckedItems.indexOf(exId);
+            delete listOfCheckedItems[idx];
+            listOfCheckedItems = listOfCheckedItems.filter(item => item !== "");
 
-            document.getElementById(exId + '1').style.visibility = 'hidden';
+            document.getElementById(exId + '1').style.display = 'none';
 
         } else {
             listOfCheckedItems.push(exId);
             document.getElementById(exId + '1').style.display = '';
+        }
 
-            document.getElementById(exId + '1').style.visibility = 'visible';
+
+        if (listOfCheckedItems.length === 0) {
+            document.getElementById('formtest').style.display = 'none';
+        } else {
+            document.getElementById('formtest').style.display = '';
         }
 
         console.log(exId);
-        document.getElementById('exName').value = exId;
-        var input = document.createElement("input");
-        input.type = "text";
-        input.style="display:none";
-        container.appendChild(input); // put it into the DOM
-
-
-
+        console.log(listOfCheckedItems);
     }
 
 

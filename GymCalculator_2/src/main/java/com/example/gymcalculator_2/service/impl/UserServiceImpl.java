@@ -12,7 +12,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -116,6 +118,30 @@ public class UserServiceImpl implements UserService {
     @Override
     public LoggedLifts getLoggedLifts(String userId) {
         return userRepository.findByUsername(userId).get().getLoggedLifts().get(0);
+    }
+
+    @Override
+    public void calculateStrenghtStandard(int weight,int reps,int bodyweight,int gender) {
+
+        float ratio = 0;//(float) forOneRep/bodyweight;
+
+        calculateWILK(bodyweight,10,gender);
+        if(gender==0) { // is male
+            Map<String,Float> standard= new HashMap<>();
+            standard.put("Back Squat",ratio);
+
+        }
+
+    }
+
+
+    public List<Integer> calculateSSforBackSquat(int weight,int reps,int bodyweight, int gender){
+        int forOneRep = calculate1RM(weight,reps);
+        float ratio = (float) forOneRep/bodyweight;
+        List<Integer> list = new ArrayList<>();
+
+//        list.add();
+return null;
     }
 
 }
