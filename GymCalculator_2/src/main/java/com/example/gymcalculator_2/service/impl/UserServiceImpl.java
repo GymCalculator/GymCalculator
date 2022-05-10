@@ -128,8 +128,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public LoggedLifts getLoggedLifts(String userId) {
-        return userRepository.findByUsername(userId).get().getLoggedLifts().get(0);
+    public LoggedLifts findMostRecentLoggedLift(User user) {
+        if(getLoggedLifts(user) == null) return null;
+        return getLoggedLifts(user).get(getLoggedLifts(user).size()-1);
+    }
+
+    @Override
+    public List<LoggedLifts> getLoggedLifts(User user) {
+        return user.getLoggedLifts();
     }
 
     @Override

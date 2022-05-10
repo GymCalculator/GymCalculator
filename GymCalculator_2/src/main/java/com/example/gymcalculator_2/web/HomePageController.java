@@ -1,13 +1,10 @@
 package com.example.gymcalculator_2.web;
 
 
+import com.example.gymcalculator_2.model.*;
 import com.example.gymcalculator_2.model.Enumerator.LiftType;
 import com.example.gymcalculator_2.model.Enumerator.Sex;
 import com.example.gymcalculator_2.model.Enumerator.Units;
-import com.example.gymcalculator_2.model.Exercise;
-import com.example.gymcalculator_2.model.LoggedLifts;
-import com.example.gymcalculator_2.model.Role;
-import com.example.gymcalculator_2.model.User;
 import com.example.gymcalculator_2.service.CategoryService;
 import com.example.gymcalculator_2.service.ExerciseService;
 import com.example.gymcalculator_2.service.LoggedLiftsService;
@@ -73,20 +70,21 @@ public class HomePageController {
             @RequestParam List<String> exName, @RequestParam(required = false) List<Integer> exWeight,
             @RequestParam(required = false) List<Integer> exReps, HttpServletRequest request) {
         String user = request.getRemoteUser();
+        User currentUser = (User) userService.loadUserByUsername(user);
 
 
-        List<Exercise> exercises = new ArrayList<>();
+        List<LoggedExercise> loggedExercises = new ArrayList<>();
 
         for (int i = 0; i < exReps.size(); i++) {
             if (exReps.get(i) != null) {
-                exercises.add(exerciseService.addExercise(categoryName.get(i), exName.get(i), exWeight.get(i), exReps.get(i)));
+                loggedExercises.add(exerciseService.addExercise(categoryName.get(i), exName.get(i), exWeight.get(i), exReps.get(i)));
             }
         }
-        System.out.println(exerciseService.findAll());
+//        System.out.println(exerciseService.findAll());
 
-        LoggedLifts loggedLifts = loggedLiftsService.addLifts(exercises).orElseThrow();
+        LoggedLifts loggedLifts = loggedLiftsService.createNewLift(loggedExercises);
 
-        System.out.println(loggedLiftsService.findAll());
+//        System.out.println(loggedLiftsService.findAll());
 
         userService.addLoggedLifts(user, loggedLifts);
 
@@ -105,8 +103,8 @@ public class HomePageController {
     @GetMapping("/score")
     public String getScore(Model model, HttpServletRequest request) {
         String user = request.getRemoteUser();
-
-        model.addAttribute("userLifts", userService.getLoggedLifts(user));
+        User currentUser = (User) userService.loadUserByUsername(user);
+        model.addAttribute("userLifts", userService.findMostRecentLoggedLift(currentUser));
 
         return "score.html";
     }
