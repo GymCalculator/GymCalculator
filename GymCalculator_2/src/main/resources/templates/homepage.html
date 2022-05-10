@@ -54,7 +54,15 @@
                         <tr th:each="user : ${currentUser.getFriends()}">
                             <td th:text="${user.getUsername()}"></td>
                             <td th:text="${user.getBodyweight()}"></td>
-                            <td>LoggedLifts</td>
+                            <th:block th:each="category : ${categories}">
+                                <th:block th:if="${user.findMostRecentLoggedLift()} != null">
+                                    <th:block th:each="exercise : ${user.findMostRecentLoggedLift().getExercises()}">
+                                    <th:block th:if="${exercise.getCategoryName()} == ${category.getCategoryName()}">
+                                        <th th:text="${exercise.getCategoryName()}"></th>
+                                    </th:block>
+                                </th:block>
+                                </th:block>
+                            </th:block>
                         </tr>
                         </tbody>
                     </table>
@@ -180,7 +188,7 @@
                             <div class="row">
 
                                 <div class="col-2 mt-2">
-                                    <label class="form-check-label mt-4" th:for="${exercise.getExerciseName()}"
+                                    <label class="form-check-label mt-4"
                                            th:text="${exercise.getExerciseName()}"></label>
                                     <input style="display: none" id="exName" name="exName"
                                            th:value="${exercise.getExerciseName()}">

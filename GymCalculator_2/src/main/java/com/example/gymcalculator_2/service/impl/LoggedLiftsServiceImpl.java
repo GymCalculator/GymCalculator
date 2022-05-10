@@ -2,6 +2,7 @@ package com.example.gymcalculator_2.service.impl;
 
 
 import com.example.gymcalculator_2.model.Exercise;
+import com.example.gymcalculator_2.model.LoggedExercise;
 import com.example.gymcalculator_2.model.LoggedLifts;
 import com.example.gymcalculator_2.repository.ExerciseRepository;
 import com.example.gymcalculator_2.repository.LoggedLiftsRepository;
@@ -28,18 +29,13 @@ public class LoggedLiftsServiceImpl implements LoggedLiftsService {
     }
 
     @Override
-    public LoggedLifts createNewLift(List<Exercise> newloggedExercises) {
+    public LoggedLifts createNewLift(List<LoggedExercise> newloggedExercises) {
+
         LoggedLifts newLift = new LoggedLifts(newloggedExercises);
         return loggedLiftsRepository.save(newLift);
     }
 
-    @Override
-    public Optional<LoggedLifts> addLifts(List<Exercise> exercises) {
-//        LoggedLifts loggedLifts=loggedLiftsRepository.findTopByUser(currUser).orElseThrow();
 
-
-        return Optional.of(createNewLift(exercises));
-    }
 
 //    @Override
 //    public LoggedLifts findMostRecentLoggedLift(User user) throws ChangeSetPersister.NotFoundException {

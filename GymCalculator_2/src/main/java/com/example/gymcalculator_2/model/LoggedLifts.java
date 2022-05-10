@@ -19,29 +19,20 @@ import java.util.List;
 @Table(name = "LoggedLifts")
 public class LoggedLifts {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private LocalDateTime loggedDate;
 
-//    @ManyToOne
-//    private User user;
 
     @OneToMany
-    private List<Exercise> loggedExercises;
+    private List<LoggedExercise> loggedExercises;
 
-    public LoggedLifts(List<Exercise> loggedExercises){
+    public LoggedLifts(List<LoggedExercise> loggedExercises){
         this.loggedExercises = loggedExercises;
         this.loggedDate = LocalDateTime.now();
     }
-
-    public LoggedLifts(LocalDateTime loggedDate,  List<Exercise> loggedExercises) {
-        this.loggedDate = loggedDate;
-
-        this.loggedExercises = loggedExercises;
-    }
-    public List<Exercise> getExercises() {
+    public List<LoggedExercise> getExercises() {
         return loggedExercises;
     }
-
 }

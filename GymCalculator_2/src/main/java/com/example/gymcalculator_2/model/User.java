@@ -101,5 +101,10 @@ public class User implements UserDetails {
         return isEnabled;
     }
 
+    public LoggedLifts findMostRecentLoggedLift() {
+        if(loggedLifts.size() < 1) return null;
+        return loggedLifts.get(loggedLifts.size()-1);
+    }
+
 
 }
