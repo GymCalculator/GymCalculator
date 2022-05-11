@@ -1,12 +1,12 @@
 package com.example.gymcalculator_2.service.impl;
 
-import com.example.gymcalculator_2.model.Category;
 import com.example.gymcalculator_2.model.Enumerator.LiftType;
 import com.example.gymcalculator_2.model.Exceptions.ExerciseAlreadyExistsException;
 import com.example.gymcalculator_2.model.Exceptions.ExerciseNotFoundException;
 import com.example.gymcalculator_2.model.Exercise;
+import com.example.gymcalculator_2.model.LoggedExercise;
 import com.example.gymcalculator_2.repository.ExerciseRepository;
-import com.example.gymcalculator_2.service.CategoryService;
+import com.example.gymcalculator_2.repository.LoggedExerciseRepository;
 import com.example.gymcalculator_2.service.ExerciseService;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +15,11 @@ import java.util.List;
 @Service
 public class ExerciseServiceImpl implements ExerciseService {
     private final ExerciseRepository exerciseRepository;
+    private final LoggedExerciseRepository loggedExerciseRepository;
 
-    public ExerciseServiceImpl(ExerciseRepository exerciseRepository) {
+    public ExerciseServiceImpl(ExerciseRepository exerciseRepository, LoggedExerciseRepository loggedExerciseRepository) {
         this.exerciseRepository = exerciseRepository;
+        this.loggedExerciseRepository = loggedExerciseRepository;
     }
 
     @Override
@@ -42,16 +44,14 @@ public class ExerciseServiceImpl implements ExerciseService {
 
     }
     @Override
-    public Exercise addExercise(String categoryName, String exerciseName, int weight, int reps) {
+    public LoggedExercise addExercise(String categoryName, String exerciseName, int weight, int reps) {
+        LoggedExercise loggedExercise = new LoggedExercise();
         Exercise exercise = exerciseRepository.findByExerciseName(exerciseName).orElseThrow();
-        // categoryName already set
-        exercise.setWeight(weight);
-        exercise.setChecked(true);
-        exercise.setReps(reps);
-
-        exerciseRepository.save(exercise);
-
-        return exercise;
+        loggedExercise.setLoggedExercise(exercise);
+        loggedExercise.setWeight(weight);
+        loggedExercise.setChecked(true);
+        loggedExercise.setReps(reps);
+        return loggedExerciseRepository.save(loggedExercise);
     }
 
 }
