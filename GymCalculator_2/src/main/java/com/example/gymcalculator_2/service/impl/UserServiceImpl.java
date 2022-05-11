@@ -1,5 +1,7 @@
 package com.example.gymcalculator_2.service.impl;
 
+import com.example.gymcalculator_2.model.Enumerator.Sex;
+import com.example.gymcalculator_2.model.Enumerator.Units;
 import com.example.gymcalculator_2.model.Exceptions.*;
 import com.example.gymcalculator_2.model.LoggedLifts;
 import com.example.gymcalculator_2.model.Role;
@@ -96,14 +98,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int calculateTDEE_WithBodyFat(int bodyweight, int bodyfat) {
-        return (int) (370 + 21.6*(1 - bodyfat/100)*bodyweight);
+        return (int) (370 + 21.6 * (1 - bodyfat / 100) * bodyweight);
     }
 
     @Override
     public List<User> addNewFriend(User user, String friend) {
         User friendToAdd = userRepository.findByUsername(friend).orElse(null);
-        if(friendToAdd == null || user.getUsername().equals(friend)) return null;
-        if(user.getFriends().contains(friendToAdd)) return null;
+        if (friendToAdd == null || user.getUsername().equals(friend)) return null;
+        if (user.getFriends().contains(friendToAdd)) return null;
         user.getFriends().add(friendToAdd);
         friendToAdd.getFriends().add(user);
         userRepository.save(user);
@@ -112,13 +114,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void setUserSettings(String currUserName,int units, int neareast, String sex, int bw, int age) {
-        User u =userRepository.findByUsername(currUserName).orElseThrow();
+    public void setUserSettings(String currUserName, String units, String sex, int bw, int age) {
+        User u = userRepository.findByUsername(currUserName).orElseThrow();
 
-//        u.setUnits(units);
-//        u.setBodyweight(bw);
-//        u.setUserAge(age);
+        u.setUnits(Units.valueOf(units));
+        u.setSex(Sex.valueOf(sex));
+        u.setBodyweight(bw);
+        u.setUserAge(age);
     }
+
 
     @Override
     public void addLoggedLifts(String userId, LoggedLifts loggedLifts) {
@@ -129,8 +133,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public LoggedLifts findMostRecentLoggedLift(User user) {
-        if(getLoggedLifts(user) == null) return null;
-        return getLoggedLifts(user).get(getLoggedLifts(user).size()-1);
+        if (getLoggedLifts(user) == null) return null;
+        return getLoggedLifts(user).get(getLoggedLifts(user).size() - 1);
     }
 
     @Override
@@ -139,17 +143,47 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void calculateStrenghtStandard(int weight,int reps,int bodyweight,int gender) {
+    public Map<String, Double> calculateStrenghtStandard(List<String> categoryName, List<String> exName, List<Integer> weight, List<Integer> reps, int bodyweight, String gender) {
 
-        float ratio = 0;//(float) forOneRep/bodyweight;
+        Map<String, Double> score = new HashMap<>();
+        // for men ===>> za Score po kategorija se zima pogolemiot od 2te
+        if (gender.equals("Male")) {
+            for (int i = 0; i < weight.size(); i++) {
+                System.out.println(weight.get(i) + "  reps:"+ reps.get(i));
+                int forOneRep = calculate1RM(weight.get(i), reps.get(i));
 
-        calculateWILK(bodyweight,10,gender);
-        if(gender==0) { // is male
-            Map<String,Float> standard= new HashMap<>();
-            standard.put("Back Squat",ratio);
+                if (exName.get(i).equals("Front Squat"))
+                    score.put("SQUAT", forOneRep / 1.70); // for Front Squat
+                if (exName.get(i).equals("Back Squat") && score.get("SQUAT") < forOneRep)
+                    score.replace("SQUAT", forOneRep / 2.127); // for back squat
+
+                if (exName.get(i).equals("Deadlift") || exName.get(i).equals("Sumo Deadlift"))
+                    score.put("FLOOR PULL", forOneRep / 2.4458); // for DL and sumo
+                if (exName.get(i).equals("Power Clean") && score.get("FLOOR PULL") < forOneRep)
+                    score.replace("FLOOR PULL", forOneRep / 2.127); // for Power Clean
+
+                if (exName.get(i).equals("Bench Press"))
+                    score.put("HORIZONTAL PRESS", forOneRep / 1.589); // for Bench Press
+
+                if (exName.get(i).equals("Snatch Press"))
+                    score.put("VERTICAL PRESS", forOneRep / 0.827); // for Snatch Press
+
+                if (exName.get(i).equals("Pendlay Row"))
+                    score.put("PULL-UP / ROW", forOneRep / 1.298); // specifically for Pendlay Row
+            }
 
         }
+        else {
+            for (int i = 0; i < exName.size(); i++) {
+                int forOneRep = calculate1RM(weight.get(i), reps.get(i));
 
+
+
+
+            }
+        }
+
+        return score;
     }
 
 }

@@ -5,33 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21865237-663a-4bcf-96ae-9920edb34c9b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_social_spring_social_core_1_1_4_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_social_spring_social_security_unknown.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_social_spring_social_web_1_1_4_RELEASE.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GymCalculator_2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/GymCalculator_2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/LoggedLifts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/LoggedLifts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Enumerator/Sex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Enumerator/Sex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Enumerator/Units.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Enumerator/Units.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Exercise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/Exercise.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/ExerciseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/ExerciseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/LoggedLiftsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/LoggedLiftsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/impl/ExerciseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/impl/ExerciseServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/impl/LoggedLiftsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/impl/LoggedLiftsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/impl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/HomePageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/homepage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/Config/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/Config/WebSecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/Enumerator/Sex.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/Enumerator/Sex.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/Exercise.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/Exercise.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/LoggedLifts.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/LoggedLifts.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/User$UserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/User$UserBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/ExerciseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/ExerciseService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/LoggedLiftsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/LoggedLiftsService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/impl/ExerciseServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/impl/ExerciseServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/impl/LoggedLiftsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/impl/LoggedLiftsServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/impl/UserServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/web/HomePageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/web/HomePageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/web/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/web/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/homepage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,6 +132,9 @@
     <configuration name="CalculatorWilks.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/GymCalculator_2/templates/calculators/CalculatorWilks.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
+    <configuration name="homepage.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/GymCalculator_2/templates/homepage.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="nav.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/GymCalculator_2/templates/fragments/nav.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -141,6 +147,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.homepage.html" />
         <item itemvalue="JavaScript Debug.nav.html" />
         <item itemvalue="JavaScript Debug.CalculatorWilks.html" />
       </list>

@@ -41,13 +41,7 @@ public class Exercise {
         this.reps=reps;
         this.checked=checked;
     }
-    public Exercise(String exerciseName,String categoryName,int weight,int reps,boolean checked){
-        this.exerciseName = exerciseName;
-        this.categoryName = categoryName;
-        this.weight=weight;
-        this.reps=reps;
-        this.checked=checked;
-    }
+
 
 
 

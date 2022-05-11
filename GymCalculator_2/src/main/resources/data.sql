@@ -3,7 +3,7 @@ SELECT * FROM (SELECT 'admin' as username,'admin@gmail.com' as email,
                       '$2a$10$sfdiMp2oK5gNVDl2j2dbK.SlwXjdoaYVUyo2F2cnqdRp..DKY8L8q' as password,
                       2 as role,0 as bodyweight,true as is_account_non_expired,true as is_account_non_locked,
                       true as is_credentials_non_expired,true as is_enabled,0 as sex,0 as units
-                      ,NOW() as user_age) as val
+                      ,23 as user_age) as val
 WHERE NOT EXISTS(
         select username from users where username = 'admin'
     ) LIMIT 1;
