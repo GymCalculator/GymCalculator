@@ -2,9 +2,7 @@ package com.example.gymcalculator_2.model;
 
 
 import com.example.gymcalculator_2.model.Enumerator.LiftType;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,6 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name = "Exercise")
 @Getter
+@Setter
 public class Exercise {
     @Id
     private String exerciseName;
@@ -20,6 +19,7 @@ public class Exercise {
     private int weight;
     private int reps;
     private boolean checked;
+
     @Enumerated
     private LiftType type;
 
@@ -41,5 +41,8 @@ public class Exercise {
         this.reps=reps;
         this.checked=checked;
     }
+
+
+
 
 }

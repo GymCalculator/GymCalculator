@@ -2,10 +2,7 @@ package com.example.gymcalculator_2.model;
 
 
 import com.example.gymcalculator_2.model.Enumerator.LiftType;
-import lombok.Data;
-import lombok.Generated;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -18,6 +15,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+@Setter
 @Table(name = "LoggedLifts")
 public class LoggedLifts {
     @Id

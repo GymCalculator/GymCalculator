@@ -1,5 +1,7 @@
 package com.example.gymcalculator_2.web;
 
+import com.example.gymcalculator_2.model.Enumerator.Sex;
+import com.example.gymcalculator_2.model.Enumerator.Units;
 import com.example.gymcalculator_2.model.Exceptions.InvalidUserCredentialsException;
 import com.example.gymcalculator_2.model.User;
 import com.example.gymcalculator_2.service.AuthService;
@@ -36,6 +38,7 @@ public class LoginController {
             user = this.authService.login(request.getParameter("username"),
                     request.getParameter("email"),
                     request.getParameter("password"));
+
             request.getSession().setAttribute("user", user);
 
             return "redirect:/";

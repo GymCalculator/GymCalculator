@@ -38,7 +38,7 @@ public class User implements UserDetails {
     // user's info
     private int bodyweight;
 
-    private LocalDateTime userAge;
+    private int userAge;
 
     @Enumerated
     private Sex sex;
