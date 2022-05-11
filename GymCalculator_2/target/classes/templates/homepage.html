@@ -20,90 +20,118 @@
 <div th:replace="/fragments/nav :: navbar"></div>
 <th:block>
     <div class="container " style="border-radius: 50px;">
-        <section class="jumbotron text-center">
+        <section class="jumbotron text-center mt-4">
             <div class="bg-light  rounded-pill p-4">
-            <h1 class="jumbotron-heading text-info">WEB PROGRAMMING Lifts Calculator</h1>
-            <h2 class="jumbotron-heading text-indigo">
-                <i class="fa fa-github" style="font-size:36px"></i>MarkoZoreski
-                <i class="fa fa-github" style="font-size:36px"></i>NikolaGilev
-            </h2>
+                <h1 class="jumbotron-heading text-info">WEB PROGRAMMING Lifts Calculator</h1>
+                <h2 class="jumbotron-heading text-indigo">
+                    <i class="fa fa-github" style="font-size:36px"></i>MarkoZoreski
+                    <i class="fa fa-github" style="font-size:36px"></i>NikolaGilev
+                </h2>
             </div>
         </section>
-        <div class="bg-light container my-4 p-4 " style="border-radius: 50px">
-            <div class="row" sec:authorize="isAuthenticated()">
-                <h2 class="text-info">Friends</h2>
-                <div th:if="${currentUser.getFriends().size()} < 1 ">
-                    <p class="badge bg-primary text-indigo">You haven't added any friends yet! Add a friend by entering
-                        their username below.</p>
+
+
+        <div sec:authorize="isAuthenticated()">
+            <div class="row bg-light p-5 mt-4" style="border-radius: 50px;">
+
+                <div class="col" style="border-radius: 50px;">
+                    <h2 class="text-info">LATEST SAVED LIFTS</h2>
+                    <hr>
+                    <!--                    <div th:if="${currentUser.findMostRecentLoggedLift()} != null ">-->
+                    <!--                        <p>Logged on</p>-->
+                    <!--                        <span th:value="${currentUser.findMostRecentLoggedLift().getLoggedDate()}"></span>-->
+
+                    <!--                        <p>Bodyweight:</p>-->
+                    <!--&lt;!&ndash;                        <span th:value="${currentUser.getBodyweight()}"></span> kg&ndash;&gt;-->
+
+                    <!--                        <p>Age:</p>-->
+                    <!--&lt;!&ndash;                        <span th:value="${currentUser.getAge()}"></span>&ndash;&gt;-->
+
+                    <!--                    </div>-->
                 </div>
-                <div th:if="${currentUser.getFriends().size()} > 0 ">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th scope="col">User</th>
-                            <th scope="col">Bodyweight</th>
-                            <th scope="col">Squat</th>
-                            <th scope="col">Floor Pull</th>
-                            <th scope="col">Hor. Press</th>
-                            <th scope="col">Vert. Press</th>
-                            <th scope="col">Pull-up / Row</th>
-                            <th scope="col">Total</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="user : ${currentUser.getFriends()}">
-                            <td th:text="${user.getUsername()}"></td>
-                            <td th:text="${user.getBodyweight()}"></td>
-                            <th:block th:each="category : ${categories}">
-                                <th:block th:if="${user.findMostRecentLoggedLift()} != null">
-                                    <th:block th:each="exercise : ${user.findMostRecentLoggedLift().getExercises()}">
-                                    <th:block th:if="${exercise.getCategoryName()} == ${category.getCategoryName()}">
-                                        <th th:text="${exercise.getCategoryName()}"></th>
+
+                <div class="col">
+                    <h2 class="text-info">Friends</h2>
+                    <hr>
+                    <div th:if="${currentUser.getFriends().size()} < 1 ">
+                        <p class="badge bg-primary text-indigo">You haven't added any friends yet! Add a friend by
+                            entering
+                            their username below.</p>
+                    </div>
+                    <div th:if="${currentUser.getFriends().size()} > 0 ">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">User</th>
+                                <th scope="col">Bodyweight</th>
+                                <th scope="col">Squat</th>
+                                <th scope="col">Floor Pull</th>
+                                <th scope="col">Hor. Press</th>
+                                <th scope="col">Vert. Press</th>
+                                <th scope="col">Pull-up / Row</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="user : ${currentUser.getFriends()}">
+                                <td th:text="${user.getUsername()}"></td>
+                                <td th:text="${user.getBodyweight()}"></td>
+                                <th:block th:each="category : ${categories}">
+                                    <th:block th:if="${user.findMostRecentLoggedLift()} != null">
+                                        <th:block
+                                                th:each="exercise : ${user.findMostRecentLoggedLift().getExercises()}">
+                                            <th:block
+                                                    th:if="${exercise.getCategoryName()} == ${category.getCategoryName()}">
+                                                <th th:text="${exercise.getCategoryName()}"></th>
+                                            </th:block>
+                                        </th:block>
                                     </th:block>
                                 </th:block>
-                                </th:block>
-                            </th:block>
-                        </tr>
-                        </tbody>
-                    </table>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <form th:action="@{/addFriend/}" th:method="POST">
+                        <input type="text" id="friend" name="friend" placeholder="Username"/>
+                        <button class="btn btn-success" type="submit">Add Friend</button>
+                    </form>
                 </div>
-                <form th:action="@{/addFriend/}" th:method="POST">
-                    <input type="text" id="friend" name="friend" placeholder="Username"/>
-                    <button class="btn btn-success" type="submit">Add Friend</button>
-                </form>
             </div>
+        </div>
 
-            <h3 class="text-start text-info fw-bolder">Log your latest lifts</h3>
-            <hr>
-            <div class="row">
-
-                <div class="col-2 m-3">
-                    <label for="units" class="label text-dark" style="left: 25%">Units:</label>
-                    <select class="btn btn-indigo form-select border-info border-2 text-center " id="units"
-                            style="height: 55px">
-                        <option th:value="Metric" th:text="Metric"></option>
-                        <option th:value="Imperial" th:text="Imperial"></option>
-                    </select>
-                </div>
-
-
-                <div class="col-4 m-3">
-                    <label for="nearest" class="label text-dark ">Round calculations to nearest:</label>
-                    <select class="btn btn-indigo form-select border-info border-2 " id="nearest"
-                            style="height: 55px">
-                        <option th:value="1" th:text="'1 kg'"></option>
-                        <option th:value="2.5" th:text="'2.5 kg'"></option>
-                        <option th:value="5" th:text="'5 kg'"></option>
-                        <option th:value="10" th:text="'10 kg'"></option>
-                    </select>
-                </div>
-
-            </div>
-
-            <hr>
-
+        <div class="bg-light container my-4 p-4 " style="border-radius: 50px">
 
             <form th:action="@{/homepage}" th:method="POST">
+
+                <h3 class="text-start text-info fw-bolder">Log your latest lifts</h3>
+                <hr>
+                <div class="row">
+
+                    <div class="col-2 m-3">
+                        <label for="units" class="label text-dark" style="left: 25%">Units:</label>
+                        <select class="btn btn-indigo form-select border-info border-2 text-center "
+                                id="units" name="units" style="height: 55px">
+                            <option th:each="u:${units}" th:value="${u}" th:text="${u}"></option>
+
+                        </select>
+                    </div>
+
+
+                    <div class="col-4 m-3">
+                        <label for="nearest" class="label text-dark ">Round calculations to nearest:</label>
+                        <select class="btn btn-indigo form-select border-info border-2 " id="nearest"
+                                style="height: 55px">
+                            <option th:value="1" th:text="'1 kg'"></option>
+                            <option th:value="2.5" th:text="'2.5 kg'"></option>
+                            <option th:value="5" th:text="'5 kg'"></option>
+                            <option th:value="10" th:text="'10 kg'"></option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <hr>
+
 
                 <h1 class="text-start text-info ">Select the lifts that you train.</h1>
                 <p class="text-start opacity-50">These lifts will be used to determine your strength levels. For the
@@ -145,15 +173,14 @@
                         <label for="sex" class="label text-wrap text-dark" style="left: 15px">Sex</label>
                         <select class="btn btn-indigo form-select border-info border-2    " id="sex"
                                 name="sex" style="height: 55px">
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
+                            <option th:each="s:${sex}" th:value="${s}" th:text="${s}"></option>
                         </select>
                     </div>
 
                     <div class="col-2 m-3">
                         <label for="bw" class="label text-wrap text-dark" style="left: 15px">Body weight</label>
                         <div class="input-group">
-                            <input type="number" name="bw"
+                            <input type="number" name="bw" required
                                    class="btn btn-indigo border-info border-2 form-select text-black form-control bg-indigo"
                                    id="bw" style="height: 55px">
                             <span class="input-group-addon bg-indigo text-black">kg</span>
@@ -222,8 +249,8 @@
                 <!-- todo: maybe put a reset button later
                 == reset button sets the changed inputs to their predefined values (inserted by the user when creating an account)-->
 
-                <button type="submit" class="btn btn-danger text-white" name="Analyze">Analyze</button>
-                <button type="submit" class="btn btn-info text-white" name="AnalyzeAndSave">Analyze and Log Lifts
+                <button type="submit" class="btn btn-danger text-white" id="Analyze" name="Analyze">Analyze</button>
+                <button type="submit" class="btn btn-info text-white" id="AnalyzeAndSave" name="AnalyzeAndSave">Analyze and Log Lifts
                 </button>
                 <button type="button" class="blockquote"
                         onclick="{document.getElementById('info').hidden = !document.getElementById('info').hidden.valueOf(); }">
@@ -245,7 +272,7 @@
             </form>
         </div>
 
-        </div>
+    </div>
     </div>
     </div>
 </th:block>
@@ -255,6 +282,9 @@
     window.onload = function () {
         if (listOfCheckedItems.length === 0) {
             document.getElementById('formtest').style.display = 'none';
+            document.getElementById('AnalyzeAndSave').setAttribute('disabled','true');
+            document.getElementById('Analyze').setAttribute('disabled','true');
+
 
         } else {
             document.getElementById('formtest').style.display = '';
@@ -264,25 +294,48 @@
     };
 
     function ShowFunc(exId) {
+        var exId1 = document.getElementById(exId + '1');
+
+
+
         if (listOfCheckedItems.includes(exId)) {
             var idx = listOfCheckedItems.indexOf(exId);
             delete listOfCheckedItems[idx];
             listOfCheckedItems = listOfCheckedItems.filter(item => item !== "");
 
-            document.getElementById(exId + '1').style.display = 'none';
+            exId1.style.display = 'none';
+
+            for (let i = 0; i < 4; i++) {
+                exId1.getElementsByTagName('INPUT')[i].removeAttribute('required');
+                console.log(exId1.getElementsByTagName('INPUT')[i]);
+            }
 
         } else {
             listOfCheckedItems.push(exId);
-            document.getElementById(exId + '1').style.display = '';
+            exId1.style.display = '';
+
+            for (let i = 0; i < 4; i++) {
+                exId1.getElementsByTagName('INPUT')[i].setAttribute('required', '');
+                console.log(exId1.getElementsByTagName('INPUT')[i]);
+
+            }
         }
 
 
         if (listOfCheckedItems.length === 0) {
             document.getElementById('formtest').style.display = 'none';
+            document.getElementById('AnalyzeAndSave').setAttribute('disabled','true');
+            document.getElementById('Analyze').setAttribute('disabled','true');
+
         } else {
             document.getElementById('formtest').style.display = '';
+            document.getElementById('AnalyzeAndSave').removeAttribute('disabled');
+            document.getElementById('Analyze').removeAttribute('disabled');
+
         }
 
+
+        console.log();
         console.log(exId);
         console.log(listOfCheckedItems);
     }

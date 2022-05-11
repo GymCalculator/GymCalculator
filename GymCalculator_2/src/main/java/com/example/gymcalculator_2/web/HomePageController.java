@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -63,15 +66,15 @@ public class HomePageController {
     }
 
     @RequestMapping(params = "AnalyzeAndSave", method = RequestMethod.POST, value = "/homepage")
-    public String postHomePage(
-//            @RequestParam int units, @RequestParam int nearest,
-//                                @RequestParam int sex, @RequestParam int bw, @RequestParam int age,
+    public String postHomePageAnalyzeAndLog(
+            @RequestParam String units,@RequestParam String sex, @RequestParam int bw, @RequestParam(required = false,defaultValue = "23") int age,
             @RequestParam List<String> categoryName,
             @RequestParam List<String> exName, @RequestParam(required = false) List<Integer> exWeight,
             @RequestParam(required = false) List<Integer> exReps, HttpServletRequest request) {
         String user = request.getRemoteUser();
         User currentUser = (User) userService.loadUserByUsername(user);
-
+        System.out.println("log");
+//        userService.setUserSettings(user,units,sex,bw,age);
 
         List<LoggedExercise> loggedExercises = new ArrayList<>();
 
@@ -94,10 +97,21 @@ public class HomePageController {
     }
 
     @RequestMapping(params = "Analyze", method = RequestMethod.POST, value = "/homepage")
-    public String postHomePage() { // todo: only analyze data given
+    public String postHomePageAnalyze(@RequestParam String units,@RequestParam String sex, @RequestParam int bw, @RequestParam(required = false,defaultValue = "23") int age,
+                               @RequestParam List<String> categoryName,
+                               @RequestParam List<String> exName, @RequestParam List<Integer> exWeight,
+                               @RequestParam List<Integer> exReps, HttpServletRequest request) { // todo: only analyze data given
 
+        List<Integer> weight= exWeight.stream().filter(Objects::nonNull).collect(Collectors.toList());
+        List<Integer> reps= exReps.stream().filter(Objects::nonNull).collect(Collectors.toList());
 
-        return "redirect:/score";
+        System.out.println(weight);
+        // todo: losho gi prakjam; tuka reps i weight vrakjaat null, a exName e lista od site exercises;
+        //  ===> treba da se pratat kako objekt (exname,weight,reps);
+        Map<String, Double> score = userService.calculateStrenghtStandard(categoryName,exName, weight,reps,bw,sex);
+        System.out.println(score);
+
+        return "redirect:/home";
     }
 
     @GetMapping("/score")
