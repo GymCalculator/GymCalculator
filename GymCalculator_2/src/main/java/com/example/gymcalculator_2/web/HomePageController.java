@@ -62,6 +62,7 @@ public class HomePageController {
         model.addAttribute("liftType", LiftType.values());
         System.out.println("Logged in as user: " + currentUser.getUsername());
         model.addAttribute("categories", categoryService.findAll());
+        System.out.println(currentUser.getUnits());
         return "homepage.html";
     }
 
@@ -74,7 +75,7 @@ public class HomePageController {
         String user = request.getRemoteUser();
         User currentUser = (User) userService.loadUserByUsername(user);
         System.out.println("log");
-//        userService.setUserSettings(user,units,sex,bw,age);
+        userService.setUserSettings(user,units,sex,bw,age);
 
         List<LoggedExercise> loggedExercises = new ArrayList<>();
 

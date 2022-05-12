@@ -73,6 +73,10 @@ public class User implements UserDetails {
         this.password = password;
         this.role = role;
         this.friends = new ArrayList<>();
+        this.sex = Sex.Male;
+        this.userAge = 23;
+        this.units = Units.Metric;
+        this.bodyweight = 75;
     }
 
 
@@ -104,6 +108,10 @@ public class User implements UserDetails {
     public LoggedLifts findMostRecentLoggedLift() {
         if(loggedLifts.size() < 1) return null;
         return loggedLifts.get(loggedLifts.size()-1);
+    }
+    public String getUnitValue(){
+        if(units.toString() == "Metric") return "kg";
+        else return "lbs";
     }
 
 

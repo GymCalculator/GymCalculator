@@ -2,6 +2,7 @@ package com.example.gymcalculator_2.model;
 
 import com.example.gymcalculator_2.model.Enumerator.LiftType;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @NoArgsConstructor
+@Getter
 public class LoggedExercise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
