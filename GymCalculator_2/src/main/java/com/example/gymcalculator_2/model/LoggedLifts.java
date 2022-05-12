@@ -35,4 +35,7 @@ public class LoggedLifts {
     public List<LoggedExercise> getExercises() {
         return loggedExercises;
     }
+    public String getLoggedDate(){
+        return String.format(loggedDate.getDayOfMonth() + "/"+ loggedDate.getMonthValue() + "/" +loggedDate.getYear());
+    }
 }

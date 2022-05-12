@@ -121,6 +121,7 @@ public class UserServiceImpl implements UserService {
         u.setSex(Sex.valueOf(sex));
         u.setBodyweight(bw);
         u.setUserAge(age);
+        userRepository.save(u);
     }
 
 
