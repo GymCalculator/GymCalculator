@@ -110,7 +110,7 @@ public class User implements UserDetails {
         return loggedLifts.get(loggedLifts.size()-1);
     }
     public String getUnitValue(){
-        if(units.toString() == "Metric") return "kg";
+        if(units.toString().equals("Metric")) return "kg";
         else return "lbs";
     }
 
