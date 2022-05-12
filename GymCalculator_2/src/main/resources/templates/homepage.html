@@ -9,13 +9,21 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
           integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <meta charset="UTF-8">
     <title>GymCalculator</title>
     <script th:inline="javascript">
         var listOfCheckedItems = [];
     </script>
+    <style>
+        .changeUnit {
+            right: 1.5em;
+            top: 8px;
+            transition: all .05s ease-in-out;
+        }
+    </style>
+
 </head>
 <body class="bg-secondary ">
 <!--Navigation bar-->
@@ -25,7 +33,7 @@
         <section class="jumbotron text-center mt-4">
             <div class="bg-light  rounded-pill p-4">
                 <h1 class="jumbotron-heading text-info">WEB PROGRAMMING Lifts Calculator</h1>
-                <h2 class="jumbotron-heading text-indigo">
+                <h2 class="jumbotron-heading ">
                     <i class="fab fa-github" style="font-size:36px"></i>MarkoZoreski
                     <i class="fab fa-github" style="font-size:36px"></i>NikolaGilev
                 </h2>
@@ -39,35 +47,41 @@
                 <div class="card col-md-4 p-4 ">
                     <h2 class="text-info">LATEST SAVED LIFTS</h2>
                     <hr>
-                                    <div class="row">
-                                        <p class="badge bg-primary text-indigo " th:if="${currentUser.findMostRecentLoggedLift()} == null"> You dont have any Lifts Saved</p>
-                                        <ul style="list-style:none" th:if="${currentUser.findMostRecentLoggedLift()} != null ">
-                                            <li>
-                                                <p class="col-12 fst-italic" th:text="'Logged on ' + ${currentUser.findMostRecentLoggedLift().getLoggedDate()} + ':'"></p>
-                                            </li>
-                                            <li class="col-12">
-                                                <span class="fw-bold">Bodyweight:</span>
-                                                <span  th:text="${currentUser.getBodyweight()} + ${currentUser.getUnitValue()}"></span>
-                                            </li>
-                                            <li class="col-12">
-                                                <span class="fw-bold">Age:</span>
-                                                <span  th:text="${currentUser.getUserAge()}"></span>
-                                            </li>
-                                            <th:block th:each="exercise : ${currentUser.findMostRecentLoggedLift().getExercises()}">
-                                                <li>
-                                                    <span class="fw-bold" th:text="${exercise.getExerciseName()} + ': '"></span>
-                                                    <span th:text="${exercise.getWeight()} + ${currentUser.getUnitValue()} + ' x ' + ${exercise.getReps()}"></span>
-                                                </li>
-                                            </th:block>
-                                        </ul>
-                                    </div>
+                    <div class="row">
+                        <p class="badge bg-primary  " th:if="${currentUser.findMostRecentLoggedLift()} == null"> You
+                            dont have any Lifts Saved</p>
+                        <ul style="list-style:none" th:if="${currentUser.findMostRecentLoggedLift()} != null ">
+                            <li>
+                                <p class="col-12 fst-italic"
+                                   th:text="'Logged on ' + ${currentUser.findMostRecentLoggedLift().getLoggedDate()} + ':'"></p>
+                            </li>
+                            <li class="col-12">
+                                <span class="fw-bold">Bodyweight:</span>
+                                <span class="changeVal" th:text="${currentUser.getBodyweight()}"></span>
+                                <span class="changeUnit" th:text="${currentUser.getUnitValue()}"></span>
+                            </li>
+                            <li class="col-12">
+                                <span class="fw-bold">Age:</span>
+                                <span th:text="${currentUser.getUserAge()}"></span>
+                            </li>
+                            <th:block th:each="exercise : ${currentUser.findMostRecentLoggedLift().getExercises()}">
+                                <li>
+                                    <span class="fw-bold" th:text="${exercise.getExerciseName()} + ': '"></span>
+                                    <span class="changeVal toRound" th:text="${exercise.getWeight()}" th:value="${exercise.getWeight()}"></span>
+                                    <span class="changeUnit" th:text="${currentUser.getUnitValue()}"></span>
+                                    <span th:text="' x ' + ${exercise.getReps()}"></span>
+                                </li>
+                            </th:block>
+                        </ul>
+                    </div>
                 </div>
 
                 <div class="card col-md-8 p-4">
                     <h2 class="text-info">Friends</h2>
                     <hr>
                     <div th:if="${currentUser.getFriends().size()} < 1 ">
-                        <p class="badge bg-primary text-indigo d-flex justify-content-center">You haven't added any friends yet! Add a friend by
+                        <p class="badge bg-primary  d-flex justify-content-center">You haven't added any friends yet!
+                            Add a friend by
                             entering
                             their username below.</p>
                     </div>
@@ -88,7 +102,7 @@
                             <tbody>
                             <tr th:each="user : ${currentUser.getFriends()}">
                                 <td th:text="${user.getUsername()}"></td>
-                                    <td th:text="${currentUser.getBodyweight()} + ${currentUser.getUnitValue()}"></td>
+                                <td th:text="${currentUser.getBodyweight()} + ${currentUser.getUnitValue()}"></td>
                                 <th:block th:each="category : ${categories}">
                                     <th:block th:if="${user.findMostRecentLoggedLift()} != null">
                                         <th:block
@@ -106,7 +120,8 @@
                     </div>
                     <form class="mt-auto" th:action="@{/addFriend/}" th:method="POST">
                         <input type="text" id="friend" name="friend" placeholder="Username"/>
-                        <button class="btn btn-success" type="submit">Add Friend <i class="fa fa-plus-circle"></i></button>
+                        <button class="btn btn-success" type="submit">Add Friend <i class="fa fa-plus-circle"></i>
+                        </button>
                     </form>
                 </div>
             </div>
@@ -122,7 +137,7 @@
 
                     <div class="col-md-2 m-3">
                         <label for="units" class="label text-dark" style="left: 25%">Units:</label>
-                        <select class="btn btn-indigo form-select border-info border-2 text-center "
+                        <select onchange="onUnitChange()" class="btn  form-select border-info border-2 text-center "
                                 id="units" name="units" style="height: 55px">
                             <option th:each="u:${units}" th:value="${u}" th:text="${u}"></option>
 
@@ -132,8 +147,8 @@
 
                     <div class="col-md-4 m-3">
                         <label for="nearest" class="label text-dark ">Round calculations to nearest:</label>
-                        <select class="btn btn-indigo form-select border-info border-2 " id="nearest"
-                                style="height: 55px">
+                        <select class="btn  form-select border-info border-2 " id="nearest"
+                                onchange="onNearestChange()" style="height: 55px">
                             <option th:value="1" th:text="'1 kg'"></option>
                             <option th:value="2.5" th:text="'2.5 kg'"></option>
                             <option th:value="5" th:text="'5 kg'"></option>
@@ -156,7 +171,7 @@
                     <div class="card d-flex flex-column col-4 mb-4" id="formtest" th:each="category : ${categories}">
                         <label th:for="${category.getCategoryName()}" class="label label-info fw-bold"
                                th:text="${category.getCategoryName()}"></label>
-                        <div class="form-check checkbox icheck-indigo" th:each="exercise : ${category.getExercises()}">
+                        <div class="form-check checkbox " th:each="exercise : ${category.getExercises()}">
                             <input class="form-check-input" type="checkbox" th:checked="${exercise.getChecked()}"
                                    th:id="${exercise.getExerciseName()}" th:value="${exercise.getExerciseName()}"
                                    th:onclick="ShowFunc([[${exercise.getExerciseName()}]])"
@@ -172,7 +187,8 @@
                         </div>
                     </div>
                     <div class="col-4" id="createCategory" sec:authorize="hasRole('ROLE_ADMIN')">
-                        <a type="button" class="btn btn-danger btn-sm" href="/addNewCategory">Create new Category <i class="fa-solid fa-pencil"></i></a>
+                        <a type="button" class="btn btn-danger btn-sm" href="/addNewCategory">Create new Category <i
+                                class="fa-solid fa-pencil"></i></a>
                     </div>
                 </div>
                 <!--    Personal info...   -->
@@ -184,7 +200,7 @@
                 <div class="row">
                     <div class="col-md-2 m-3">
                         <label for="sex" class="label text-wrap text-dark" style="left: 15px">Sex</label>
-                        <select class="btn btn-indigo form-select border-info border-2    " id="sex"
+                        <select class="btn  form-select border-info border-2    " id="sex"
                                 name="sex" style="height: 55px">
                             <option th:each="s:${sex}" th:value="${s}" th:text="${s}"></option>
                         </select>
@@ -194,15 +210,15 @@
                         <label for="bw" class="label text-wrap text-dark" style="left: 15px">Body weight</label>
                         <div class="input-group">
                             <input type="number" name="bw" required
-                                   class="btn btn-indigo border-info border-2 form-select text-black form-control bg-indigo"
+                                   class=" btn border-info border-2 text-black form-control "
                                    id="bw" min="1" style="height: 55px">
-                            <span class="mt-3" th:text="${currentUser.getUnitValue()}"></span>
+                            <div class="changeUnit position-absolute p-2" th:text="${currentUser.getUnitValue()}"></div>
                         </div>
                     </div>
 
                     <div class="col-md-2 m-3">
                         <label for="age" class="label text-wrap text-dark" style="left: 15px">Age (optional)</label>
-                        <input type="number" class="btn btn-indigo border-info border-2 form-select text-black "
+                        <input type="number" class="btn border-info border-2  text-black "
                                id="age" min="1" name="age"
                                style="height: 55px">
                     </div>
@@ -216,7 +232,7 @@
 
                 <div id="formtest">
                     <div class=" d-flex flex-column" th:each="category : ${categories}">
-                        <div class="form-check checkbox icheck-indigo p-4 mb-2"
+                        <div class="form-check checkbox p-4 mb-2"
                              th:each="exercise : ${category.getExercises()}" style="display: none;"
                              th:id="${exercise.getExerciseName()}+'1'">
 
@@ -233,22 +249,24 @@
                                     <input style="display: none" id="exName" name="exName"
                                            th:value="${exercise.getExerciseName()}">
 
-
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="age" class="label text-wrap text-dark"
-                                           style="left: 15px">Weight</label>
+                                    <label for="age" class="label text-wrap text-dark" style="left: 15px">Weight</label>
+                                    <div class="input-group">
 
-                                    <input type="number" id="exWeight" name="exWeight"
-                                           class="btn btn-indigo border-info border-2 form-select text-black "
-                                           style="height: 55px">
+                                        <input type="number" id="exWeight" name="exWeight"
+                                               class=" btn border-info border-2 form-control text-black "
+                                               style="height: 55px">
+                                        <div class="changeUnit position-absolute p-2" style=" "
+                                             th:text="${currentUser.getUnitValue()}"></div>
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
                                     <label for="age" class="label text-wrap text-dark"
                                            style="left: 15px">Reps</label>
 
                                     <input type="number" id="exReps" name="exReps"
-                                           class="btn btn-indigo border-info border-2 form-select text-black "
+                                           class="btn border-info border-2 form-control text-black "
                                            style="height: 55px">
                                 </div>
 
@@ -263,7 +281,8 @@
                 == reset button sets the changed inputs to their predefined values (inserted by the user when creating an account)-->
 
                 <button type="submit" class="btn btn-danger text-white" id="Analyze" name="Analyze">Analyze</button>
-                <button type="submit" class="btn btn-info text-white" id="AnalyzeAndSave" name="AnalyzeAndSave">Analyze and Log Lifts
+                <button type="submit" class="btn btn-info text-white" id="AnalyzeAndSave" name="AnalyzeAndSave">Analyze
+                    and Log Lifts
                 </button>
                 <button type="button" class="blockquote"
                         onclick="{document.getElementById('info').hidden = !document.getElementById('info').hidden.valueOf(); }">
@@ -292,12 +311,67 @@
 
 
 <script>
+    function kgToLbs(kgs) {
+        return Math.ceil(kgs / 0.45359237);
+    }
+
+    function lbsToKg(lbs) {
+        return (lbs * 0.45359237);
+    }
+
+    // window.onload =
+    function onUnitChange() {
+        let e = document.getElementById("units");
+        let newValue = e.options[e.selectedIndex].value;
+        var target = document.getElementsByClassName("changeUnit");
+        var unitsVal = document.getElementsByClassName("changeVal");
+
+        if (newValue === 'Metric') {
+            for (let i = 0; i < target.length; i++) {
+                target[i].textContent = 'kg';
+            }
+            for (let i = 0; i < unitsVal.length; i++) {
+                unitsVal[i].textContent = lbsToKg(parseFloat(unitsVal[i].textContent)).toFixed(2).toString();
+            }
+        }
+        else {
+            for (let i = 0; i < target.length; i++) {
+                target[i].textContent = 'lbs';
+            }
+            for (let i = 0; i < unitsVal.length; i++) {
+                unitsVal[i].textContent = kgToLbs(parseFloat(unitsVal[i].textContent)).toString();
+            }
+        }
+    }
+
+    function onNearestChange(){ // todo: da se zapamti pocetnata brojka, valjda preku thymeleaf
+        let e = document.getElementById("nearest");
+        let newValue = e.options[e.selectedIndex].value;
+        var toRound = document.getElementsByClassName("toRound");
+
+        for (let i = 0; i < toRound.length; i++) {
+            console.log(toRound[i]);
+
+            let temp = toRound[i].textContent;
+            toRound[i].textContent=Math.ceil(temp/newValue).toFixed(2)*newValue;
+
+        }
+
+    }
+
+    function uncheckAll() {
+        let inputs = document.querySelectorAll("input[type=checkbox]")
+        inputs.forEach(item => {
+            item.checked = false
+        })
+    }
+
     window.onload = function () {
         if (listOfCheckedItems.length === 0) {
             document.getElementById('formtest').style.display = 'none';
-            document.getElementById('AnalyzeAndSave').setAttribute('disabled','true');
-            document.getElementById('Analyze').setAttribute('disabled','true');
-
+            document.getElementById('AnalyzeAndSave').setAttribute('disabled', 'true');
+            document.getElementById('Analyze').setAttribute('disabled', 'true');
+            uncheckAll();
 
         } else {
             document.getElementById('formtest').style.display = '';
@@ -308,7 +382,6 @@
 
     function ShowFunc(exId) {
         var exId1 = document.getElementById(exId + '1');
-
 
 
         if (listOfCheckedItems.includes(exId)) {
@@ -337,8 +410,8 @@
 
         if (listOfCheckedItems.length === 0) {
             document.getElementById('formtest').style.display = 'none';
-            document.getElementById('AnalyzeAndSave').setAttribute('disabled','true');
-            document.getElementById('Analyze').setAttribute('disabled','true');
+            document.getElementById('AnalyzeAndSave').setAttribute('disabled', 'true');
+            document.getElementById('Analyze').setAttribute('disabled', 'true');
 
         } else {
             document.getElementById('formtest').style.display = '';
