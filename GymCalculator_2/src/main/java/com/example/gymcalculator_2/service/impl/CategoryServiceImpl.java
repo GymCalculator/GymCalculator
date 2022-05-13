@@ -4,6 +4,7 @@ import com.example.gymcalculator_2.model.Category;
 import com.example.gymcalculator_2.model.Exceptions.CategoryNotFoundException;
 import com.example.gymcalculator_2.model.Exercise;
 import com.example.gymcalculator_2.model.LoggedExercise;
+import com.example.gymcalculator_2.model.LoggedLifts;
 import com.example.gymcalculator_2.repository.CategoryRepository;
 import com.example.gymcalculator_2.repository.ExerciseRepository;
 import com.example.gymcalculator_2.repository.LoggedExerciseRepository;
@@ -12,7 +13,9 @@ import com.example.gymcalculator_2.service.CategoryService;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -65,7 +68,15 @@ public class CategoryServiceImpl implements CategoryService {
     public void removeExerciseFromCategory(Exercise exerciseToRemove) {
         Category category = findByCategoryName(exerciseToRemove.getCategoryName());
         category.getExercises().remove(exerciseToRemove);
-        List<LoggedExercise> loggedExercises = loggedExerciseRepository.findAllByLoggedExercise(exerciseToRemove);
+        List<LoggedLifts> loggedLifts = loggedLiftsRepository.findAll();
+        for(LoggedLifts ll : loggedLifts) {
+            List<LoggedExercise> loggedExercises = ll.getExercises().stream()
+                    .filter(l -> !l.getExerciseName().equals(exerciseToRemove.getExerciseName()))
+                    .collect(Collectors.toList());
+            ll.setLoggedExercises(loggedExercises);
+            loggedLiftsRepository.save(ll);
+        }
+        loggedExerciseRepository.deleteAll(loggedExerciseRepository.findAllByLoggedExercise(exerciseToRemove));
         exerciseRepository.delete(exerciseToRemove);
     }
 
