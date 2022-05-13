@@ -1,6 +1,7 @@
 package com.example.gymcalculator_2.model;
 
 import com.example.gymcalculator_2.model.Enumerator.Proficiency;
+import com.example.gymcalculator_2.model.Enumerator.Provider;
 import com.example.gymcalculator_2.model.Enumerator.Sex;
 import com.example.gymcalculator_2.model.Enumerator.Units;
 import lombok.AllArgsConstructor;
@@ -49,6 +50,9 @@ public class User implements UserDetails {
     // user's friends
     @ManyToMany
     private List<User> friends;
+
+    @Enumerated(EnumType.STRING)
+    private Provider provider;
 
     // user's selected + logged lifts
     @OneToMany

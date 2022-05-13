@@ -185,13 +185,13 @@
                             <label class="form-check-label " th:for="${exercise.getExerciseName()}"
                                    th:text="${exercise.getExerciseName()}"></label>
                             <span th:if="${exercise.isRemoveable()}">
-<!--                                <form class="float-md-end" th:method="DELETE"-->
-<!--                                      th:action="@{/Exercise/deleteExercise(exerciseName=${exercise.getExerciseName()})}"-->
-<!--                                      sec:authorize="hasRole('ROLE_ADMIN')">-->
-<!--                                    <button type="submit" class="btn btn-danger btn-sm">-->
-<!--                                        <i class="fa-solid fa-trash-can"></i>-->
-<!--                                    </button>-->
-<!--                                </form>-->
+                                <form class="float-md-end" th:method="DELETE"
+                                      th:action="@{/Exercise/deleteExercise(exerciseName=${exercise.getExerciseName()})}"
+                                      sec:authorize="hasRole('ROLE_ADMIN')">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </form>
                                 <a type="button" class="btn btn-danger btn-sm float-md-end mx-1 "
                                    th:href="@{/Exercise/editExercise(exerciseName=${exercise.getExerciseName()})}"
                                    sec:authorize="hasRole('ROLE_ADMIN')">
@@ -209,13 +209,13 @@
                                sec:authorize="hasRole('ROLE_ADMIN')">
                                     <i class="fa-solid fa-pencil"></i>
                                 </a>
-<!--                                    <form class="float-md-end" th:method="DELETE"-->
-<!--                                          th:action="@{/Category/deleteCategory(categoryName=${category.getCategoryName()})}"-->
-<!--                                          sec:authorize="hasRole('ROLE_ADMIN')">-->
-<!--                                        <button type="submit" class="btn btn-success btn-sm">-->
-<!--                                            <i class="fa-solid fa-trash-can"></i>-->
-<!--                                        </button>-->
-<!--                                    </form>-->
+                                    <form class="float-md-end" th:method="DELETE"
+                                          th:action="@{/Category/deleteCategory(categoryName=${category.getCategoryName()})}"
+                                          sec:authorize="hasRole('ROLE_ADMIN')">
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </form>
                         </span>
                         </div>
                     </div>
@@ -466,6 +466,14 @@
         });
     });
 
+</script>
+
+<script type="text/javascript">
+    if (window.location.hash === "#_=_"){
+        history.replaceState
+            ? history.replaceState(null, null, window.location.href.split("#")[0])
+            : window.location.hash = "";
+    }
 </script>
 
 </body>

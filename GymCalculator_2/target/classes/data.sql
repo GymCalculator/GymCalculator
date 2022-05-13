@@ -102,32 +102,4 @@ SELECT * FROM (SELECT 'Pendlay Row' as exercise_name,0 as reps, 0 as type, 0 as 
 WHERE NOT EXISTS(
     select exercise_name from exercise where exercise_name = 'Pendlay Row'
     ) LIMIT 1;
--- SELECT *
--- FROM (SELECT 'Squat' as category_name) as val
--- WHERE NOT EXISTS(
---         select category_name from category where category_name = 'Squat'
---     ) LIMIT 1;
--- INSERT INTO category
--- SELECT *
--- FROM (SELECT 'Floor Pull' as category_name) as val
--- WHERE NOT EXISTS(
---         select category_name from category where category_name = 'Floor Pull'
---     ) LIMIT 1;
--- INSERT INTO category
--- SELECT *
--- FROM (SELECT 'Horizontal Press' as category_name) as val
--- WHERE NOT EXISTS(
---         select category_name from category where category_name = 'Horizontal Press'
---     ) LIMIT 1;
--- INSERT INTO category
--- SELECT *
--- FROM (SELECT 'Vertical Press' as category_name) as val
--- WHERE NOT EXISTS(
---         select category_name from category where category_name = 'Vertical Press'
---     ) LIMIT 1;
--- INSERT INTO category
--- SELECT *
--- FROM (SELECT 'Pull-up / Row' as category_name) as val
--- WHERE NOT EXISTS(
---         select category_name from category where category_name = 'Pull-up / Row'
---     ) LIMIT 1;
+
