@@ -13,7 +13,7 @@
             <article class="card-body">
             <h1 class="card-title mb-4 mt-1 text-success text-wrap text-center" th:text="'Create new exercise in ' + ${category}"></h1>
             <div class="d-flex justify-content-center">
-                <form th:action="@{/addNewExercise}" th:method="POST">
+                <form th:action="@{/Exercise/addNewExercise}" th:method="POST">
                     <input type="hidden"
                            class="form-control"
                            id="selectedCategory"

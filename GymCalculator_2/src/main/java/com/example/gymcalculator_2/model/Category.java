@@ -2,11 +2,9 @@ package com.example.gymcalculator_2.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +14,12 @@ import java.util.List;
 @NoArgsConstructor
 public class Category {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String categoryName;
     @OneToMany
     private List<Exercise> exercises;
+    private boolean removeable;
 
     public void setExercises(List<Exercise> exercises) {
         this.exercises = exercises;
@@ -30,5 +31,6 @@ public class Category {
     public Category(String categoryName){
         this.categoryName = categoryName;
         this.exercises = new ArrayList<>();
+        this.removeable = true;
     }
 }

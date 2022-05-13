@@ -12,5 +12,6 @@ import java.util.Optional;
 public interface ExerciseRepository extends JpaRepository<Exercise,String> {
     Optional<Exercise> findByExerciseName(String exerciseName);
     List<Exercise> findAllByCategoryName(String categoryName);
+    void deleteByExerciseName(String exerciseName);
 
 }

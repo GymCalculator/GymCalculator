@@ -12,4 +12,7 @@ public interface CategoryService {
     Category findByCategoryName(String categoryName);
     Category addNewExerciseToCategory(Exercise newExercise, String category);
     Category createCategory(String categoryName);
+    void removeExerciseFromCategory(Exercise exerciseToREmove);
+    Category editCategory(Category category,String newCategoryName);
+    void removeCategory(String category);
 }
