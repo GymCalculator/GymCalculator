@@ -1,5 +1,6 @@
 package com.example.gymcalculator_2.service.impl;
 
+import com.example.gymcalculator_2.model.Enumerator.Provider;
 import com.example.gymcalculator_2.model.Enumerator.Sex;
 import com.example.gymcalculator_2.model.Enumerator.Units;
 import com.example.gymcalculator_2.model.Exceptions.*;
@@ -185,6 +186,24 @@ public class UserServiceImpl implements UserService {
         }
 
         return score;
+    }
+
+    @Override
+    public void processOAuthPostLogin(String username) {
+        User existUser = userRepository.getUserByUsername(username);
+
+        if (existUser == null) {
+            User newUser = new User();
+            newUser.setUsername(username);
+            newUser.setProvider(Provider.FACEBOOK);
+            newUser.setEnabled(true);
+            newUser.setRole(Role.ROLE_USER);
+            newUser.setUnits(Units.Metric);
+
+            userRepository.save(newUser);
+            System.out.println("testing the " + newUser.getUsername());
+
+        }
     }
 
 }

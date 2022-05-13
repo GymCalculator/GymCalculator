@@ -30,4 +30,6 @@ public interface UserService extends UserDetailsService {
     List<LoggedLifts> getLoggedLifts(User user);
 
     Map<String, Double> calculateStrenghtStandard(List<String> categoryName, List<String> exName, List<Integer> weight, List<Integer> reps, int bodyweight, String gender);
+
+    void processOAuthPostLogin(String email);
 }
