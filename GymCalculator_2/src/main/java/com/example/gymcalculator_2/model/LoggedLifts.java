@@ -25,7 +25,7 @@ public class LoggedLifts {
     private LocalDateTime loggedDate;
 
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     private List<LoggedExercise> loggedExercises;
 
     public LoggedLifts(List<LoggedExercise> loggedExercises){

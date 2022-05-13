@@ -102,7 +102,10 @@
                             <tbody>
                             <tr th:each="user : ${currentUser.getFriends()}">
                                 <td th:text="${user.getUsername()}"></td>
-                                <td th:text="${currentUser.getBodyweight()} + ${currentUser.getUnitValue()}"></td>
+                                <td>
+                                    <span class="changeVal" th:text="${currentUser.getBodyweight()}"></span>
+                                    <span class="changeUnit" th:text="${currentUser.getUnitValue()}"></span>
+                                </td>
                                 <th:block th:each="category : ${categories}">
                                     <th:block th:if="${user.findMostRecentLoggedLift()} != null">
                                         <th:block
@@ -165,29 +168,59 @@
                 <p class="text-start opacity-50">These lifts will be used to determine your strength levels. For the
                     most
                     complete results, choose at least one lift per category</p>
+                <p class="text-danger" sec:authorize="hasRole('ROLE_ADMIN')">Only custom exercises and categories are editable</p>
 
                 <!--       Exercises to select from...      -->
                 <div class="row">
                     <div class="card d-flex flex-column col-4 mb-4" id="formtest" th:each="category : ${categories}">
                         <label th:for="${category.getCategoryName()}" class="label label-info fw-bold"
-                               th:text="${category.getCategoryName()}"></label>
+                               th:text="${category.getCategoryName()}">
+                        </label>
                         <div class="form-check checkbox " th:each="exercise : ${category.getExercises()}">
                             <input class="form-check-input" type="checkbox" th:checked="${exercise.getChecked()}"
                                    th:id="${exercise.getExerciseName()}" th:value="${exercise.getExerciseName()}"
                                    th:onclick="ShowFunc([[${exercise.getExerciseName()}]])"
                                    name="listCheckedExercises"
                                    id="listCheckedExercises">
-                            <label class="form-check-label" th:for="${exercise.getExerciseName()}"
+                            <label class="form-check-label " th:for="${exercise.getExerciseName()}"
                                    th:text="${exercise.getExerciseName()}"></label>
+                            <span th:if="${exercise.isRemoveable()}">
+                                <form class="float-md-end" th:method="DELETE"
+                                      th:action="@{/Exercise/deleteExercise(exerciseName=${exercise.getExerciseName()})}"
+                                      sec:authorize="hasRole('ROLE_ADMIN')">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </form>
+                                <a type="button" class="btn btn-danger btn-sm float-md-end mx-1 "
+                                   th:href="@{/Exercise/editExercise(exerciseName=${exercise.getExerciseName()})}"
+                                   sec:authorize="hasRole('ROLE_ADMIN')">
+                                    <i class="fa-solid fa-pencil"></i>
+                                </a>
+                            </span>
                         </div>
                         <div class="mt-auto mb-2" id="createExercise" sec:authorize="hasRole('ROLE_ADMIN')">
                             <a class="btn btn-danger"
-                               th:href="@{/addNewExercise(category=${category.getCategoryName()})}"
+                               th:href="@{/Exercise/addNewExercise(category=${category.getCategoryName()})}"
                             >Create new Exercise <i class='fa-solid fa-dumbbell'></i></a>
+                            <span th:if="${category.isRemoveable()}">
+                            <a type="button" class="btn btn-success btn-sm float-md-end mx-1 "
+                               th:href="@{/Category/editCategory(categoryName=${category.getCategoryName()})}"
+                               sec:authorize="hasRole('ROLE_ADMIN')">
+                                    <i class="fa-solid fa-pencil"></i>
+                                </a>
+                                    <form class="float-md-end" th:method="DELETE"
+                                          th:action="@{/Category/deleteCategory(categoryName=${category.getCategoryName()})}"
+                                          sec:authorize="hasRole('ROLE_ADMIN')">
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </form>
+                        </span>
                         </div>
                     </div>
                     <div class="col-4" id="createCategory" sec:authorize="hasRole('ROLE_ADMIN')">
-                        <a type="button" class="btn btn-danger btn-sm" href="/addNewCategory">Create new Category <i
+                        <a type="button" class="btn btn-success btn-sm" href="/Category/addNewCategory">Create new Category <i
                                 class="fa-solid fa-pencil"></i></a>
                     </div>
                 </div>
@@ -344,7 +377,7 @@
         }
     }
 
-    function onNearestChange(){
+    function onNearestChange(){ // todo: da se zapamti pocetnata brojka, valjda preku thymeleaf
         let e = document.getElementById("nearest");
         let newValue = e.options[e.selectedIndex].value;
         var toRound = document.getElementsByClassName("toRound");

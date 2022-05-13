@@ -2,24 +2,30 @@ package com.example.gymcalculator_2.service.impl;
 
 import com.example.gymcalculator_2.model.Category;
 import com.example.gymcalculator_2.model.Exceptions.CategoryNotFoundException;
-import com.example.gymcalculator_2.model.Exceptions.ExerciseNotFoundException;
 import com.example.gymcalculator_2.model.Exercise;
+import com.example.gymcalculator_2.model.LoggedExercise;
 import com.example.gymcalculator_2.repository.CategoryRepository;
 import com.example.gymcalculator_2.repository.ExerciseRepository;
+import com.example.gymcalculator_2.repository.LoggedExerciseRepository;
+import com.example.gymcalculator_2.repository.LoggedLiftsRepository;
 import com.example.gymcalculator_2.service.CategoryService;
-import com.example.gymcalculator_2.service.ExerciseService;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
     private final ExerciseRepository exerciseRepository;
+    private final LoggedExerciseRepository loggedExerciseRepository;
+    private final LoggedLiftsRepository loggedLiftsRepository;
 
-    public CategoryServiceImpl(CategoryRepository categoryRepository, ExerciseRepository exerciseRepository) {
+    public CategoryServiceImpl(CategoryRepository categoryRepository, ExerciseRepository exerciseRepository, LoggedExerciseRepository loggedExerciseRepository, LoggedLiftsRepository loggedLiftsRepository) {
         this.categoryRepository = categoryRepository;
         this.exerciseRepository = exerciseRepository;
+        this.loggedExerciseRepository = loggedExerciseRepository;
+        this.loggedLiftsRepository = loggedLiftsRepository;
     }
 
     @Override
@@ -54,4 +60,28 @@ public class CategoryServiceImpl implements CategoryService {
         if(categoryRepository.findByCategoryName(categoryName).isPresent()) throw new CategoryNotFoundException();
         return categoryRepository.save(new Category(categoryName));
     }
+
+    @Override
+    public void removeExerciseFromCategory(Exercise exerciseToRemove) {
+        Category category = findByCategoryName(exerciseToRemove.getCategoryName());
+        category.getExercises().remove(exerciseToRemove);
+        List<LoggedExercise> loggedExercises = loggedExerciseRepository.findAllByLoggedExercise(exerciseToRemove);
+        exerciseRepository.delete(exerciseToRemove);
+    }
+
+    @Override
+    public Category editCategory(Category category,String newCategoryName) {
+        exerciseRepository.findAllByCategoryName(category.getCategoryName())
+                .forEach(exercise -> exercise.setCategoryName(newCategoryName));
+        category.setCategoryName(newCategoryName);
+        return categoryRepository.save(category);
+    }
+
+    @Transactional
+    @Override
+    public void removeCategory(String category) {
+        categoryRepository.deleteByCategoryName(category);
+    }
+
+
 }

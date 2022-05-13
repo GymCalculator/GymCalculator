@@ -1,5 +1,6 @@
 package com.example.gymcalculator_2.service.impl;
 
+import com.example.gymcalculator_2.model.Category;
 import com.example.gymcalculator_2.model.Enumerator.LiftType;
 import com.example.gymcalculator_2.model.Exceptions.ExerciseAlreadyExistsException;
 import com.example.gymcalculator_2.model.Exceptions.ExerciseNotFoundException;
@@ -10,6 +11,7 @@ import com.example.gymcalculator_2.repository.LoggedExerciseRepository;
 import com.example.gymcalculator_2.service.ExerciseService;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -54,4 +56,17 @@ public class ExerciseServiceImpl implements ExerciseService {
         return loggedExerciseRepository.save(loggedExercise);
     }
 
+    @Override
+    @Transactional
+    public void deleteExercise(String exerciseName) {
+        exerciseRepository.deleteByExerciseName(exerciseName);
+    }
+
+    @Override
+    public Exercise editExercise(Exercise exercise, String newExerciseName, LiftType type) {
+        if(exerciseRepository.findByExerciseName(newExerciseName).isPresent()) return null;
+        exercise.setExerciseName(newExerciseName);
+        exercise.setType(type);
+        return exerciseRepository.save(exercise);
+    }
 }
