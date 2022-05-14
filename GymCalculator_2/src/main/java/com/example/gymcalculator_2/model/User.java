@@ -15,10 +15,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Entity
 @Data
@@ -33,7 +31,7 @@ public class User implements UserDetails {
     @Id
     private String username;
     private String email;
-    // todo To Encrypt
+
     private String password;
 
     // user's info
@@ -54,9 +52,14 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Provider provider;
 
+
     // user's selected + logged lifts
     @OneToMany
     private List<LoggedLifts> loggedLifts;
+
+    private String accountCreated;
+
+    private String profilePicture;
 
 //    @Enumerated
 //    @Nullable
@@ -81,7 +84,14 @@ public class User implements UserDetails {
         this.userAge = 23;
         this.units = Units.Metric;
         this.bodyweight = 75;
+        this.loggedLifts= new ArrayList<>();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        accountCreated=LocalDateTime.now().format(formatter);
+
     }
+
+
 
 
     @Override
@@ -110,7 +120,9 @@ public class User implements UserDetails {
     }
 
     public LoggedLifts findMostRecentLoggedLift() {
-        if(loggedLifts.size() < 1) return null;
+        if(loggedLifts.size() < 1)
+            return null;
+
         return loggedLifts.get(loggedLifts.size()-1);
     }
     public String getUnitValue(){

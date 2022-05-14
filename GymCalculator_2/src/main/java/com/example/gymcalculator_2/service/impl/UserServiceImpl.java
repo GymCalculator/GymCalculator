@@ -14,6 +14,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +31,11 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
     @Override
@@ -148,40 +156,158 @@ public class UserServiceImpl implements UserService {
     public Map<String, Double> calculateStrenghtStandard(List<String> categoryName, List<String> exName, List<Integer> weight, List<Integer> reps, int bodyweight, String gender) {
 
         Map<String, Double> score = new HashMap<>();
+        for (String s : categoryName) {
+            score.put(s.toUpperCase(), 0.0);
+        }
+
         // for men ===>> za Score po kategorija se zima pogolemiot od 2te
         if (gender.equals("Male")) {
-            for (int i = 0; i < weight.size(); i++) {
-                System.out.println(weight.get(i) + "  reps:"+ reps.get(i));
-                int forOneRep = calculate1RM(weight.get(i), reps.get(i));
+            for (int i = 0; i < reps.size(); i++) { // todo zameni so weight
+                if (reps.get(i) != null) {
+                    System.out.println(weight.get(i) + "  reps:" + reps.get(i));
+                    double forOneRep = calculate1RM(weight.get(i), reps.get(i));
 
-                if (exName.get(i).equals("Front Squat"))
-                    score.put("SQUAT", forOneRep / 1.70); // for Front Squat
-                if (exName.get(i).equals("Back Squat") && score.get("SQUAT") < forOneRep)
-                    score.replace("SQUAT", forOneRep / 2.127); // for back squat
 
-                if (exName.get(i).equals("Deadlift") || exName.get(i).equals("Sumo Deadlift"))
-                    score.put("FLOOR PULL", forOneRep / 2.4458); // for DL and sumo
-                if (exName.get(i).equals("Power Clean") && score.get("FLOOR PULL") < forOneRep)
-                    score.replace("FLOOR PULL", forOneRep / 2.127); // for Power Clean
+                    if (exName.get(i).equals("Front Squat")) {
+                        score.put("SQUAT", forOneRep / 1.70); // for Front Squat
+                        continue;
+                    }
+                    if (exName.get(i).equals("Back Squat") && score.get("SQUAT") < forOneRep) {
+                        score.replace("SQUAT", forOneRep / 2.127); // for back squat
+                        continue;
+                    }
 
-                if (exName.get(i).equals("Bench Press"))
-                    score.put("HORIZONTAL PRESS", forOneRep / 1.589); // for Bench Press
+                    if (exName.get(i).equals("Deadlift") || exName.get(i).equals("Sumo Deadlift")) {
+                        score.put("FLOOR PULL", forOneRep / 2.4458); // for DL and sumo
+                        continue;
+                    }
+                    if (exName.get(i).equals("Power Clean") && score.get("FLOOR PULL") < forOneRep) {
+                        score.replace("FLOOR PULL", forOneRep / 2.127); // for Power Clean
+                        continue;
+                    }
 
-                if (exName.get(i).equals("Snatch Press"))
-                    score.put("VERTICAL PRESS", forOneRep / 0.827); // for Snatch Press
+                    if (exName.get(i).equals("Bench Press")) {
+                        score.put("HORIZONTAL PRESS", forOneRep / 1.589); // for Bench Press
+                        continue;
+                    }
+                    if (exName.get(i).equals("Incline Bench Press") && score.get("HORIZONTAL PRESS") < forOneRep) {
+                        score.put("HORIZONTAL PRESS", forOneRep / 1.305); // for Incline Bench Press
+                        continue;
+                    }
+                    if (exName.get(i).equals("Dip")) {
+                        forOneRep = calculate1RM(weight.get(i) + bodyweight, reps.get(i));
 
-                if (exName.get(i).equals("Pendlay Row"))
-                    score.put("PULL-UP / ROW", forOneRep / 1.298); // specifically for Pendlay Row
+                        if (score.get("HORIZONTAL PRESS") < forOneRep)
+                            score.put("HORIZONTAL PRESS", forOneRep / 1.8); // for Dips
+                        continue;
+                    }
+
+                    if (exName.get(i).equals("Snatch Press")) {
+                        score.put("VERTICAL PRESS", forOneRep / 0.827); // for Snatch Press
+                        continue;
+                    }
+                    if (exName.get(i).equals("Push Press") && score.get("VERTICAL PRESS") < forOneRep) {
+                        score.put("VERTICAL PRESS", forOneRep / 1.375); // for Push Press
+                        continue;
+                    }
+                    if (exName.get(i).equals("Overhead Press") && score.get("VERTICAL PRESS") < forOneRep) {
+                        score.put("VERTICAL PRESS", forOneRep / 1.034); //  for Overhead Press
+                        continue;
+                    }
+
+                    if (exName.get(i).equals("Pendlay Row")) {
+                        score.put("PULL-UP / ROW", forOneRep / 1.298); // specifically for Pendlay Row
+                        continue;
+                    }
+                    if (exName.get(i).equals("Chin-up")) {
+                        forOneRep = calculate1RM(weight.get(i) + bodyweight, reps.get(i));
+
+                        if (score.get("PULL-UP / ROW") < forOneRep)
+                            score.put("PULL-UP / ROW", forOneRep / 1.355); // for Chin-up
+                        continue;
+                    }
+                    if (exName.get(i).equals("Pull-up")) {
+                        forOneRep = calculate1RM(weight.get(i) + bodyweight, reps.get(i));
+
+                        if (score.get("PULL-UP / ROW") < forOneRep)
+                            score.put("PULL-UP / ROW", forOneRep / 1.342); // for Pull-up
+                    }
+                }
             }
 
-        }
-        else {
-            for (int i = 0; i < exName.size(); i++) {
-                int forOneRep = calculate1RM(weight.get(i), reps.get(i));
+        } else {
+            for (int i = 0; i < weight.size(); i++) {
+                if (reps.get(i) != null) {
+
+                    System.out.println(weight.get(i) + "  reps:" + reps.get(i));
+                    double forOneRep = calculate1RM(weight.get(i), reps.get(i));
 
 
+                    if (exName.get(i).equals("Front Squat")) {
+                        score.put("SQUAT", forOneRep / 1.587); // for Front Squat
+                        continue;
+                    }
+                    if (exName.get(i).equals("Back Squat") && score.get("SQUAT") < forOneRep) {
+                        score.replace("SQUAT", forOneRep / 1.27); // for back squat
+                        continue;
+                    }
 
+                    if (exName.get(i).equals("Deadlift") || exName.get(i).equals("Sumo Deadlift")) {
+                        score.put("FLOOR PULL", forOneRep / 1.890); // for DL and sumo
+                        continue;
+                    }
+                    if (exName.get(i).equals("Power Clean") && score.get("FLOOR PULL") < forOneRep) {
+                        score.replace("FLOOR PULL", forOneRep / 1.059); // for Power Clean
+                        continue;
+                    }
 
+                    if (exName.get(i).equals("Bench Press")) {
+                        score.put("HORIZONTAL PRESS", forOneRep / 1.077); // for Bench Press
+                        continue;
+                    }
+                    if (exName.get(i).equals("Incline Bench Press") && score.get("HORIZONTAL PRESS") < forOneRep) {
+                        score.put("HORIZONTAL PRESS", forOneRep / 0.883); // for Incline Bench Press
+                        continue;
+                    }
+                    if (exName.get(i).equals("Dip")) {
+                        forOneRep = calculate1RM(weight.get(i) + bodyweight, reps.get(i));
+
+                        if (score.get("HORIZONTAL PRESS") < forOneRep)
+                            score.put("HORIZONTAL PRESS", forOneRep / 1.711); // for Dips
+                        continue;
+                    }
+
+                    if (exName.get(i).equals("Snatch Press")) {
+                        score.put("VERTICAL PRESS", forOneRep / 0.56); // for Snatch Press
+                        continue;
+                    }
+                    if (exName.get(i).equals("Push Press") && score.get("VERTICAL PRESS") < forOneRep) {
+                        score.put("VERTICAL PRESS", forOneRep / 0.931); // for Push Press
+                        continue;
+                    }
+                    if (exName.get(i).equals("Overhead Press") && score.get("VERTICAL PRESS") < forOneRep) {
+                        score.put("VERTICAL PRESS", forOneRep / 0.7); //  for Overhead Press
+                        continue;
+                    }
+
+                    if (exName.get(i).equals("Pendlay Row")) {
+                        score.put("PULL-UP / ROW", forOneRep / 1.002); // specifically for Pendlay Row
+                        continue;
+                    }
+                    if (exName.get(i).equals("Chin-up")) {
+                        forOneRep = calculate1RM(weight.get(i) + bodyweight, reps.get(i));
+
+                        if (score.get("PULL-UP / ROW") < forOneRep)
+                            score.put("PULL-UP / ROW", forOneRep / 3.253); // for Chin-up
+                        continue;
+                    }
+                    if (exName.get(i).equals("Pull-up")) {
+                        forOneRep = calculate1RM(weight.get(i) + bodyweight, reps.get(i));
+
+                        if (score.get("PULL-UP / ROW") < forOneRep)
+                            score.put("PULL-UP / ROW", forOneRep / 3.089); // for Pull-up
+                    }
+                }
             }
         }
 
@@ -189,22 +315,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void processOAuthPostLogin(String username) {
+    public void processOAuthPostLogin(String username, String url, String oauth2ClientName, String email) {
         User existUser = userRepository.getUserByUsername(username);
 
         if (existUser == null) {
             User newUser = new User();
             newUser.setUsername(username);
-            newUser.setProvider(Provider.FACEBOOK);
+
+
+            System.out.println(oauth2ClientName.toUpperCase());
+            Provider provider = Provider.valueOf(oauth2ClientName.toUpperCase());
+            userRepository.updateAuthenticationType(username, provider);
+
+            newUser.setProvider(provider);
             newUser.setEnabled(true);
+
             newUser.setRole(Role.ROLE_USER);
             newUser.setUnits(Units.Metric);
+            newUser.setProfilePicture(url);
+            newUser.setEmail(email);
 
             userRepository.save(newUser);
-            System.out.println("testing the " + newUser.getUsername());
 
+            System.out.println("logging in ... " + newUser.getUsername());
         }
     }
+
 
 }
 

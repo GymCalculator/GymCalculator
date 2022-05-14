@@ -28,6 +28,9 @@
 <body class="bg-secondary ">
 <!--Navigation bar-->
 <div th:replace="/fragments/nav :: navbar"></div>
+
+<!--<img th:src="${profilePicture}">-->
+
 <th:block>
     <div class="container " style="border-radius: 50px;">
         <section class="jumbotron text-center mt-4">
@@ -67,7 +70,8 @@
                             <th:block th:each="exercise : ${currentUser.findMostRecentLoggedLift().getExercises()}">
                                 <li>
                                     <span class="fw-bold" th:text="${exercise.getExerciseName()} + ': '"></span>
-                                    <span class="changeVal toRound" th:text="${exercise.getWeight()}" th:value="${exercise.getWeight()}"></span>
+                                    <span class="changeVal toRound" th:text="${exercise.getWeight()}"
+                                          th:value="${exercise.getWeight()}"></span>
                                     <span class="changeUnit" th:text="${currentUser.getUnitValue()}"></span>
                                     <span th:text="' x ' + ${exercise.getReps()}"></span>
                                 </li>
@@ -130,6 +134,16 @@
             </div>
         </div>
 
+        <div class="bg-light container mt-4 p-4" style="border-radius: 50px">
+            <div th:if="${scoreMap}!=null">
+                <p>temp</p>
+                <div th:each="sm:${scoreMap}">
+                    <p th:text="${sm.getKey()}"></p>
+                    <p th:text="${sm.getValue()}"></p>
+                </div>
+            </div>
+        </div>
+
         <div class="bg-light container mt-4 p-4 " style="border-radius: 50px">
 
             <form th:action="@{/homepage}" th:method="POST">
@@ -168,7 +182,8 @@
                 <p class="text-start opacity-50">These lifts will be used to determine your strength levels. For the
                     most
                     complete results, choose at least one lift per category</p>
-                <p class="text-danger" sec:authorize="hasRole('ROLE_ADMIN')">Only custom exercises and categories are editable</p>
+                <p class="text-danger" sec:authorize="hasRole('ROLE_ADMIN')">Only custom exercises and categories are
+                    editable</p>
 
                 <!--       Exercises to select from...      -->
                 <div class="row">
@@ -220,8 +235,9 @@
                         </div>
                     </div>
                     <div class="col-4" id="createCategory" sec:authorize="hasRole('ROLE_ADMIN')">
-                        <a type="button" class="btn btn-success btn-sm" href="/Category/addNewCategory">Create new Category <i
-                                class="fa-solid fa-pencil"></i></a>
+                        <a type="button" class="btn btn-success btn-sm" href="/Category/addNewCategory">Create new
+                            Category <i
+                                    class="fa-solid fa-pencil"></i></a>
                     </div>
                 </div>
                 <!--    Personal info...   -->
@@ -338,8 +354,10 @@
         </div>
 
     </div>
-    </div>
-    </div>
+
+
+
+
 </th:block>
 
 
@@ -366,8 +384,7 @@
             for (let i = 0; i < unitsVal.length; i++) {
                 unitsVal[i].textContent = lbsToKg(parseFloat(unitsVal[i].textContent)).toFixed(2).toString();
             }
-        }
-        else {
+        } else {
             for (let i = 0; i < target.length; i++) {
                 target[i].textContent = 'lbs';
             }
@@ -377,7 +394,7 @@
         }
     }
 
-    function onNearestChange(){ // todo: da se zapamti pocetnata brojka, valjda preku thymeleaf
+    function onNearestChange() { // todo: da se zapamti pocetnata brojka, valjda preku thymeleaf
         let e = document.getElementById("nearest");
         let newValue = e.options[e.selectedIndex].value;
         var toRound = document.getElementsByClassName("toRound");
@@ -386,7 +403,7 @@
             console.log(toRound[i]);
 
             let temp = toRound[i].textContent;
-            toRound[i].textContent=Math.ceil(temp/newValue).toFixed(2)*newValue;
+            toRound[i].textContent = Math.ceil(temp / newValue).toFixed(2) * newValue;
 
         }
 
@@ -429,6 +446,7 @@
                 console.log(exId1.getElementsByTagName('INPUT')[i]);
             }
 
+
         } else {
             listOfCheckedItems.push(exId);
             exId1.style.display = '';
@@ -469,7 +487,7 @@
 </script>
 
 <script type="text/javascript">
-    if (window.location.hash === "#_=_"){
+    if (window.location.hash === "#_=_") {
         history.replaceState
             ? history.replaceState(null, null, window.location.href.split("#")[0])
             : window.location.hash = "";

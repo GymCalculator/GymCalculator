@@ -9,9 +9,12 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 public class CustomOAuth2User implements OAuth2User {
 
     private OAuth2User oauth2User;
+    private String oauth2ClientName;
 
-    public CustomOAuth2User(OAuth2User oauth2User) {
+
+    public CustomOAuth2User(OAuth2User oauth2User, String clientName) {
         this.oauth2User = oauth2User;
+        this.oauth2ClientName = clientName;
     }
 
     @Override
@@ -32,4 +35,18 @@ public class CustomOAuth2User implements OAuth2User {
     public String getEmail() {
         return oauth2User.<String>getAttribute("email");
     }
+
+    public String getOauth2ClientName() {
+        return this.oauth2ClientName;
+    }
+
+    public Map getImageData() {
+        return (Map) oauth2User.<Map>getAttribute("picture").get("data");
+    }
+
+    public String getPicture() {
+        return oauth2User.<String>getAttribute("picture");
+    }
+
+
 }
