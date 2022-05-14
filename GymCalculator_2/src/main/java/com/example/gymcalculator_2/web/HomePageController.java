@@ -14,10 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -59,7 +56,8 @@ public class HomePageController {
         categoryService.populateCategories();
         model.addAttribute("units", Units.values());
         model.addAttribute("sex", Sex.values());
-        model.addAttribute("liftType", LiftType.values());
+        model.addAttribute("liftType",LiftType.values());
+//        model.addAttribute("liftType", Arrays.stream(LiftType.values()).map(Enum::toString).collect(Collectors.toList()));
         System.out.println("Logged in as user: " + currentUser.getUsername());
         model.addAttribute("categories", categoryService.findAll());
         System.out.println(currentUser.getUnits());
