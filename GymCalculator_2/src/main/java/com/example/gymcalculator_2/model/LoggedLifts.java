@@ -26,7 +26,7 @@ public class LoggedLifts {
 
     private LocalDateTime loggedDate;
 
-    @ElementCollection(targetClass=Double.class)
+    @ElementCollection(targetClass=Double.class,fetch = FetchType.EAGER)
     @MapKeyColumn(name="Employee_Position")
     private Map<String,Double> scoreMap;
 

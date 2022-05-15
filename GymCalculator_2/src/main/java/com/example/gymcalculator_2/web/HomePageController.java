@@ -231,25 +231,10 @@ public class HomePageController {
 
     }
 
-    @GetMapping("/standards")
-    public String strenghtStandards(Model model) {
-        model.addAttribute("currentUser", currentUser);
-
-        return "standards/strenghtStandard.html";
-    }
-
-    @PostMapping("/standards")
-    public String strenghtStandards(@RequestParam(required = false) int age,
-                                    @RequestParam int bodyweight,
-                                    @RequestParam int units,
-                                    @RequestParam int gender,
-                                    Model model) {
-        model.addAttribute("currentUser", currentUser);
-//        int calculateTDEE_WithBodyFat = userService.calculateTDEE_WithBodyFat(bodyweight,bodyfat);
-//
-//        model.addAttribute("calculateTDEE_WithBodyFat", calculateTDEE_WithBodyFat);
-        return "standards/strenghtStandard.html";
-
+    @GetMapping("/properForm")
+    public String getProperForm(Model model){
+        model.addAttribute("currentUser",currentUser);
+        return "properForm.html";
     }
 
 }
