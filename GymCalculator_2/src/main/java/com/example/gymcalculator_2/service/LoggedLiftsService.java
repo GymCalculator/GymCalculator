@@ -11,4 +11,7 @@ import java.util.Optional;
 public interface LoggedLiftsService {
     public List<LoggedLifts> findAll();
     public LoggedLifts createNewLift(List<LoggedExercise> loggedExercises);
+
+    double calculateTotalScore(Long id);
+
 }

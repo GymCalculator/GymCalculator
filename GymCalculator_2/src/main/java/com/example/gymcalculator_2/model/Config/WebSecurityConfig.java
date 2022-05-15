@@ -1,6 +1,7 @@
 package com.example.gymcalculator_2.model.Config;
 
 import com.example.gymcalculator_2.model.CustomOAuth2User;
+import com.example.gymcalculator_2.model.Enumerator.Provider;
 import com.example.gymcalculator_2.service.UserService;
 import com.example.gymcalculator_2.service.impl.CustomOAuth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,17 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @Configuration
 @EnableWebSecurity
@@ -29,6 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserService userService;
     @Autowired
     private CustomOAuth2UserService oauth2UserService;
+
 
     public WebSecurityConfig(PasswordEncoder passwordEncoder,
                              CustomUsernamePasswordAuthenticationProvider authenticationProvider, UserService userService) {
@@ -45,15 +53,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .userService(oauth2UserService)
                 .and()
                 .successHandler(new AuthenticationSuccessHandler() {
-
                     @Override
                     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                                         Authentication authentication) throws IOException, ServletException {
 
-                        CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
+                        CustomOAuth2User oauth2User = (CustomOAuth2User) authentication.getPrincipal();
+                        String oauth2ClientName = oauth2User.getOauth2ClientName();
 
-                        System.out.println(oauthUser.getAttributes());
-                        userService.processOAuthPostLogin(oauthUser.getName());
+                        Provider provider = Provider.valueOf(oauth2ClientName.toUpperCase());
+                        System.out.println(oauth2User.getAttributes());
+
+                        if (provider == Provider.FACEBOOK)
+                            userService.processOAuthPostLogin(oauth2User.getName(),
+                                    String.valueOf(oauth2User.getImageData().get("url")),
+                                    oauth2ClientName, oauth2User.getEmail());
+
+                        else if (provider == Provider.GOOGLE)
+                            userService.processOAuthPostLogin(oauth2User.getName(), oauth2User.getPicture(),
+                                    oauth2ClientName, oauth2User.getEmail());
 
                         response.sendRedirect("http://localhost:9090/");
                     }
@@ -61,7 +78,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers( "/**").permitAll()
+                .antMatchers("/**").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
@@ -69,7 +86,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .failureUrl("/login?error=Invalid_credentials")
-                .defaultSuccessUrl("/home", true)
+                .defaultSuccessUrl("/home", true) // todo try here
                 .and()
                 .logout()
                 .logoutUrl("/logout")
