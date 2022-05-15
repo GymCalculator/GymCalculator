@@ -7,16 +7,30 @@
     <list default="true" id="cd43533f-b786-47a8-a5e2-19ccc3b99a96" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/LoggedLifts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/model/LoggedLifts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/repository/LoggedExerciseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/repository/LoggedExerciseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/repository/LoggedLiftsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/repository/LoggedLiftsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/LoggedLiftsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/LoggedLiftsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/impl/LoggedLiftsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/impl/LoggedLiftsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/gymcalculator_2/web/HomePageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/body.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/body.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/nav.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/homepage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/standards/strenghtStandard.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/LoggedLifts.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/model/LoggedLifts.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/LoggedLiftsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/LoggedLiftsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/impl/LoggedLiftsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/impl/LoggedLiftsServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/service/impl/UserServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/web/HomePageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/gymcalculator_2/web/HomePageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/body.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/body.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/nav.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/homepage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/standards/strenghtStandard.html" beforeDir="false" />
     </list>
-=======
-    <list default="true" id="21865237-663a-4bcf-96ae-9920edb34c9b" name="Changes" comment="" />
->>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,7 +70,7 @@
       <map>
         <entry key="com.haulmont.jpb.jpaInspector" value="false" />
         <entry key="com.haulmont.jpb.jpaPalette" value="false" />
-        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
       </map>
     </option>
   </component>

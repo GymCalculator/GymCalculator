@@ -11,4 +11,5 @@ import java.util.List;
 public interface LoggedExerciseRepository extends JpaRepository<LoggedExercise,Long> {
     List<LoggedExercise> findAllByLoggedExercise(Exercise exercise);
     void deleteByLoggedExercise(Exercise exercise);
+
 }

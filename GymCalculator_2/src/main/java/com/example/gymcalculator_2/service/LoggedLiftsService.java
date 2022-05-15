@@ -9,9 +9,12 @@ import java.util.List;
 import java.util.Optional;
 
 public interface LoggedLiftsService {
-    public List<LoggedLifts> findAll();
-    public LoggedLifts createNewLift(List<LoggedExercise> loggedExercises);
+    List<LoggedLifts> findAll();
+    LoggedLifts createNewLift(List<LoggedExercise> loggedExercises);
 
     double calculateTotalScore(Long id);
 
+    List<Integer> getReps(Long id);
+    List<Integer> getWeights(Long id);
+    List<String> getExercises(Long id);
 }

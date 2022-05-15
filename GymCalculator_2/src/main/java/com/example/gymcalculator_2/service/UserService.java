@@ -17,6 +17,8 @@ public interface UserService extends UserDetailsService {
 
     List<Integer> calculate1RMList(int weight, int reps); // Wathan formula
 
+    Map<String,Integer> calculateEstimated1RM(List<String> exName,List<Integer> weight, List<Integer> reps);
+
     int calculate1RM(int weight, int reps);
 
     double calculateWILK(int bodyweight, int weightlifted, int gender); // WILKS formula

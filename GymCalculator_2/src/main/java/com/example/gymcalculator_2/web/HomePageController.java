@@ -51,13 +51,13 @@ public class HomePageController {
     }
 
     @GetMapping("/profile")
-    public String getProfile(Model model){
-        model.addAttribute("allUsers",userService.findAll());
+    public String getProfile(Model model) {
+        model.addAttribute("allUsers", userService.findAll());
         model.addAttribute("currentUser", currentUser);
 
-        model.addAttribute("profilePicture",currentUser.getProfilePicture());
+        model.addAttribute("profilePicture", currentUser.getProfilePicture());
 
-       // model.addAttribute("map",currentUser.findMostRecentLoggedLift().getScoreMap());
+        // model.addAttribute("map",currentUser.findMostRecentLoggedLift().getScoreMap());
         return "profile";
     }
 
@@ -70,28 +70,35 @@ public class HomePageController {
         model.addAttribute("sex", Sex.values());
         model.addAttribute("liftType", LiftType.values());
 
-        System.out.println("User: "+currentUser.getUsername() + " logged in with: " + currentUser.getProvider());
+        System.out.println("User: " + currentUser.getUsername() + " logged in with: " + currentUser.getProvider());
         model.addAttribute("categories", categoryService.findAll());
 
-        model.addAttribute("scoreMap",null);
-        if(currentUser.getLoggedLifts().size()>0) {
+        model.addAttribute("scoreMap", null);
+        if (currentUser.getLoggedLifts().size() > 0) {
             model.addAttribute("scoreMap", currentUser.findMostRecentLoggedLift().getScoreMap());
-            model.addAttribute("totalScore",currentUser.findMostRecentLoggedLift().getTotalScore());
+            model.addAttribute("totalScore", currentUser.findMostRecentLoggedLift().getTotalScore());
 
-            System.out.println(currentUser.findMostRecentLoggedLift().getScoreMap());
+            Long mostRecentLogId = currentUser.findMostRecentLoggedLift().getId();
+            model.addAttribute("oneRepMaxMap",
+                    userService.calculateEstimated1RM(
+                            loggedLiftsService.getExercises(mostRecentLogId),
+                            loggedLiftsService.getWeights(mostRecentLogId),
+                            loggedLiftsService.getReps(mostRecentLogId)
+                    )
+            );
         }
         return "homepage.html";
     }
 
     @RequestMapping(params = "AnalyzeAndSave", method = RequestMethod.POST, value = "/homepage")
     public String postHomePageAnalyzeAndLog(
-            @RequestParam String units,@RequestParam String sex, @RequestParam int bw, @RequestParam(required = false,defaultValue = "23") int age,
+            @RequestParam String units, @RequestParam String sex, @RequestParam int bw, @RequestParam(required = false, defaultValue = "23") int age,
             @RequestParam List<String> categoryName,
             @RequestParam List<String> exName, @RequestParam(required = false) List<Integer> exWeight,
             @RequestParam(required = false) List<Integer> exReps, HttpServletRequest request) {
         String user = request.getRemoteUser();
         User currentUser = (User) userService.loadUserByUsername(user);
-        userService.setUserSettings(user,units,sex,bw,age);
+        userService.setUserSettings(user, units, sex, bw, age);
 
 
         List<LoggedExercise> loggedExercises = new ArrayList<>();
@@ -107,7 +114,7 @@ public class HomePageController {
 
 //        System.out.println(loggedLiftsService.findAll());
 
-        loggedLifts.setScoreMap(userService.calculateStrenghtStandard(categoryName,exName,exWeight,exReps,bw,sex));
+        loggedLifts.setScoreMap(userService.calculateStrenghtStandard(categoryName, exName, exWeight, exReps, bw, sex));
         loggedLifts.setTotalScore(loggedLiftsService.calculateTotalScore(loggedLifts.getId()));
 
         userService.addLoggedLifts(user, loggedLifts);
@@ -119,18 +126,18 @@ public class HomePageController {
     }
 
     @RequestMapping(params = "Analyze", method = RequestMethod.POST, value = "/homepage")
-    public String postHomePageAnalyze(@RequestParam String units,@RequestParam String sex, @RequestParam int bw, @RequestParam(required = false,defaultValue = "23") int age,
-                               @RequestParam List<String> categoryName,
-                               @RequestParam List<String> exName, @RequestParam List<Integer> exWeight,
-                               @RequestParam List<Integer> exReps, HttpServletRequest request) { // todo: only analyze data given
+    public String postHomePageAnalyze(@RequestParam String units, @RequestParam String sex, @RequestParam int bw, @RequestParam(required = false, defaultValue = "23") int age,
+                                      @RequestParam List<String> categoryName,
+                                      @RequestParam List<String> exName, @RequestParam List<Integer> exWeight,
+                                      @RequestParam List<Integer> exReps, HttpServletRequest request) { // todo: only analyze data given
 
-        List<Integer> weight= exWeight.stream().filter(Objects::nonNull).collect(Collectors.toList());
-        List<Integer> reps= exReps.stream().filter(Objects::nonNull).collect(Collectors.toList());
+        List<Integer> weight = exWeight.stream().filter(Objects::nonNull).collect(Collectors.toList());
+        List<Integer> reps = exReps.stream().filter(Objects::nonNull).collect(Collectors.toList());
 
         System.out.println(weight);
         // todo: losho gi prakjam; tuka reps i weight vrakjaat null, a exName e lista od site exercises;
         //  ===> treba da se pratat kako objekt (exname,weight,reps);
-        Map<String, Double> score = userService.calculateStrenghtStandard(categoryName,exName, weight,reps,bw,sex);
+        Map<String, Double> score = userService.calculateStrenghtStandard(categoryName, exName, weight, reps, bw, sex);
         System.out.println(score);
 
         return "redirect:/home";
@@ -228,27 +235,6 @@ public class HomePageController {
         model.addAttribute("calculatedTDEE", calculatedTDEE);
         model.addAttribute("calculateTDEE_WithBodyFat", calculateTDEE_WithBodyFat);
         return "calculators/CalculatorTDEE.html";
-
-    }
-
-    @GetMapping("/standards")
-    public String strenghtStandards(Model model) {
-        model.addAttribute("currentUser", currentUser);
-
-        return "standards/strenghtStandard.html";
-    }
-
-    @PostMapping("/standards")
-    public String strenghtStandards(@RequestParam(required = false) int age,
-                                    @RequestParam int bodyweight,
-                                    @RequestParam int units,
-                                    @RequestParam int gender,
-                                    Model model) {
-        model.addAttribute("currentUser", currentUser);
-//        int calculateTDEE_WithBodyFat = userService.calculateTDEE_WithBodyFat(bodyweight,bodyfat);
-//
-//        model.addAttribute("calculateTDEE_WithBodyFat", calculateTDEE_WithBodyFat);
-        return "standards/strenghtStandard.html";
 
     }
 

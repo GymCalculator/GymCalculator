@@ -132,7 +132,7 @@
         <div class="bg-light container mt-4 p-4" style="border-radius: 50px" th:if="${scoreMap}!=null">
             <h1 class="row p-4 align-center text-info">Results:</h1>
 
-            <div class="row d-flex justify-content-center" >
+            <div class="row d-flex justify-content-center">
 
                 <div class="col-4 ">
                     <div class="mt-4 h-50 p-4" th:style="'border-radius: 50px;background-color: ' + ${currentUser.findMostRecentLoggedLift().getScoreColor()}">
@@ -147,53 +147,52 @@
                     <div class="mt-4 p-4 card" style="border-radius: 50px">
                         <h4 class="fw-bolder">ESTIMATED ONE REP MAXES</h4> <hr>
 
-                        <th:block th:each="exercise : ${currentUser.findMostRecentLoggedLift().getExercises()}">
+                        <th:block th:each="orm : ${oneRepMaxMap}">
                             <li style="list-style:none">
-                                <span class="fw-bold" th:text="${exercise.getExerciseName()} + ': '"></span>
-                                <span class="changeVal toRound" th:text="${exercise.getWeight()}"
-                                      th:value="${exercise.getWeight()}"></span>
+                                <span class="fw-bold" th:text="${orm.getKey()} + ': '"></span>
+                                <span class="changeVal toRound" th:text="${orm.getValue()}"></span>
                                 <span class="changeUnit" th:text="${currentUser.getUnitValue()}"></span>
-                                <span th:text="' x ' + ${exercise.getReps()}"></span>
                             </li>
                         </th:block>
+
 
                     </div>
                 </div>
 
 
-                <div class="col-6 ">
+                <div class="col-6 " id="bodyPage">
                     <div th:replace="/body.html"></div>
                 </div>
 
 
             </div>
-            <button type="button" class="blockquote"
+            <button type="button" class="btn btn-dark blockquote"
                     onclick="{document.getElementById('legend-info').hidden = !document.getElementById('legend-info').hidden.valueOf(); }">
                 Legend info
             </button>
-            <div class="row card" id="legend-info" hidden>
-                <p><i class="fa-solid fa-circle" style="color: #ff0d6d"></i> Subpar: The lifter is weaker than the average untrained individual of the same sex and weight.
+            <div class="row card p-4" id="legend-info" hidden style="border-radius: 50px">
+                <p><i class="fa-solid fa-circle" style="color: #ff0d6d"></i> <b style="color: #ff0d6d ">Subpar:</b> The lifter is weaker than the average untrained individual of the same sex and weight.
                     Strength score <30.</p>
-                <p><i class="fa-solid fa-circle" style="color: #aa00ff"></i> Untrained: The lifter has not trained for strength before. The majority of the population.
+                <p><i class="fa-solid fa-circle" style="color: #aa00ff"></i> <b style="color: #aa00ff ">Untrained:</b> The lifter has not trained for strength before. The majority of the population.
                     Strength score 30.</p>
-                <p><i class="fa-solid fa-circle" style="color: #140dba"></i>  Novice: The lifter is stronger than the average untrained lifter of the same sex and weight.
+                <p><i class="fa-solid fa-circle" style="color: #140dba"></i>  <b style="color:#140dba ">Novice:</b> The lifter is stronger than the average untrained lifter of the same sex and weight.
                     Lifters in this category have typically been training for a few months or more. Strength score
                     45.</p>
-                <p><i class="fa-solid fa-circle" style="color: #20ba9a"></i>  Intermediate: The lifter has been consistently training, likely for at least a year. The
+                <p><i class="fa-solid fa-circle" style="color: #20ba9a"></i>  <b style="color:#20ba9a ">Intermediate:</b> The lifter has been consistently training, likely for at least a year. The
                     majority of those who go to the gym regularly fall into this category. Strength score 60.</p>
-                <p><i class="fa-solid fa-circle" style="color: #0cba21"></i>  Proficient: The lifter has been consistently training with a focus on strength, likely for 2+
+                <p><i class="fa-solid fa-circle" style="color: #0cba21"></i>  <b style="color: #0cba21">Proficient:</b> The lifter has been consistently training with a focus on strength, likely for 2+
                     years. Lifters in this category are stronger than most gym regulars. Strength score 75.</p>
-                <p><i class="fa-solid fa-circle" style="color: #dbdb25"></i>  Advanced: The lifter has taken a consistent and structured approach to strength training and
+                <p><i class="fa-solid fa-circle" style="color: #dbdb25"></i>  <b style="color: #dbdb25">Advanced:</b> The lifter has taken a consistent and structured approach to strength training and
                     dieting for multiple years. At this level, the individual is among the strongest in an average
                     commercial gym. Many in this category compete in strength sports. Strength score 87.5.</p>
-                <p><i class="fa-solid fa-circle" style="color: #f69f15"></i>  Exceptional: Lifters in this category have typically taken a consistent, structured approach to
+                <p><i class="fa-solid fa-circle" style="color: #f69f15"></i>  <b style="color: #f69f15">Exceptional:</b> Lifters in this category have typically taken a consistent, structured approach to
                     diet and strength training for the majority of their adult life and are competitive at the
                     regional level. For many lifters, this level is near the maximum genetic potential without the
                     use of performance-enhancing drugs. Strength score 100.</p>
-                <p><i class="fa-solid fa-circle" style="color: #f64800"></i>  Elite: Lifters in this category are competitive at the national level. Those at this level have
+                <p><i class="fa-solid fa-circle" style="color: #f64800"></i>  <b style="color: #f64800">Elite:</b> Lifters in this category are competitive at the national level. Those at this level have
                     typically spent a lifetime of rigorous and structured training and dieting. Strength score
                     112.5.</p>
-                <p><i class="fa-solid fa-circle" style="color: #f6080f"></i>  World class: Lifters in this category are among the best in the world and compete at the
+                <p><i class="fa-solid fa-circle" style="color: #f6080f"></i>  <b style="color: #f6080f">World class:</b> Lifters in this category are among the best in the world and compete at the
                     international level. Those at this level are often gifted individuals who have spent a lifetime
                     of rigorous and structured training and dieting. Strength score 125.</p>
             </div>
@@ -419,6 +418,19 @@
 
 
 <script>
+    window.onload = function (){
+        var id = document.getElementById("#bodyPage");
+        id.addEventListener('load', function(){
+            var div = document.getElementById("myDiv");
+            var inputs = div.getElementsByTagName("input");
+            for (var i = 0, len = inputs.length; i < len; ++i) {
+                if (inputs[i].type === "checkbox") {
+                    inputs[i].checked = true;
+                }
+            }
+        });
+    }
+
     function kgToLbs(kgs) {
         return Math.ceil(kgs / 0.45359237);
     }

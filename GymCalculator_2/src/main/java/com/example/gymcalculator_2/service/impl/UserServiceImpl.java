@@ -68,6 +68,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Map<String, Integer> calculateEstimated1RM(List<String> exName, List<Integer> weight, List<Integer> reps) {
+        Map<String,Integer> oneRepMaxMap = new HashMap<>();
+
+        for (int i=0;i<reps.size();i++) {
+            if(reps.get(i)!=null){
+                System.out.println(exName.get(i) + "weight: " + weight.get(i) + "reps: " + reps.get(i));
+                oneRepMaxMap.put(exName.get(i),calculate1RM(weight.get(i),reps.get(i)));
+            }
+        }
+
+        return oneRepMaxMap;
+    }
+
+    @Override
     public int calculate1RM(int weight, int reps) {
         return (int) Math.floor((100 * weight) / (48.8 + (53.8 * Math.exp(-0.075 * reps))));
     }

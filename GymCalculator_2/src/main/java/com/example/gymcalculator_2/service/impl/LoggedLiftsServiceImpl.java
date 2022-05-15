@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class LoggedLiftsServiceImpl implements LoggedLiftsService {
@@ -38,9 +39,22 @@ public class LoggedLiftsServiceImpl implements LoggedLiftsService {
     @Override
     public double calculateTotalScore(Long id) {
         return (double) Math.round(loggedLiftsRepository.getLoggedLiftsById(id).getScoreMap().values()
-                .stream().filter(i -> i != 0.0).mapToDouble(d -> d).average().orElse(0.0) * 100)/100;
+                .stream().filter(i -> i != 0.0).mapToDouble(d -> d).average().orElse(0.0) * 100) / 100;
     }
 
+    @Override
+    public List<Integer> getReps(Long id){
+        return loggedLiftsRepository.getLoggedLiftsById(id).getLoggedExercises().stream().map(LoggedExercise::getReps).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Integer> getWeights(Long id){
+        return loggedLiftsRepository.getLoggedLiftsById(id).getLoggedExercises().stream().map(LoggedExercise::getWeight).collect(Collectors.toList());
+    }
+    @Override
+    public List<String> getExercises(Long id){
+        return loggedLiftsRepository.getLoggedLiftsById(id).getLoggedExercises().stream().map(LoggedExercise::getExerciseName).collect(Collectors.toList());
+    }
 
 //    @Override
 //    public LoggedLifts findMostRecentLoggedLift(User user) throws ChangeSetPersister.NotFoundException {

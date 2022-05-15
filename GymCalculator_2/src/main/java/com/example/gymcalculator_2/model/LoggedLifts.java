@@ -60,4 +60,15 @@ public class LoggedLifts {
         if(totalScore>=112.5 && totalScore<125) return "#f64800";
         return "#f6080f";
     }
+    public String getColorMuscle(String categoryName){
+        if(scoreMap.get(categoryName)<30) return "#ff0d6d";
+        if(scoreMap.get(categoryName)>=30 && scoreMap.get(categoryName)<45) return "#aa00ff";
+        if(scoreMap.get(categoryName)>=45 && scoreMap.get(categoryName)<60) return "#140dba";
+        if(scoreMap.get(categoryName)>=60 && scoreMap.get(categoryName)<75) return "#20ba9a";
+        if(scoreMap.get(categoryName)>=75 && scoreMap.get(categoryName)<87.5) return "#0cba21";
+        if(scoreMap.get(categoryName)>=87.5 && scoreMap.get(categoryName)<100) return "#dbdb25";
+        if(scoreMap.get(categoryName)>=100 && scoreMap.get(categoryName)<112.5) return "#f69f15";
+        if(scoreMap.get(categoryName)>=112.5 && scoreMap.get(categoryName)<125) return "#f64800";
+        return "#f6080f";
+    }
 }
