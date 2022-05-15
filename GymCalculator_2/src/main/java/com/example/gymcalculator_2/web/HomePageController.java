@@ -238,4 +238,12 @@ public class HomePageController {
 
     }
 
+    @GetMapping("/properForm")
+    public String getAbout(Model model){
+        model.addAttribute("currentUser",currentUser);
+
+        return "properForm";
+    }
+
+
 }
