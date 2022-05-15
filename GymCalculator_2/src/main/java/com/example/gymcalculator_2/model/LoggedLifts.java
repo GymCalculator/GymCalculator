@@ -30,6 +30,8 @@ public class LoggedLifts {
     @MapKeyColumn(name="Employee_Position")
     private Map<String,Double> scoreMap;
 
+    private double totalScore;
+
     @OneToMany(fetch = FetchType.EAGER)
     private List<LoggedExercise> loggedExercises;
 

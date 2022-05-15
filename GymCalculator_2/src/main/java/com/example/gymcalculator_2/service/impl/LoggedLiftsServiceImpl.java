@@ -35,6 +35,11 @@ public class LoggedLiftsServiceImpl implements LoggedLiftsService {
         return loggedLiftsRepository.save(newLift);
     }
 
+    @Override
+    public double calculateTotalScore(Long id) {
+        return (double) Math.round(loggedLiftsRepository.getLoggedLiftsById(id).getScoreMap().values()
+                .stream().filter(i -> i != 0.0).mapToDouble(d -> d).average().orElse(0.0) * 100)/100;
+    }
 
 
 //    @Override

@@ -34,4 +34,5 @@ public interface UserService extends UserDetailsService {
     Map<String, Double> calculateStrenghtStandard(List<String> categoryName, List<String> exName, List<Integer> weight, List<Integer> reps, int bodyweight, String gender);
 
     void processOAuthPostLogin(String username,String url,String oauth2ClientName,String email);
+
 }

@@ -79,6 +79,7 @@ public class HomePageController {
         model.addAttribute("scoreMap",null);
         if(currentUser.getLoggedLifts().size()>0) {
             model.addAttribute("scoreMap", currentUser.findMostRecentLoggedLift().getScoreMap());
+            model.addAttribute("totalScore",currentUser.findMostRecentLoggedLift().getTotalScore());
 
             System.out.println(currentUser.findMostRecentLoggedLift().getScoreMap());
         }
@@ -110,6 +111,7 @@ public class HomePageController {
 //        System.out.println(loggedLiftsService.findAll());
 
         loggedLifts.setScoreMap(userService.calculateStrenghtStandard(categoryName,exName,exWeight,exReps,bw,sex));
+        loggedLifts.setTotalScore(loggedLiftsService.calculateTotalScore(loggedLifts.getId()));
 
         userService.addLoggedLifts(user, loggedLifts);
 

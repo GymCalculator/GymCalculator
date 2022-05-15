@@ -314,6 +314,7 @@ public class UserServiceImpl implements UserService {
         return score;
     }
 
+
     @Override
     public void processOAuthPostLogin(String username, String url, String oauth2ClientName, String email) {
         User existUser = userRepository.getUserByUsername(username);
@@ -340,6 +341,8 @@ public class UserServiceImpl implements UserService {
             System.out.println("logging in ... " + newUser.getUsername());
         }
     }
+
+
 
 
 }
