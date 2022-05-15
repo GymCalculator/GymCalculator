@@ -53,6 +53,7 @@ public class ExerciseServiceImpl implements ExerciseService {
         loggedExercise.setWeight(weight);
         loggedExercise.setChecked(true);
         loggedExercise.setReps(reps);
+        loggedExercise.setType(exercise.getType());
         return loggedExerciseRepository.save(loggedExercise);
     }
 

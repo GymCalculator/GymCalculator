@@ -55,8 +55,9 @@
                             dont have any Lifts Saved</p>
                         <ul style="list-style:none" th:if="${currentUser.findMostRecentLoggedLift()} != null ">
                             <li>
-                                <p class="col-12 fst-italic"
-                                   th:text="'Logged on ' + ${currentUser.findMostRecentLoggedLift().getLoggedDate()} + ':'"></p>
+                                <span class="col-12 fst-italic"
+                                   th:text="'Logged on ' + ${currentUser.findMostRecentLoggedLift().getLoggedDate()} + ':'"></span>
+                                <a class="float-md-end" th:href="@{/export/pdf}"><i class="fa-solid fa-file-pdf fa-3x"></i></a>
                             </li>
                             <li class="col-12">
                                 <span class="fw-bold">Bodyweight:</span>

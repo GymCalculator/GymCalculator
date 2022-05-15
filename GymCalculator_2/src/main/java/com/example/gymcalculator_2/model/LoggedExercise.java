@@ -21,7 +21,7 @@ public class LoggedExercise {
     private int weight;
     private int reps;
     private boolean checked;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private LiftType type;
 
     public LoggedExercise(Exercise exercise, int weight, int reps, LiftType type){
