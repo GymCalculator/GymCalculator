@@ -96,11 +96,7 @@
                             <tr>
                                 <th scope="col">User</th>
                                 <th scope="col">Bodyweight</th>
-                                <th scope="col">Squat</th>
-                                <th scope="col">Floor Pull</th>
-                                <th scope="col">Hor. Press</th>
-                                <th scope="col">Vert. Press</th>
-                                <th scope="col">Pull-up / Row</th>
+                                <th scope="col" th:each="category : ${categories}" th:text="${category.getCategoryName()}"></th>
                                 <th scope="col">Total</th>
                             </tr>
                             </thead>
@@ -108,20 +104,18 @@
                             <tr th:each="user : ${currentUser.getFriends()}">
                                 <td th:text="${user.getUsername()}"></td>
                                 <td>
-                                    <span class="changeVal" th:text="${currentUser.getBodyweight()}"></span>
-                                    <span class="changeUnit" th:text="${currentUser.getUnitValue()}"></span>
+                                    <span class="changeVal" th:text="${user.getBodyweight()}"></span>
+                                    <span class="changeUnit" th:text="${user.getUnitValue()}"></span>
                                 </td>
-                                <th:block th:each="category : ${categories}">
                                     <th:block th:if="${user.findMostRecentLoggedLift()} != null">
-                                        <th:block
-                                                th:each="exercise : ${user.findMostRecentLoggedLift().getExercises()}">
-                                            <th:block
-                                                    th:if="${exercise.getCategoryName()} == ${category.getCategoryName()}">
-                                                <th th:text="${exercise.getCategoryName()}"></th>
-                                            </th:block>
+                                        <th:block th:each="score : ${user.findMostRecentLoggedLift().getScoreMap()}">
+                                                <th th:text="${#numbers.formatDecimal(score.getValue(),0,2)}"
+                                                    th:if="${#numbers.formatDecimal(score.getValue(),0,2)} != '.00'">
+                                                </th>
+                                                <th th:if="${#numbers.formatDecimal(score.getValue(),0,2)} == '.00'">---</th>
                                         </th:block>
+                                        <th th:text="${user.findMostRecentLoggedLift().getTotalScore()}"></th>
                                     </th:block>
-                                </th:block>
                             </tr>
                             </tbody>
                         </table>
@@ -141,7 +135,7 @@
             <div class="row d-flex justify-content-center" >
 
                 <div class="col-4 ">
-                    <div class="mt-4 bg-success h-50 p-4" style="border-radius: 50px">
+                    <div class="mt-4 h-50 p-4" th:style="'border-radius: 50px;background-color: ' + ${currentUser.findMostRecentLoggedLift().getScoreColor()}">
                         <h1 class="text-white fw-bolder">Score: <span th:text="${totalScore}"></span></h1>
                         <hr>
                         <div class="text-white" th:each="sm:${scoreMap}">
@@ -173,29 +167,33 @@
 
 
             </div>
-            <div class="row">
-                <p>Subpar: The lifter is weaker than the average untrained individual of the same sex and weight.
+            <button type="button" class="blockquote"
+                    onclick="{document.getElementById('legend-info').hidden = !document.getElementById('legend-info').hidden.valueOf(); }">
+                Legend info
+            </button>
+            <div class="row card" id="legend-info" hidden>
+                <p><i class="fa-solid fa-circle" style="color: #ff0d6d"></i> Subpar: The lifter is weaker than the average untrained individual of the same sex and weight.
                     Strength score <30.</p>
-                <p>Untrained: The lifter has not trained for strength before. The majority of the population.
+                <p><i class="fa-solid fa-circle" style="color: #aa00ff"></i> Untrained: The lifter has not trained for strength before. The majority of the population.
                     Strength score 30.</p>
-                <p> Novice: The lifter is stronger than the average untrained lifter of the same sex and weight.
+                <p><i class="fa-solid fa-circle" style="color: #140dba"></i>  Novice: The lifter is stronger than the average untrained lifter of the same sex and weight.
                     Lifters in this category have typically been training for a few months or more. Strength score
                     45.</p>
-                <p> Intermediate: The lifter has been consistently training, likely for at least a year. The
+                <p><i class="fa-solid fa-circle" style="color: #20ba9a"></i>  Intermediate: The lifter has been consistently training, likely for at least a year. The
                     majority of those who go to the gym regularly fall into this category. Strength score 60.</p>
-                <p> Proficient: The lifter has been consistently training with a focus on strength, likely for 2+
+                <p><i class="fa-solid fa-circle" style="color: #0cba21"></i>  Proficient: The lifter has been consistently training with a focus on strength, likely for 2+
                     years. Lifters in this category are stronger than most gym regulars. Strength score 75.</p>
-                <p> Advanced: The lifter has taken a consistent and structured approach to strength training and
+                <p><i class="fa-solid fa-circle" style="color: #dbdb25"></i>  Advanced: The lifter has taken a consistent and structured approach to strength training and
                     dieting for multiple years. At this level, the individual is among the strongest in an average
                     commercial gym. Many in this category compete in strength sports. Strength score 87.5.</p>
-                <p> Exceptional: Lifters in this category have typically taken a consistent, structured approach to
+                <p><i class="fa-solid fa-circle" style="color: #f69f15"></i>  Exceptional: Lifters in this category have typically taken a consistent, structured approach to
                     diet and strength training for the majority of their adult life and are competitive at the
                     regional level. For many lifters, this level is near the maximum genetic potential without the
                     use of performance-enhancing drugs. Strength score 100.</p>
-                <p> Elite: Lifters in this category are competitive at the national level. Those at this level have
+                <p><i class="fa-solid fa-circle" style="color: #f64800"></i>  Elite: Lifters in this category are competitive at the national level. Those at this level have
                     typically spent a lifetime of rigorous and structured training and dieting. Strength score
                     112.5.</p>
-                <p> World class: Lifters in this category are among the best in the world and compete at the
+                <p><i class="fa-solid fa-circle" style="color: #f6080f"></i>  World class: Lifters in this category are among the best in the world and compete at the
                     international level. Those at this level are often gifted individuals who have spent a lifetime
                     of rigorous and structured training and dieting. Strength score 125.</p>
             </div>
