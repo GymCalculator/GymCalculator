@@ -10,12 +10,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 
 @Entity
 @Data
 @NoArgsConstructor
 @Setter
+@Getter
 @Table(name = "LoggedLifts")
 public class LoggedLifts {
     @Id
@@ -24,8 +26,13 @@ public class LoggedLifts {
 
     private LocalDateTime loggedDate;
 
+    @ElementCollection(targetClass=Double.class)
+    @MapKeyColumn(name="Employee_Position")
+    private Map<String,Double> scoreMap;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    private double totalScore;
+
+    @OneToMany(fetch = FetchType.EAGER)
     private List<LoggedExercise> loggedExercises;
 
     public LoggedLifts(List<LoggedExercise> loggedExercises){
@@ -36,6 +43,11 @@ public class LoggedLifts {
         return loggedExercises;
     }
     public String getLoggedDate(){
-        return String.format(loggedDate.getDayOfMonth() + "/"+ loggedDate.getMonthValue() + "/" +loggedDate.getYear());
+        return loggedDate.getDayOfMonth() + "/" + loggedDate.getMonthValue() + "/" + loggedDate.getYear();
     }
+    public String getLoggedTime(){
+        return loggedDate.getHour() + ":" + loggedDate.getMinute();
+
+    }
+
 }

@@ -11,14 +11,17 @@
           crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="bg-secondary">
+<!--Navigation bar-->
+<div th:replace="/fragments/nav :: navbar"></div>
+
 <div class="container d-flex justify-content-center">
     <div class="card mt-3">
         <article class="card-body">
             <a href="/register" class="float-end btn btn-outline-primary">Register</a>
             <h4 class="card-title mb-4 mt-1">Login</h4>
             <p>
-                <a href="#" class="btn btn-block btn-outline-info fw-bold">
-                     Login via <i class="fa-brands fa-twitter" style="font-size:30px"></i>
+                <a th:href="@{/oauth2/authorization/google}" class="btn btn-block btn-outline-info fw-bold">
+                     Login via <i class="fa-brands fa-google" style="font-size:30px"></i>
                 </a>
                 <a th:href="@{/oauth2/authorization/facebook}" class="btn btn-block btn-outline-primary fw-bold">
                      Login via <i class="fa-brands fa-facebook" style="font-size:30px"></i>

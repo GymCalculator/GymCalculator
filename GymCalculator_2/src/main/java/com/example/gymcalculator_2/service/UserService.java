@@ -12,6 +12,8 @@ import java.util.Optional;
 
 public interface UserService extends UserDetailsService {
     User register(String username, String email, String password, String repeatPassword, Role userRole);
+    List<User> findAll();
+
 
     List<Integer> calculate1RMList(int weight, int reps); // Wathan formula
 
@@ -31,5 +33,6 @@ public interface UserService extends UserDetailsService {
 
     Map<String, Double> calculateStrenghtStandard(List<String> categoryName, List<String> exName, List<Integer> weight, List<Integer> reps, int bodyweight, String gender);
 
-    void processOAuthPostLogin(String email);
+    void processOAuthPostLogin(String username,String url,String oauth2ClientName,String email);
+
 }

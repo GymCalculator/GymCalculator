@@ -28,12 +28,12 @@ public class HomePageController {
     private final LoggedLiftsService loggedLiftsService;
     private User currentUser;
 
+
     public HomePageController(UserService userService, CategoryService categoryService, ExerciseService exerciseService, LoggedLiftsService loggedLiftsService) {
         this.userService = userService;
         this.categoryService = categoryService;
         this.exerciseService = exerciseService;
         this.loggedLiftsService = loggedLiftsService;
-
     }
 
     public User getUser(HttpServletRequest request, Model model) {
@@ -45,8 +45,20 @@ public class HomePageController {
         } else {
             currentUser = new User("defaultUser", "defaultUser@gmail.com", "defaultuser", Role.ROLE_DEFAULT);
             model.addAttribute("currentUser", currentUser);
+            currentUser.setProfilePicture("https://st.depositphotos.com/2101611/3925/v/600/depositphotos_39258143-stock-illustration-businessman-avatar-profile-picture.jpg");
         }
         return currentUser;
+    }
+
+    @GetMapping("/profile")
+    public String getProfile(Model model){
+        model.addAttribute("allUsers",userService.findAll());
+        model.addAttribute("currentUser", currentUser);
+
+        model.addAttribute("profilePicture",currentUser.getProfilePicture());
+
+       // model.addAttribute("map",currentUser.findMostRecentLoggedLift().getScoreMap());
+        return "profile";
     }
 
     @GetMapping
@@ -56,11 +68,18 @@ public class HomePageController {
         categoryService.populateCategories();
         model.addAttribute("units", Units.values());
         model.addAttribute("sex", Sex.values());
-        model.addAttribute("liftType",LiftType.values());
-//        model.addAttribute("liftType", Arrays.stream(LiftType.values()).map(Enum::toString).collect(Collectors.toList()));
-        System.out.println("Logged in as user: " + currentUser.getUsername());
+        model.addAttribute("liftType", LiftType.values());
+
+        System.out.println("User: "+currentUser.getUsername() + " logged in with: " + currentUser.getProvider());
         model.addAttribute("categories", categoryService.findAll());
-        System.out.println(currentUser.getUnits());
+
+        model.addAttribute("scoreMap",null);
+        if(currentUser.getLoggedLifts().size()>0) {
+            model.addAttribute("scoreMap", currentUser.findMostRecentLoggedLift().getScoreMap());
+            model.addAttribute("totalScore",currentUser.findMostRecentLoggedLift().getTotalScore());
+
+            System.out.println(currentUser.findMostRecentLoggedLift().getScoreMap());
+        }
         return "homepage.html";
     }
 
@@ -72,8 +91,8 @@ public class HomePageController {
             @RequestParam(required = false) List<Integer> exReps, HttpServletRequest request) {
         String user = request.getRemoteUser();
         User currentUser = (User) userService.loadUserByUsername(user);
-        System.out.println("log");
         userService.setUserSettings(user,units,sex,bw,age);
+
 
         List<LoggedExercise> loggedExercises = new ArrayList<>();
 
@@ -88,11 +107,15 @@ public class HomePageController {
 
 //        System.out.println(loggedLiftsService.findAll());
 
+        loggedLifts.setScoreMap(userService.calculateStrenghtStandard(categoryName,exName,exWeight,exReps,bw,sex));
+        loggedLifts.setTotalScore(loggedLiftsService.calculateTotalScore(loggedLifts.getId()));
+
         userService.addLoggedLifts(user, loggedLifts);
 
 //        User currentUser=(User)userService.loadUserByUsername(user);
 
-        return "redirect:/score";
+
+        return "redirect:/home";
     }
 
     @RequestMapping(params = "Analyze", method = RequestMethod.POST, value = "/homepage")
