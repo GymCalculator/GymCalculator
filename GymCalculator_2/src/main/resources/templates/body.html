@@ -110,7 +110,8 @@
     })
 </script>
 
-<style>
+<style lang="en" xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
     .muscle-groups {
         position: relative;
         background: #eee;
@@ -184,14 +185,14 @@
     }
     .muscle-groups .obliques:checked ~ svg #Obliques path {
         opacity: 0.8;
-        fill: #00BCD4 !important;
+        fill: [[${currentUser.findMostRecentLoggedLift().getScoreColor()}]] !important;
     }
     .muscle-groups label[for="abs"]:hover ~ svg #Abs path {
         opacity: 0.75;
     }
     .muscle-groups .abs:checked ~ svg #Abs path {
         opacity: 0.8;
-        fill: #00BCD4 !important;
+        fill: [[${currentUser.findMostRecentLoggedLift().getScoreColor()}]] !important;
     }
     .muscle-groups label[for="quads"]:hover ~ svg #Quads path {
         opacity: 0.75;
