@@ -55,8 +55,9 @@
                             dont have any Lifts Saved</p>
                         <ul style="list-style:none" th:if="${currentUser.findMostRecentLoggedLift()} != null ">
                             <li>
-                                <p class="col-12 fst-italic"
-                                   th:text="'Logged on ' + ${currentUser.findMostRecentLoggedLift().getLoggedDate()} + ':'"></p>
+                                <span class="col-12 fst-italic"
+                                   th:text="'Logged on ' + ${currentUser.findMostRecentLoggedLift().getLoggedDate()} + ':'"></span>
+                                <a class="float-md-end" th:href="@{/export/pdf}"><i class="fa-solid fa-file-pdf fa-3x"></i></a>
                             </li>
                             <li class="col-12">
                                 <span class="fw-bold">Bodyweight:</span>
@@ -278,9 +279,9 @@
                                th:href="@{/Exercise/addNewExercise(category=${category.getCategoryName()})}"
                             >Create new Exercise <i class='fa-solid fa-dumbbell'></i></a>
                             <span th:if="${category.isRemoveable()}">
-                            <a type="button" class="btn btn-success btn-sm float-md-end mx-1 "
-                               th:href="@{/Category/editCategory(categoryName=${category.getCategoryName()})}"
-                               sec:authorize="hasRole('ROLE_ADMIN')">
+                                <a type="button" class="btn btn-success btn-sm float-md-end mx-1 "
+                                    th:href="@{/Category/editCategory(categoryName=${category.getCategoryName()})}"
+                                    sec:authorize="hasRole('ROLE_ADMIN')">
                                     <i class="fa-solid fa-pencil"></i>
                                 </a>
                                     <form class="float-md-end" th:method="DELETE"
@@ -387,7 +388,9 @@
 
                 <!-- todo: maybe put a reset button later
                 == reset button sets the changed inputs to their predefined values (inserted by the user when creating an account)-->
-
+                <div class="text-danger fw-bold" sec:authorize="hasRole('ROLE_ADMIN')">
+                        You are logged in as Admin. Please log in as User to save your lifts
+                </div>
                 <button type="submit" class="btn btn-danger text-white" id="Analyze" name="Analyze">Analyze</button>
                 <button type="submit" class="btn btn-info text-white" id="AnalyzeAndSave" name="AnalyzeAndSave">Analyze
                     and Log Lifts
@@ -405,7 +408,6 @@
                     <span><b>Analyze and Log Lifts:</b> Displays a strength analysis and saves the data you entered.
                 Use this if the numbers you entered match your recent lifts.</span>
                     <br>
-                    <span><b>Reset:</b> Loads your last logged lifts.</span>
                 </div>
 
 
