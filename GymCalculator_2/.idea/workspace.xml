@@ -41,8 +41,8 @@
       <list>
         <option value="Interface" />
         <option value="HTML File" />
-        <option value="HTML File" />
         <option value="Enum" />
+        <option value="HTML File" />
         <option value="Class" />
       </list>
     </option>
@@ -174,7 +174,7 @@
       <workItem from="1652456050223" duration="176000" />
       <workItem from="1652456246346" duration="944000" />
       <workItem from="1652458537865" duration="5290000" />
-      <workItem from="1652632526852" duration="5211000" />
+      <workItem from="1652632526852" duration="15274000" />
     </task>
     <servers />
   </component>

@@ -79,7 +79,8 @@
                     <!-- begin tab-content -->
                     <div class="tab-content p-0">
                         <!-- begin #profile-post tab -->
-                        <div class="tab-pane fade active show" id="profile-post" th:if="${currentUser.findMostRecentLoggedLift()} != null ">
+                        <div class="tab-pane fade active show" id="profile-post"
+                             th:if="${currentUser.findMostRecentLoggedLift()} != null ">
                             <!-- begin timeline -->
                             <ul class="timeline" th:each="lift : ${currentUser.getLoggedLifts()}">
                                 <li>
@@ -100,59 +101,38 @@
                                             <span class="userimage"><img
                                                     th:src="${currentUser.getProfilePicture()}"
                                                     alt=""></span>
-                                            <span class="username"><a
-                                                    href="javascript:;">Sean Ngu</a> <small></small></span>
-                                            <span class="pull-right text-muted">18 Views</span>
+                                            <span>Logged Lifts</span>
                                         </div>
-                                        <div class="timeline-content" th:each="exercise : ${lift.getExercises()}">
-                                            <p th:text="${exercise.getLoggedExercise().getExerciseName()}">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                                                faucibus
-                                                turpis quis tincidunt luctus.
-                                                Nam sagittis dui in nunc consequat, in imperdiet nunc sagittis.
-                                            </p>
-                                        </div>
-                                        <div class="timeline-likes">
-                                            <div class="stats-right">
-                                                <span class="stats-text">259 Shares</span>
-                                                <span class="stats-text">21 Comments</span>
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <th:block th:each="exercise : ${lift.getExercises()}">
+                                                    <ul style="list-style: none">
+                                                        <li>
+                                                <span class="fw-bold"
+                                                      th:text="${exercise.getExerciseName()} + ': '"></span>
+                                                            <span class="changeVal toRound"
+                                                                  th:text="${exercise.getWeight()}"
+                                                                  th:value="${exercise.getWeight()}"></span>
+                                                            <span class="changeUnit"
+                                                                  th:text="${currentUser.getUnitValue()}"></span>
+                                                            <span th:text="' x ' + ${exercise.getReps()}"></span>
+                                                        </li>
+                                                    </ul>
+
+                                                </th:block>
                                             </div>
-                                            <div class="stats">
-                                    <span class="fa-stack fa-fw stats-icon">
-                                    <i class="fa fa-circle fa-stack-2x text-danger"></i>
-                                    <i class="fa fa-heart fa-stack-1x fa-inverse t-plus-1"></i>
-                                    </span>
-                                                <span class="fa-stack fa-fw stats-icon">
-                                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                                    <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                                <span class="stats-total">4.3k</span>
-                                            </div>
-                                        </div>
-                                        <div class="timeline-footer">
-                                            <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i
-                                                    class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like</a>
-                                            <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i
-                                                    class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
-                                            <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i
-                                                    class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
-                                        </div>
-                                        <div class="timeline-comment-box">
-                                            <div class="user"><img
-                                                    src="https://bootdey.com/img/Content/avatar/avatar3.png"></div>
-                                            <div class="input">
-                                                <form action="">
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control rounded-corner"
-                                                               placeholder="Write a comment...">
-                                                        <span class="input-group-btn p-l-10">
-                                          <button class="btn btn-primary f-s-12 rounded-corner"
-                                                  type="button">Comment</button>
-                                          </span>
-                                                    </div>
-                                                </form>
+                                            <div class="col-5  p-4"
+                                                 th:style="'border-radius: 50px;background-color: ' + ${lift.getScoreColor()}">
+                                                <h1 class="text-white fw-bolder">Score: <span
+                                                        th:text="${lift.getTotalScore()}"></span></h1>
+                                                <hr>
+                                                <div class="text-white" th:each="sm:${lift.getScoreMap()}">
+                                                    <span th:text="${sm.getKey()} + ':  '"></span>
+                                                    <span th:text="${#numbers.formatDecimal(sm.getValue(),0,2)}"></span>
+                                                </div>
                                             </div>
                                         </div>
+
                                     </div>
                                     <!-- end timeline-body -->
                                 </li>
