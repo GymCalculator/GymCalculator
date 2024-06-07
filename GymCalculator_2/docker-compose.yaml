@@ -1,4 +1,5 @@
 version: '3.8'
+# https://spring.io/guides/gs/spring-boot-docker
 
 services:
   app:
