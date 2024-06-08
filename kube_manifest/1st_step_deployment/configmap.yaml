@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: app-config
-  namespace: mynamespace
+  namespace: GymCalculatorNamespace
 data:
   SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql:5432/mydatabase
   SPRING_JPA_HIBERNATE_DDL_AUTO: update

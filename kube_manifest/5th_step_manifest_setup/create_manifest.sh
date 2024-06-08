@@ -1,4 +1,4 @@
-kubectl create namespace mynamespace
+kubectl create namespace GymCalculatorNamespace
 
 kubectl apply -f ../1st_step_deployment/configmap.yaml
 kubectl apply -f ../1st_step_deployment/secret.yaml

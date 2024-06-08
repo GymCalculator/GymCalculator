@@ -1,9 +1,8 @@
-# statefulset.yaml
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: postgresql
-  namespace: mynamespace
+  namespace: GymCalculatorNamespace
 spec:
   serviceName: postgresql
   replicas: 1
@@ -20,6 +19,7 @@ spec:
           image: postgres:13
           ports:
             - containerPort: 5432
+          # SAME AS OTHER CASE
           env:
             - name: POSTGRES_DB
               value: mydatabase

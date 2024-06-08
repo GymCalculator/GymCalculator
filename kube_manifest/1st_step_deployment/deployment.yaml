@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: my-spring-boot-app
-  namespace: mynamespace
+  namespace: GymCalculatorNamespace
 spec:
   replicas: 3
   selector:
@@ -15,9 +15,10 @@ spec:
     spec:
       containers:
         - name: my-spring-boot-app
-          image: your-docker-image:tag
+          image: nikog23/my-spring-boot-app:latest # MIGHT BE WRONG - CHECK AFTER DEPLOYING
           ports:
             - containerPort: 8080
+          # MIGHT NOT NEED PART BELOW SINCE IN SAME NAMESPACE
           env:
             - name: SPRING_DATASOURCE_URL
               valueFrom:
